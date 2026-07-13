@@ -10,128 +10,116 @@ export default function Footer() {
     <footer
       style={{
         background: '#050403',
-        borderTop: '1px solid rgba(184, 146, 74, 0.1)',
         position: 'relative',
         overflow: 'hidden',
-        paddingTop: '80px',
       }}
     >
+      {/* PRE-FOOTER EDITORIAL MOMENT */}
+      <section style={{
+        padding: 'clamp(80px, 12vw, 160px) clamp(32px, 6vw, 100px)',
+        background: '#080605',
+        borderTop: '1px solid rgba(243,198,35,0.08)',
+        textAlign: 'center',
+        overflow: 'hidden',
+      }}>
+        <span style={{
+          fontFamily: 'var(--font-sans)', fontSize: '9px', fontWeight: 700,
+          letterSpacing: '0.22em', textTransform: 'uppercase',
+          color: '#F3C623', display: 'block', marginBottom: '24px',
+        }}>— Start a Conversation</span>
+
+        <h2 style={{
+          fontFamily: 'var(--font-serif)',
+          fontSize: 'clamp(48px, 9vw, 128px)',
+          fontWeight: 300, lineHeight: 1.0, letterSpacing: '-0.02em',
+          color: '#F0EAE0',
+          marginBottom: '48px',
+        }}>
+          Let's Build Something <em className="hero-em" style={{ fontStyle: 'italic', color: '#F3C623' }}>Tactile</em>.
+        </h2>
+
+        <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <Link 
+            href="/contact" 
+            style={{ 
+              display: 'inline-flex',
+              alignItems: 'center',
+              height: '54px',
+              padding: '0 38px',
+              background: '#F3C623', 
+              color: '#050403',
+              fontFamily: 'var(--font-sans)',
+              fontSize: '11px',
+              fontWeight: 700,
+              letterSpacing: '0.18em',
+              textTransform: 'uppercase',
+              transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+              boxShadow: '0 0 30px rgba(243,198,35,0.2)',
+              textDecoration: 'none'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = '#F6D354';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = '#F3C623';
+              e.currentTarget.style.transform = 'translateY(0)';
+            }}
+          >
+            Get a Quote
+          </Link>
+          <Link 
+            href="/digital-showroom" 
+            style={{ 
+              display: 'inline-flex',
+              alignItems: 'center',
+              height: '54px',
+              padding: '0 32px',
+              background: 'transparent',
+              color: 'rgba(240, 234, 224, 0.8)',
+              border: '1px solid rgba(240, 234, 224, 0.16)',
+              fontFamily: 'var(--font-sans)',
+              fontSize: '11px',
+              fontWeight: 500,
+              letterSpacing: '0.18em',
+              textTransform: 'uppercase',
+              backdropFilter: 'blur(8px)',
+              transition: 'all 0.3s ease',
+              textDecoration: 'none'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(243,198,35,0.45)';
+              e.currentTarget.style.color = '#F3C623';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(240, 234, 224, 0.16)';
+              e.currentTarget.style.color = 'rgba(240, 234, 224, 0.8)';
+              e.currentTarget.style.transform = 'translateY(0)';
+            }}
+          >
+            Digital Showroom
+          </Link>
+        </div>
+      </section>
+
       {/* Subtle animated background mesh glow */}
       <div
         style={{
           position: 'absolute',
-          top: '-200px',
+          bottom: '0',
           left: '20%',
           width: '600px',
-          height: '600px',
+          height: '400px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(184, 146, 74, 0.035) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(243,198,35,0.035) 0%, transparent 70%)',
           filter: 'blur(80px)',
           pointerEvents: 'none',
           zIndex: 0,
         }}
       />
 
-      <div style={{ position: 'relative', zIndex: 1 }} className="container">
-        {/* Editorial Pre-Footer Call to Action */}
-        <div
-          style={{
-            textAlign: 'center',
-            marginBottom: '80px',
-            paddingBottom: '48px',
-            borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
-          }}
-        >
-          <span
-            style={{
-              fontFamily: 'var(--font-sans)',
-              fontSize: '10px',
-              fontWeight: 600,
-              letterSpacing: '0.25em',
-              textTransform: 'uppercase',
-              color: '#B8924A',
-              display: 'block',
-              marginBottom: '20px',
-            }}
-          >
-            — Start Curation
-          </span>
-          <h2
-            style={{
-              fontFamily: 'var(--font-serif)',
-              fontSize: 'clamp(36px, 6vw, 84px)',
-              fontWeight: 300,
-              lineHeight: 1.05,
-              color: '#F0EAE0',
-              margin: '0 auto 32px',
-              maxWidth: '900px',
-            }}
-          >
-            Let's Build Something <em style={{ fontStyle: 'italic', color: '#B8924A' }}>Tactile</em>.
-          </h2>
-          <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link
-              href="/contact"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                height: '54px',
-                padding: '0 38px',
-                background: '#B8924A',
-                color: '#050403',
-                fontFamily: 'var(--font-sans)',
-                fontSize: '11px',
-                fontWeight: 700,
-                letterSpacing: '0.18em',
-                textTransform: 'uppercase',
-                transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                boxShadow: '0 0 30px rgba(184, 146, 74, 0.2)',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#D4AA6A';
-                e.currentTarget.style.transform = 'translateY(-2px)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = '#B8924A';
-                e.currentTarget.style.transform = 'translateY(0)';
-              }}
-            >
-              Get a Quote
-            </Link>
-            <Link
-              href="/digital-showroom"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                height: '54px',
-                padding: '0 32px',
-                background: 'transparent',
-                color: 'rgba(240, 234, 224, 0.8)',
-                border: '1px solid rgba(240, 234, 224, 0.16)',
-                fontFamily: 'var(--font-sans)',
-                fontSize: '11px',
-                fontWeight: 500,
-                letterSpacing: '0.18em',
-                textTransform: 'uppercase',
-                backdropFilter: 'blur(8px)',
-                transition: 'all 0.3s ease',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(184, 146, 74, 0.45)';
-                e.currentTarget.style.color = '#B8924A';
-                e.currentTarget.style.transform = 'translateY(-2px)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(240, 234, 224, 0.16)';
-                e.currentTarget.style.color = 'rgba(240, 234, 224, 0.8)';
-                e.currentTarget.style.transform = 'translateY(0)';
-              }}
-            >
-              Digital Showroom
-            </Link>
-          </div>
-        </div>
-
+      <div style={{ position: 'relative', zIndex: 1, padding: '80px clamp(32px, 6vw, 100px) 0' }}>
         {/* Footer Grid System */}
         <div
           style={{
@@ -144,11 +132,11 @@ export default function Footer() {
         >
           {/* Brand Col */}
           <div style={{ gridColumn: 'span 4' }} className="footer-col-brand">
-            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '24px' }}>
+            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '24px', textDecoration: 'none' }}>
               <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
-                <rect x="1" y="1" width="26" height="26" stroke="#B8924A" strokeWidth="1" />
-                <path d="M7 14 L14 7 L21 14 L14 21 Z" stroke="#B8924A" strokeWidth="1" fill="none" />
-                <circle cx="14" cy="14" r="1.5" fill="#B8924A" />
+                <rect x="1" y="1" width="26" height="26" stroke="#F3C623" strokeWidth="1" />
+                <path d="M7 14 L14 7 L21 14 L14 21 Z" stroke="#F3C623" strokeWidth="1" fill="none" />
+                <circle cx="14" cy="14" r="1.5" fill="#F3C623" />
               </svg>
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <span
@@ -167,7 +155,7 @@ export default function Footer() {
                     fontFamily: 'var(--font-sans)',
                     fontSize: '7px',
                     letterSpacing: '0.3em',
-                    color: '#B8924A',
+                    color: '#F3C623',
                     textTransform: 'uppercase',
                     marginTop: '2px',
                   }}
@@ -190,7 +178,7 @@ export default function Footer() {
                 fontWeight: 700,
                 letterSpacing: '0.22em',
                 textTransform: 'uppercase',
-                color: '#B8924A',
+                color: '#F3C623',
                 display: 'block',
                 marginBottom: '20px',
               }}
@@ -213,8 +201,9 @@ export default function Footer() {
                     fontSize: '13px',
                     color: 'rgba(240, 234, 224, 0.65)',
                     transition: 'color 0.25s ease',
+                    textDecoration: 'none'
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = '#B8924A')}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = '#F3C623')}
                   onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(240, 234, 224, 0.65)')}
                 >
                   {link.label}
@@ -232,7 +221,7 @@ export default function Footer() {
                 fontWeight: 700,
                 letterSpacing: '0.22em',
                 textTransform: 'uppercase',
-                color: '#B8924A',
+                color: '#F3C623',
                 display: 'block',
                 marginBottom: '20px',
               }}
@@ -271,9 +260,10 @@ export default function Footer() {
                   style={{
                     fontFamily: 'var(--font-sans)',
                     fontSize: '11px',
-                    color: '#B8924A',
+                    color: '#F3C623',
                     marginTop: '4px',
                     display: 'inline-block',
+                    textDecoration: 'none'
                   }}
                 >
                   View on Map &rarr;
@@ -311,9 +301,10 @@ export default function Footer() {
                   style={{
                     fontFamily: 'var(--font-sans)',
                     fontSize: '11px',
-                    color: '#B8924A',
+                    color: '#F3C623',
                     marginTop: '4px',
                     display: 'inline-block',
+                    textDecoration: 'none'
                   }}
                 >
                   View on Map &rarr;
@@ -331,7 +322,7 @@ export default function Footer() {
                 fontWeight: 700,
                 letterSpacing: '0.22em',
                 textTransform: 'uppercase',
-                color: '#B8924A',
+                color: '#F3C623',
                 display: 'block',
                 marginBottom: '20px',
               }}
@@ -345,6 +336,7 @@ export default function Footer() {
                   fontFamily: 'var(--font-sans)',
                   fontSize: '13px',
                   color: 'rgba(240, 234, 224, 0.65)',
+                  textDecoration: 'none'
                 }}
               >
                 +91 98765 43210
@@ -355,6 +347,7 @@ export default function Footer() {
                   fontFamily: 'var(--font-sans)',
                   fontSize: '13px',
                   color: 'rgba(240, 234, 224, 0.65)',
+                  textDecoration: 'none'
                 }}
               >
                 hello@lavision.in
@@ -368,8 +361,9 @@ export default function Footer() {
                     fontSize: '13px',
                     color: 'rgba(240, 234, 224, 0.5)',
                     transition: 'color 0.25s ease',
+                    textDecoration: 'none'
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = '#B8924A')}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = '#F3C623')}
                   onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(240, 234, 224, 0.5)')}
                 >
                   {s}
@@ -403,6 +397,7 @@ export default function Footer() {
                 fontSize: '11px',
                 color: 'rgba(240, 234, 224, 0.35)',
                 transition: 'color 0.25s ease',
+                textDecoration: 'none'
               }}
               onMouseEnter={(e) => (e.currentTarget.style.color = '#FAF7F2')}
               onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(240, 234, 224, 0.35)')}
@@ -416,6 +411,7 @@ export default function Footer() {
                 fontSize: '11px',
                 color: 'rgba(240, 234, 224, 0.35)',
                 transition: 'color 0.25s ease',
+                textDecoration: 'none'
               }}
               onMouseEnter={(e) => (e.currentTarget.style.color = '#FAF7F2')}
               onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(240, 234, 224, 0.35)')}

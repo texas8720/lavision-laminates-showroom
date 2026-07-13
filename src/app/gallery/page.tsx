@@ -49,7 +49,7 @@ export default function InspirationGallery() {
       {/* ─── HERO SECTION ─── */}
       <section className="container" style={{ marginBottom: '64px' }}>
         <div style={{ maxWidth: '900px' }}>
-          <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: '#B8924A', textTransform: 'uppercase', display: 'block', marginBottom: '16px' }}>
+          <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: '#F3C623', textTransform: 'uppercase', display: 'block', marginBottom: '16px' }}>
             &mdash; Curation Portfolio
           </span>
           <h1
@@ -82,7 +82,7 @@ export default function InspirationGallery() {
             borderBottom: '1px solid rgba(255,255,255,0.05)',
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginRight: '16px', color: '#B8924A' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginRight: '16px', color: '#F3C623' }}>
             <Filter size={14} />
             <span style={{ fontSize: '11px', fontFamily: 'var(--font-sans)', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase' }}>Filters</span>
           </div>
@@ -93,9 +93,9 @@ export default function InspirationGallery() {
               onClick={() => setSelectedFilter(filter)}
               style={{
                 padding: '6px 16px',
-                background: selectedFilter === filter ? '#B8924A' : 'transparent',
+                background: selectedFilter === filter ? '#F3C623' : 'transparent',
                 color: selectedFilter === filter ? '#050403' : 'rgba(240, 234, 224, 0.6)',
-                border: selectedFilter === filter ? '1px solid #B8924A' : '1px solid rgba(255,255,255,0.08)',
+                border: selectedFilter === filter ? '1px solid #F3C623' : '1px solid rgba(255,255,255,0.08)',
                 cursor: 'pointer',
                 fontFamily: 'var(--font-sans)',
                 fontSize: '11px',
@@ -106,7 +106,7 @@ export default function InspirationGallery() {
               }}
               onMouseEnter={(e) => {
                 if (selectedFilter !== filter) {
-                  e.currentTarget.style.borderColor = '#B8924A';
+                  e.currentTarget.style.borderColor = '#F3C623';
                   e.currentTarget.style.color = '#F0EAE0';
                 }
               }}
@@ -182,7 +182,7 @@ export default function InspirationGallery() {
 
                   {/* Top category label */}
                   <div style={{ padding: '24px', zIndex: 1, display: 'flex', justifyContent: 'space-between' }}>
-                    <span style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: '#B8924A', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase' }}>
+                    <span style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: '#F3C623', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase' }}>
                       {proj.category}
                     </span>
                     <ArrowUpRight size={14} color="rgba(240, 234, 224, 0.3)" />
@@ -191,7 +191,7 @@ export default function InspirationGallery() {
                   {/* Center branding icon */}
                   <div style={{ display: 'flex', justifyContent: 'center', zIndex: 1, padding: '20px' }}>
                     <div style={{ width: '48px', height: '48px', borderRadius: '50%', border: '1px solid rgba(184,146,74,0.2)', background: 'rgba(5,4,3,0.6)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <Compass size={18} color="#B8924A" />
+                      <Compass size={18} color="#F3C623" />
                     </div>
                   </div>
 
@@ -266,7 +266,7 @@ export default function InspirationGallery() {
             {/* Case Note Content */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               <div>
-                <span style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: '#B8924A', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', display: 'block', marginBottom: '8px' }}>
+                <span style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: '#F3C623', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', display: 'block', marginBottom: '8px' }}>
                   Project Case Curation
                 </span>
                 <h2 style={{ fontSize: 'clamp(24px, 3.5vw, 38px)', fontFamily: 'var(--font-serif)', color: '#FAF7F2', fontWeight: 300, lineHeight: 1.15 }}>
@@ -278,7 +278,7 @@ export default function InspirationGallery() {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '20px', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '20px' }}>
                 <div>
                   <span style={{ fontSize: '10px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.3)', letterSpacing: '0.08em', textTransform: 'uppercase', display: 'block', marginBottom: '4px' }}>Surfaces Used</span>
-                  <span style={{ fontSize: '13px', color: '#B8924A', fontWeight: 600 }}>{activeProject.materialsUsed.join(', ')}</span>
+                  <span style={{ fontSize: '13px', color: '#F3C623', fontWeight: 600 }}>{activeProject.materialsUsed.join(', ')}</span>
                 </div>
                 <div>
                   <span style={{ fontSize: '10px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.3)', letterSpacing: '0.08em', textTransform: 'uppercase', display: 'block', marginBottom: '4px' }}>Curated Year</span>
@@ -304,7 +304,7 @@ export default function InspirationGallery() {
                 onClick={() => setActiveProject(null)}
                 style={{
                   height: '46px',
-                  background: '#B8924A',
+                  background: '#F3C623',
                   color: '#050403',
                   textDecoration: 'none',
                   fontFamily: 'var(--font-sans)',
@@ -320,7 +320,7 @@ export default function InspirationGallery() {
                   transition: 'all 0.3s ease',
                 }}
                 onMouseEnter={(e) => (e.currentTarget.style.background = '#D4AA6A')}
-                onMouseLeave={(e) => (e.currentTarget.style.background = '#B8924A')}
+                onMouseLeave={(e) => (e.currentTarget.style.background = '#F3C623')}
               >
                 Inquire About this Surface
               </Link>

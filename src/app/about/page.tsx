@@ -1,31 +1,32 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Award, Compass, ShieldCheck, Zap, ArrowUpRight } from 'lucide-react';
+import { useTextReveal } from '@/hooks/useTextReveal';
 
 const PILLARS = [
   {
     title: 'Craftsmanship',
     desc: 'Every sheet in our catalogue is selected for consistency in grain, tone, and finish quality.',
-    icon: <Award size={24} color="#B8924A" />,
+    icon: <Award size={24} color="#F3C623" />,
   },
   {
     title: 'Range',
     desc: 'From laminates to natural stone veneer, we\'ve built one of the region\'s most comprehensive surface libraries under one roof.',
-    icon: <Compass size={24} color="#B8924A" />,
+    icon: <Compass size={24} color="#F3C623" />,
   },
   {
     title: 'Trust',
     desc: 'Fifteen years of relationships with architects, contractors, and homeowners built on straightforward advice and reliable supply.',
-    icon: <ShieldCheck size={24} color="#B8924A" />,
+    icon: <ShieldCheck size={24} color="#F3C623" />,
   },
   {
     title: 'Innovation',
     desc: 'From in-showroom experience to our new Digital Showroom platform, we keep finding new ways to help you choose with confidence.',
-    icon: <Zap size={24} color="#B8924A" />,
+    icon: <Zap size={24} color="#F3C623" />,
   },
 ];
 
@@ -37,10 +38,21 @@ const TIMELINE = [
 ];
 
 export default function About() {
+  const [timelineHeight, setTimelineHeight] = useState(0);
+  const timelineContainerRef = useRef<HTMLDivElement>(null);
+  const pathRef = useRef<SVGPathElement>(null);
+
+  // Text reveals
+  const h1Ref = useTextReveal();
+  const beliefRef = useTextReveal();
+  const codeHeadingRef = useTextReveal();
+  const journeyHeadingRef = useTextReveal();
+  const experienceHeadingRef = useTextReveal();
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Fade up reveals
+    // Fade up elements
     gsap.utils.toArray<Element>('.fade-up').forEach((el) => {
       gsap.fromTo(
         el,
@@ -59,37 +71,58 @@ export default function About() {
       );
     });
 
-    // Timeline line height fill
-    gsap.fromTo(
-      '.timeline-line',
-      { scaleY: 0 },
-      {
-        scaleY: 1,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.timeline-container',
-          start: 'top 40%',
-          end: 'bottom 60%',
-          scrub: true,
-        },
-      }
-    );
+    if (timelineContainerRef.current) {
+      setTimelineHeight(timelineContainerRef.current.offsetHeight);
+    }
 
+    const onResize = () => {
+      if (timelineContainerRef.current) {
+        setTimelineHeight(timelineContainerRef.current.offsetHeight);
+      }
+    };
+
+    window.addEventListener('resize', onResize);
     return () => {
+      window.removeEventListener('resize', onResize);
       ScrollTrigger.getAll().forEach((t) => t.kill());
     };
   }, []);
+
+  useEffect(() => {
+    if (timelineHeight === 0 || !pathRef.current) return;
+
+    const path = pathRef.current;
+    const length = path.getTotalLength();
+
+    gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
+
+    const anim = gsap.to(path, {
+      strokeDashoffset: 0,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.timeline-container',
+        start: 'top 35%',
+        end: 'bottom 65%',
+        scrub: true,
+      },
+    });
+
+    return () => {
+      anim.kill();
+    };
+  }, [timelineHeight]);
 
   return (
     <main style={{ background: '#050403', minHeight: '100vh', paddingTop: '140px', paddingBottom: '80px' }}>
       
       {/* ─── HERO SECTION ─── */}
-      <section className="container" style={{ marginBottom: '80px' }}>
+      <section className="container" style={{ marginBottom: '80px', padding: '0 clamp(24px, 4vw, 64px)' }}>
         <div style={{ maxWidth: '900px' }}>
-          <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: '#B8924A', textTransform: 'uppercase', display: 'block', marginBottom: '16px' }}>
+          <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: '#F3C623', textTransform: 'uppercase', display: 'block', marginBottom: '16px' }}>
             &mdash; Behind the Brand
           </span>
           <h1
+            ref={h1Ref}
             style={{
               fontSize: 'clamp(36px, 6vw, 76px)',
               lineHeight: 1.05,
@@ -104,10 +137,13 @@ export default function About() {
         </div>
       </section>
 
-      <section style={{ background: '#080605', borderTop: '1px solid rgba(184, 146, 74, 0.1)', borderBottom: '1px solid rgba(184, 146, 74, 0.1)', padding: '100px 0' }}>
-        <div className="container about-split-grid" style={{ display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: '80px', alignItems: 'start' }}>
+      <section style={{ background: '#080605', borderTop: '1px solid rgba(243, 198, 35, 0.1)', borderBottom: '1px solid rgba(243, 198, 35, 0.1)', padding: '100px clamp(24px, 4vw, 64px)' }}>
+        <div className="about-split-grid" style={{ maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: '80px', alignItems: 'start' }}>
           <div className="fade-up">
-            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(28px, 4vw, 48px)', color: '#FAF7F2', fontWeight: 300, lineHeight: 1.15 }}>
+            <h2 
+              ref={beliefRef}
+              style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(28px, 4vw, 48px)', color: '#FAF7F2', fontWeight: 300, lineHeight: 1.15 }}
+            >
               A story woven in texture and grain, built on trust and physical execution.
             </h2>
             {/* Visualizer card */}
@@ -116,7 +152,7 @@ export default function About() {
                 marginTop: '40px',
                 aspectRatio: '16/9',
                 background: 'radial-gradient(circle, #2A2218 0%, #050403 100%)',
-                border: '1px solid rgba(184, 146, 74, 0.2)',
+                border: '1px solid rgba(243, 198, 35, 0.2)',
                 borderRadius: '2px',
                 display: 'flex',
                 alignItems: 'center',
@@ -145,12 +181,15 @@ export default function About() {
       </section>
 
       {/* ─── WHAT WE STAND FOR SECTION ─── */}
-      <section className="container" style={{ padding: '120px 0' }}>
+      <section style={{ padding: '120px clamp(24px, 4vw, 64px)', maxWidth: '1400px', margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: '64px' }} className="fade-up">
-          <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#B8924A', textTransform: 'uppercase', display: 'block', marginBottom: '16px' }}>
+          <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#F3C623', textTransform: 'uppercase', display: 'block', marginBottom: '16px' }}>
             &mdash; Brand values
           </span>
-          <h2 style={{ fontSize: 'clamp(32px, 5vw, 56px)', fontFamily: 'var(--font-serif)', fontWeight: 300, color: '#F0EAE0' }}>
+          <h2 
+            ref={codeHeadingRef}
+            style={{ fontSize: 'clamp(32px, 5vw, 56px)', fontFamily: 'var(--font-serif)', fontWeight: 300, color: '#F0EAE0' }}
+          >
             Our Code of Curation
           </h2>
         </div>
@@ -181,8 +220,8 @@ export default function About() {
                 style={{
                   width: '48px',
                   height: '48px',
-                  border: '1px solid rgba(184, 146, 74, 0.25)',
-                  background: 'rgba(184, 146, 74, 0.05)',
+                  border: '1px solid rgba(243, 198, 35, 0.25)',
+                  background: 'rgba(243, 198, 35, 0.05)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -205,13 +244,16 @@ export default function About() {
       </section>
 
       {/* ─── TIMELINE SECTION ─── */}
-      <section style={{ background: '#080605', borderTop: '1px solid rgba(184, 146, 74, 0.1)', borderBottom: '1px solid rgba(184, 146, 74, 0.1)', padding: '120px 0' }}>
-        <div className="container">
+      <section style={{ background: '#080605', borderTop: '1px solid rgba(243, 198, 35, 0.1)', borderBottom: '1px solid rgba(243, 198, 35, 0.1)', padding: '120px clamp(24px, 4vw, 64px)' }}>
+        <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '80px' }} className="fade-up">
-            <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#B8924A', textTransform: 'uppercase', display: 'block', marginBottom: '16px' }}>
+            <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#F3C623', textTransform: 'uppercase', display: 'block', marginBottom: '16px' }}>
               &mdash; Core Landmarks
             </span>
-            <h2 style={{ fontSize: 'clamp(32px, 5vw, 56px)', fontFamily: 'var(--font-serif)', fontWeight: 300, color: '#F0EAE0' }}>
+            <h2 
+              ref={journeyHeadingRef}
+              style={{ fontSize: 'clamp(32px, 5vw, 56px)', fontFamily: 'var(--font-serif)', fontWeight: 300, color: '#F0EAE0' }}
+            >
               Our Journey Over Time
             </h2>
             <p style={{ fontSize: '14px', color: 'rgba(240,234,224,0.5)', marginTop: '12px' }}>
@@ -220,6 +262,7 @@ export default function About() {
           </div>
 
           <div
+            ref={timelineContainerRef}
             style={{
               position: 'relative',
               maxWidth: '800px',
@@ -228,34 +271,38 @@ export default function About() {
             }}
             className="timeline-container"
           >
-            {/* Center animated vertical line */}
-            <div
+            {/* Center animated vertical SVG path */}
+            <svg 
               style={{
                 position: 'absolute',
                 top: 0,
                 bottom: 0,
                 left: '50%',
                 transform: 'translateX(-50%)',
-                width: '1px',
-                background: 'rgba(255, 255, 255, 0.08)',
-                zIndex: 1,
-              }}
-            />
-            {/* Filled green/amber progress line */}
-            <div
-              className="timeline-line"
-              style={{
-                position: 'absolute',
-                top: 0,
-                bottom: 0,
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: '1px',
-                background: '#B8924A',
+                width: '40px',
+                height: '100%',
+                pointerEvents: 'none',
                 zIndex: 2,
-                transformOrigin: 'top',
               }}
-            />
+              viewBox={`0 0 40 ${timelineHeight || 600}`}
+              preserveAspectRatio="none"
+            >
+              {/* Background trace line */}
+              <path 
+                d={`M 20 0 Q 30 ${(timelineHeight || 600) * 0.25} 20 ${(timelineHeight || 600) * 0.5} T 20 ${timelineHeight || 600}`}
+                stroke="rgba(255, 255, 255, 0.08)"
+                strokeWidth="1.5"
+                fill="none"
+              />
+              {/* Scrubbed draw line */}
+              <path 
+                ref={pathRef}
+                d={`M 20 0 Q 30 ${(timelineHeight || 600) * 0.25} 20 ${(timelineHeight || 600) * 0.5} T 20 ${timelineHeight || 600}`}
+                stroke="#F3C623"
+                strokeWidth="2.5"
+                fill="none"
+              />
+            </svg>
 
             {TIMELINE.map((step, idx) => {
               const isEven = idx % 2 === 0;
@@ -283,13 +330,13 @@ export default function About() {
                     <div
                       style={{
                         display: 'inline-block',
-                        background: 'rgba(184, 146, 74, 0.08)',
-                        border: '1px solid rgba(184,146,74,0.3)',
+                        background: 'rgba(243, 198, 35, 0.08)',
+                        border: '1px solid rgba(243, 198, 35, 0.3)',
                         padding: '4px 14px',
                         fontFamily: 'var(--font-sans)',
                         fontSize: '14px',
                         fontWeight: 700,
-                        color: '#B8924A',
+                        color: '#F3C623',
                         borderRadius: '20px',
                         marginBottom: '16px',
                       }}
@@ -331,9 +378,9 @@ export default function About() {
                       width: '10px',
                       height: '10px',
                       borderRadius: '50%',
-                      background: '#B8924A',
+                      background: '#F3C623',
                       border: '2px solid #050403',
-                      boxShadow: '0 0 10px #B8924A',
+                      boxShadow: '0 0 10px #F3C623',
                       zIndex: 4,
                     }}
                   />
@@ -345,9 +392,12 @@ export default function About() {
       </section>
 
       {/* ─── CLOSING CTA SECTION ─── */}
-      <section className="container" style={{ padding: '100px 0 40px', textAlign: 'center' }}>
+      <section style={{ padding: '100px clamp(24px, 4vw, 64px) 40px', textAlign: 'center', maxWidth: '1400px', margin: '0 auto' }}>
         <div style={{ maxWidth: '640px', margin: '0 auto' }} className="fade-up">
-          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(28px, 4.5vw, 52px)', fontWeight: 300, color: '#FAF7F2', marginBottom: '24px', lineHeight: 1.15 }}>
+          <h2 
+            ref={experienceHeadingRef}
+            style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(28px, 4.5vw, 52px)', fontWeight: 300, color: '#FAF7F2', marginBottom: '24px', lineHeight: 1.15 }}
+          >
             Come experience it in person &mdash; or right here, online.
           </h2>
           <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', marginTop: '36px', flexWrap: 'wrap' }}>
@@ -359,7 +409,7 @@ export default function About() {
                 gap: '8px',
                 height: '52px',
                 padding: '0 32px',
-                background: '#B8924A',
+                background: '#F3C623',
                 color: '#050403',
                 fontFamily: 'var(--font-sans)',
                 fontSize: '11px',
@@ -369,8 +419,8 @@ export default function About() {
                 textDecoration: 'none',
                 transition: 'all 0.3s ease',
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = '#D4AA6A')}
-              onMouseLeave={(e) => (e.currentTarget.style.background = '#B8924A')}
+              onMouseEnter={(e) => (e.currentTarget.style.background = '#F6D354')}
+              onMouseLeave={(e) => (e.currentTarget.style.background = '#F3C623')}
             >
               Visit a Showroom
               <ArrowUpRight size={14} />
@@ -383,8 +433,8 @@ export default function About() {
                 height: '52px',
                 padding: '0 32px',
                 background: 'transparent',
-                color: '#B8924A',
-                border: '1px solid #B8924A',
+                color: '#F3C623',
+                border: '1px solid #F3C623',
                 fontFamily: 'var(--font-sans)',
                 fontSize: '11px',
                 fontWeight: 700,
@@ -394,7 +444,7 @@ export default function About() {
                 transition: 'all 0.3s ease',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(184, 146, 74, 0.1)';
+                e.currentTarget.style.background = 'rgba(243, 198, 35, 0.1)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.background = 'transparent';
@@ -425,10 +475,7 @@ export default function About() {
             grid-column: 1 !important;
             padding-left: 28px !important;
           }
-          .timeline-container > div:first-child {
-            left: 12px !important;
-          }
-          .timeline-line {
+          .timeline-container > svg {
             left: 12px !important;
           }
           .timeline-step-row > div:nth-child(2) {

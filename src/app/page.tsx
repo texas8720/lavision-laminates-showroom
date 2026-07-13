@@ -5,8 +5,12 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight, Sparkles, MapPin, Grid, Shield, Trophy, Eye } from 'lucide-react';
+import { MapPin } from 'lucide-react';
+import TiltCard from '@/components/TiltCard';
+import ProceduralTexture from '@/components/ProceduralTexture';
+import { useTextReveal } from '@/hooks/useTextReveal';
 
+// 3D Scene (client only)
 const HeroScene3D = dynamic(() => import('@/components/3d/HeroScene3D'), {
   ssr: false,
   loading: () => <div style={{ width: '100%', height: '100%', background: '#050403' }} />,
@@ -24,43 +28,36 @@ const CATEGORIES = [
     title: 'Laminates',
     desc: 'Hundreds of décors. Every texture, tone, and grain you can imagine.',
     link: '/products/laminates',
-    preview: 'repeating-linear-gradient(45deg, #8E6743 0px, #2C2018 20px)',
   },
   {
     title: 'Louvers',
     desc: 'Rhythm, shadow, and depth — engineered into every slat.',
     link: '/products/louvers',
-    preview: 'repeating-linear-gradient(90deg, #181410 0px, #181410 12px, #050403 13px, #050403 24px)',
   },
   {
     title: 'Acrylic Sheets',
     desc: 'High-gloss brilliance that turns light into design.',
     link: '/products/acrylic-sheets',
-    preview: 'linear-gradient(135deg, #FAF7F2 0%, #EFECE6 100%)',
   },
   {
     title: 'Polymer Sheets',
     desc: 'Durable. Versatile. Built for real Indian interiors.',
     link: '/products/polymer-sheets',
-    preview: 'linear-gradient(to bottom, #E8E2D5, #D1C9BC)',
   },
   {
     title: 'Leather Sheets',
     desc: 'The warmth of leather, the practicality of a wall panel.',
     link: '/products/leather-sheets',
-    preview: 'radial-gradient(circle, #8F5E36 0%, #6E401E 100%)',
   },
   {
     title: 'Natural Stone Veneer',
     desc: 'Real stone, reimagined as a surface you can actually install.',
     link: '/products/natural-stone-veneer',
-    preview: 'linear-gradient(45deg, #2D2F30 0%, #1A1B1C 100%)',
   },
   {
     title: 'Decorative Panels',
     desc: 'The fine detailing that makes a space unmistakably yours.',
     link: '/products/decorative-panels',
-    preview: 'repeating-linear-gradient(90deg, #3A3225 0px, #B8924A 24px)',
   },
 ];
 
@@ -106,7 +103,7 @@ function StatCounter({ value, label }: { value: string; label: string }) {
         style={{
           fontFamily: 'var(--font-serif)',
           fontSize: 'clamp(44px, 5vw, 72px)',
-          color: '#B8924A',
+          color: '#F3C623',
           fontWeight: 300,
           lineHeight: 1,
           marginBottom: '8px',
@@ -126,6 +123,14 @@ export default function Home() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [heroScroll, setHeroScroll] = useState(0);
   const heroRef = useRef<HTMLDivElement>(null);
+
+  // Text Reveal Refs
+  const h1Ref = useTextReveal();
+  const beliefRef = useTextReveal();
+  const collHeadingRef = useTextReveal();
+  const showroomHeadingRef = useTextReveal();
+  const physicalHeadingRef = useTextReveal();
+  const spacesHeadingRef = useTextReveal();
 
   // Tracks mouse movement for light interaction in WebGL
   useEffect(() => {
@@ -149,25 +154,6 @@ export default function Home() {
       end: 'bottom bottom',
       scrub: true,
       onUpdate: (self) => setHeroScroll(self.progress),
-    });
-
-    // Fade-up scroll animation for blocks
-    gsap.utils.toArray<Element>('.fade-up').forEach((el) => {
-      gsap.fromTo(
-        el,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1.0,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 85%',
-            once: true,
-          },
-        }
-      );
     });
 
     return () => {
@@ -231,30 +217,31 @@ export default function Home() {
                 alignItems: 'center',
                 gap: '12px',
                 padding: '8px 20px',
-                border: '1px solid rgba(184, 146, 74, 0.3)',
-                background: 'rgba(184, 146, 74, 0.05)',
+                border: '1px solid rgba(243, 198, 35, 0.3)',
+                background: 'rgba(243, 198, 35, 0.05)',
                 backdropFilter: 'blur(10px)',
                 marginBottom: '32px',
               }}
             >
-              <span style={{ width: '16px', height: '1px', background: '#B8924A' }} />
+              <span style={{ width: '16px', height: '1px', background: '#F3C623' }} />
               <span
                 style={{
                   fontFamily: 'var(--font-sans)',
                   fontSize: '9px',
                   fontWeight: 700,
                   letterSpacing: '0.2em',
-                  color: '#B8924A',
+                  color: '#F3C623',
                   textTransform: 'uppercase',
                 }}
               >
                 15 Years of Surface Curation
               </span>
-              <span style={{ width: '16px', height: '1px', background: '#B8924A' }} />
+              <span style={{ width: '16px', height: '1px', background: '#F3C623' }} />
             </div>
 
             {/* Kinetic Main Headline */}
             <h1
+              ref={h1Ref}
               style={{
                 fontFamily: 'var(--font-serif)',
                 fontSize: 'clamp(42px, 7.5vw, 92px)',
@@ -265,8 +252,7 @@ export default function Home() {
                 margin: '0 auto 28px',
               }}
             >
-              Surfaces, Engineered<br />
-              for <em style={{ fontStyle: 'italic', color: '#B8924A' }}>Imagination</em>.
+              Surfaces, Engineered for Imagination.
             </h1>
 
             <p
@@ -292,7 +278,7 @@ export default function Home() {
                   alignItems: 'center',
                   height: '54px',
                   padding: '0 36px',
-                  background: '#B8924A',
+                  background: '#F3C623',
                   color: '#050403',
                   fontFamily: 'var(--font-sans)',
                   fontSize: '11px',
@@ -300,14 +286,15 @@ export default function Home() {
                   letterSpacing: '0.16em',
                   textTransform: 'uppercase',
                   transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                  boxShadow: '0 0 35px rgba(184, 146, 74, 0.25)',
+                  boxShadow: '0 0 35px rgba(243, 198, 35, 0.25)',
+                  textDecoration: 'none'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = '#D4AA6A';
+                  e.currentTarget.style.background = '#F6D354';
                   e.currentTarget.style.transform = 'translateY(-2px)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.background = '#B8924A';
+                  e.currentTarget.style.background = '#F3C623';
                   e.currentTarget.style.transform = 'translateY(0)';
                 }}
               >
@@ -330,10 +317,11 @@ export default function Home() {
                   textTransform: 'uppercase',
                   backdropFilter: 'blur(8px)',
                   transition: 'all 0.3s ease',
+                  textDecoration: 'none'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(184, 146, 74, 0.4)';
-                  e.currentTarget.style.color = '#B8924A';
+                  e.currentTarget.style.borderColor = 'rgba(243, 198, 35, 0.4)';
+                  e.currentTarget.style.color = '#F3C623';
                   e.currentTarget.style.transform = 'translateY(-2px)';
                 }}
                 onMouseLeave={(e) => {
@@ -346,6 +334,27 @@ export default function Home() {
               </Link>
             </div>
           </div>
+
+          {/* Scroll indicator */}
+          <div style={{
+            position: 'absolute', bottom: '40px', left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 4, display: 'flex', flexDirection: 'column',
+            alignItems: 'center', gap: '8px',
+            opacity: Math.max(0, 1 - heroScroll * 5),
+            transition: 'opacity 0.2s ease',
+            pointerEvents: 'none'
+          }}>
+            <span style={{
+              fontFamily: 'var(--font-sans)', fontSize: '8px', fontWeight: 700,
+              letterSpacing: '0.25em', textTransform: 'uppercase',
+              color: 'rgba(243,198,35,0.5)',
+            }}>Scroll</span>
+            <div style={{
+              width: '1px', height: '48px',
+              background: 'linear-gradient(to bottom, rgba(243,198,35,0.5), transparent)',
+            }} />
+          </div>
         </div>
       </section>
 
@@ -353,8 +362,8 @@ export default function Home() {
       <section
         style={{
           background: '#080605',
-          borderTop: '1px solid rgba(184, 146, 74, 0.1)',
-          borderBottom: '1px solid rgba(184, 146, 74, 0.1)',
+          borderTop: '1px solid rgba(243, 198, 35, 0.1)',
+          borderBottom: '1px solid rgba(243, 198, 35, 0.1)',
           padding: '64px clamp(24px, 6vw, 80px)',
           position: 'relative',
           zIndex: 10,
@@ -397,22 +406,26 @@ export default function Home() {
           }}
           className="home-split-grid"
         >
-          <div className="fade-up">
+          <div>
             <span
               style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px',
                 fontFamily: 'var(--font-sans)',
                 fontSize: '9px',
                 fontWeight: 700,
                 letterSpacing: '0.22em',
                 textTransform: 'uppercase',
-                color: '#B8924A',
-                display: 'block',
-                marginBottom: '16px',
+                color: '#F3C623',
+                marginBottom: '20px',
               }}
             >
-              &mdash; Core Philosophy
+              <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#F3C623' }} />
+              Core Philosophy
             </span>
             <h2
+              ref={beliefRef}
               style={{
                 fontFamily: 'var(--font-serif)',
                 fontSize: 'clamp(28px, 4.5vw, 56px)',
@@ -425,7 +438,7 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <p style={{ fontSize: '15px', color: 'rgba(240, 234, 224, 0.55)', lineHeight: 1.8, margin: 0 }}>
               It's the first thing a hand touches on a kitchen counter. The backdrop of a living room that hosts a lifetime of memories. The finish that decides whether a space feels ordinary — or extraordinary.
             </p>
@@ -440,7 +453,7 @@ export default function Home() {
                 fontWeight: 700,
                 letterSpacing: '0.15em',
                 textTransform: 'uppercase',
-                color: '#B8924A',
+                color: '#F3C623',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '8px',
@@ -458,16 +471,30 @@ export default function Home() {
         style={{
           padding: '120px clamp(24px, 6vw, 80px)',
           background: '#080605',
-          borderTop: '1px solid rgba(184, 146, 74, 0.1)',
+          borderTop: '1px solid rgba(243, 198, 35, 0.1)',
           position: 'relative',
           zIndex: 10,
         }}
       >
         <div style={{ maxWidth: '1400px', margin: '0 auto', marginBottom: '64px', textAlign: 'center' }}>
-          <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#B8924A', textTransform: 'uppercase', display: 'block', marginBottom: '16px' }}>
-            &mdash; The Collection
+          <span style={{ 
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '12px',
+            fontSize: '9px', 
+            fontWeight: 700, 
+            letterSpacing: '0.2em', 
+            color: '#F3C623', 
+            textTransform: 'uppercase', 
+            marginBottom: '16px' 
+          }}>
+            <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#F3C623' }} />
+            The Collection
           </span>
-          <h2 style={{ fontSize: 'clamp(32px, 5vw, 64px)', fontFamily: 'var(--font-serif)', fontWeight: 300, color: '#F0EAE0' }}>
+          <h2 
+            ref={collHeadingRef}
+            style={{ fontSize: 'clamp(32px, 5vw, 64px)', fontFamily: 'var(--font-serif)', fontWeight: 300, color: '#F0EAE0' }}
+          >
             A Material for Every Vision
           </h2>
         </div>
@@ -482,62 +509,106 @@ export default function Home() {
           }}
           className="home-category-grid"
         >
-          {CATEGORIES.map((cat, i) => (
-            <Link
-              key={cat.title}
-              href={cat.link}
-              style={{
-                background: 'rgba(255, 255, 255, 0.01)',
-                border: '1px solid rgba(255, 255, 255, 0.04)',
-                borderRadius: '2px',
-                padding: '36px 32px',
-                textDecoration: 'none',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '24px',
-                transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(184, 146, 74, 0.3)';
-                e.currentTarget.style.transform = 'translateY(-6px)';
-                e.currentTarget.style.background = 'rgba(184, 146, 74, 0.015)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.04)';
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.01)';
-              }}
-              className="fade-up explore-hover"
-            >
-              {/* Category Texture Preview */}
-              <div
-                style={{
-                  width: '100%',
-                  aspectRatio: '16/10',
-                  background: cat.preview,
-                  borderRadius: '2px',
-                  border: '1px solid rgba(255, 255, 255, 0.06)',
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
-                }}
-              />
-              <div>
-                <h3
+          {CATEGORIES.map((cat, i) => {
+            let textureType: 'wood' | 'stone' | 'acrylic' | 'leather' | 'polymer' | 'louver' | 'panel' = 'wood';
+            let isDark = false;
+            if (cat.title === 'Laminates') { textureType = 'wood'; isDark = false; }
+            else if (cat.title === 'Louvers') { textureType = 'louver'; isDark = true; }
+            else if (cat.title === 'Acrylic Sheets') { textureType = 'acrylic'; isDark = false; }
+            else if (cat.title === 'Polymer Sheets') { textureType = 'polymer'; isDark = false; }
+            else if (cat.title === 'Leather Sheets') { textureType = 'leather'; isDark = false; }
+            else if (cat.title === 'Natural Stone Veneer') { textureType = 'stone'; isDark = true; }
+            else if (cat.title === 'Decorative Panels') { textureType = 'panel'; isDark = true; }
+
+            const numStr = String(i + 1).padStart(2, '0');
+
+            return (
+              <TiltCard key={cat.title}>
+                <Link
+                  href={cat.link}
+                  className="fade-up explore-hover"
                   style={{
-                    fontSize: '22px',
-                    fontFamily: 'var(--font-serif)',
-                    color: '#FAF7F2',
-                    marginBottom: '10px',
-                    fontWeight: 400,
+                    background: 'rgba(255, 255, 255, 0.01)',
+                    border: '1px solid rgba(255, 255, 255, 0.04)',
+                    borderRadius: '2px',
+                    padding: '36px 32px',
+                    textDecoration: 'none',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '24px',
+                    transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+                    position: 'relative',
+                    overflow: 'hidden'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = 'rgba(243, 198, 35, 0.3)';
+                    e.currentTarget.style.background = 'rgba(243, 198, 35, 0.015)';
+                    e.currentTarget.style.boxShadow = '0 0 40px rgba(243, 198, 35, 0.08)';
+                    const previewInner = e.currentTarget.querySelector('.texture-preview-inner') as HTMLElement;
+                    if (previewInner) previewInner.style.transform = 'scale(1.05)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.04)';
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.01)';
+                    e.currentTarget.style.boxShadow = 'none';
+                    const previewInner = e.currentTarget.querySelector('.texture-preview-inner') as HTMLElement;
+                    if (previewInner) previewInner.style.transform = 'scale(1)';
                   }}
                 >
-                  {cat.title}
-                </h3>
-                <p style={{ fontSize: '13px', color: 'rgba(240, 234, 224, 0.45)', lineHeight: 1.6, margin: 0 }}>
-                  {cat.desc}
-                </p>
-              </div>
-            </Link>
-          ))}
+                  <div style={{
+                    fontFamily: 'var(--font-sans)',
+                    fontSize: '10px',
+                    fontWeight: 700,
+                    letterSpacing: '0.2em',
+                    color: '#F3C623',
+                    textTransform: 'uppercase'
+                  }}>
+                    {numStr}
+                  </div>
+
+                  <div
+                    style={{
+                      width: '100%',
+                      aspectRatio: '4/3',
+                      borderRadius: '2px',
+                      border: '1px solid rgba(255, 255, 255, 0.06)',
+                      boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
+                      overflow: 'hidden',
+                      position: 'relative'
+                    }}
+                  >
+                    <div 
+                      className="texture-preview-inner"
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)'
+                      }}
+                    >
+                      <ProceduralTexture type={textureType} dark={isDark} />
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3
+                      style={{
+                        fontSize: '22px',
+                        fontFamily: 'var(--font-serif)',
+                        color: '#FAF7F2',
+                        marginBottom: '10px',
+                        fontWeight: 400,
+                      }}
+                    >
+                      {cat.title}
+                    </h3>
+                    <p style={{ fontSize: '13px', color: 'rgba(240, 234, 224, 0.45)', lineHeight: 1.6, margin: 0 }}>
+                      {cat.desc}
+                    </p>
+                  </div>
+                </Link>
+              </TiltCard>
+            );
+          })}
         </div>
       </section>
 
@@ -546,7 +617,7 @@ export default function Home() {
         style={{
           padding: '120px clamp(24px, 6vw, 80px)',
           background: 'linear-gradient(180deg, #050403 0%, #0D0906 100%)',
-          borderTop: '1px solid rgba(184, 146, 74, 0.1)',
+          borderTop: '1px solid rgba(243, 198, 35, 0.1)',
           position: 'relative',
           zIndex: 10,
         }}
@@ -569,7 +640,7 @@ export default function Home() {
               width: '100%',
               aspectRatio: '16/11',
               borderRadius: '4px',
-              border: '1px solid rgba(184, 146, 74, 0.25)',
+              border: '1px solid rgba(243, 198, 35, 0.25)',
               overflow: 'hidden',
               boxShadow: '0 30px 60px rgba(0,0,0,0.6)',
               background: 'radial-gradient(circle at center, #1E1A17 0%, #050403 100%)',
@@ -593,11 +664,25 @@ export default function Home() {
             />
           </div>
 
-          <div className="fade-up">
-            <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#B8924A', textTransform: 'uppercase', display: 'block', marginBottom: '16px' }}>
-              &mdash; Next-Gen Showroom
+          <div>
+            <span style={{ 
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '12px',
+              fontSize: '9px', 
+              fontWeight: 700, 
+              letterSpacing: '0.2em', 
+              color: '#F3C623', 
+              textTransform: 'uppercase', 
+              marginBottom: '16px' 
+            }}>
+              <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#F3C623' }} />
+              Next-Gen Showroom
             </span>
-            <h2 style={{ fontSize: 'clamp(32px, 4.5vw, 56px)', fontFamily: 'var(--font-serif)', fontWeight: 300, color: '#F0EAE0', marginBottom: '24px', lineHeight: 1.1 }}>
+            <h2 
+              ref={showroomHeadingRef}
+              style={{ fontSize: 'clamp(32px, 4.5vw, 56px)', fontFamily: 'var(--font-serif)', fontWeight: 300, color: '#F0EAE0', marginBottom: '24px', lineHeight: 1.1 }}
+            >
               Don't imagine the finish. See it.
             </h2>
             <p style={{ fontSize: '15px', color: 'rgba(240, 234, 224, 0.55)', lineHeight: 1.75, marginBottom: '36px' }}>
@@ -610,7 +695,7 @@ export default function Home() {
                 alignItems: 'center',
                 height: '52px',
                 padding: '0 32px',
-                background: '#B8924A',
+                background: '#F3C623',
                 color: '#050403',
                 fontFamily: 'var(--font-sans)',
                 fontSize: '11px',
@@ -620,8 +705,8 @@ export default function Home() {
                 textDecoration: 'none',
                 transition: 'all 0.3s ease',
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = '#D4AA6A')}
-              onMouseLeave={(e) => (e.currentTarget.style.background = '#B8924A')}
+              onMouseEnter={(e) => (e.currentTarget.style.background = '#F6D354')}
+              onMouseLeave={(e) => (e.currentTarget.style.background = '#F3C623')}
             >
               Launch Digital Showroom &rarr;
             </Link>
@@ -634,16 +719,30 @@ export default function Home() {
         style={{
           padding: '120px clamp(24px, 6vw, 80px)',
           background: '#080605',
-          borderTop: '1px solid rgba(184, 146, 74, 0.1)',
+          borderTop: '1px solid rgba(243, 198, 35, 0.1)',
           position: 'relative',
           zIndex: 10,
         }}
       >
         <div style={{ maxWidth: '1400px', margin: '0 auto', marginBottom: '64px', textAlign: 'center' }}>
-          <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#B8924A', textTransform: 'uppercase', display: 'block', marginBottom: '16px' }}>
-            &mdash; Locate Us
+          <span style={{ 
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '12px',
+            fontSize: '9px', 
+            fontWeight: 700, 
+            letterSpacing: '0.2em', 
+            color: '#F3C623', 
+            textTransform: 'uppercase', 
+            marginBottom: '16px' 
+          }}>
+            <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#F3C623' }} />
+            Locate Us
           </span>
-          <h2 style={{ fontSize: 'clamp(32px, 5vw, 64px)', fontFamily: 'var(--font-serif)', fontWeight: 300, color: '#F0EAE0' }}>
+          <h2 
+            ref={physicalHeadingRef}
+            style={{ fontSize: 'clamp(32px, 5vw, 64px)', fontFamily: 'var(--font-serif)', fontWeight: 300, color: '#F0EAE0' }}
+          >
             Visit Us in Person
           </h2>
           <p style={{ fontSize: '15px', color: 'rgba(240, 234, 224, 0.55)', maxWidth: '480px', margin: '16px auto 0' }}>
@@ -665,7 +764,7 @@ export default function Home() {
           <div
             style={{
               background: '#050403',
-              border: '1px solid rgba(184, 146, 74, 0.15)',
+              border: '1px solid rgba(243, 198, 35, 0.15)',
               padding: '40px',
               borderRadius: '2px',
               display: 'flex',
@@ -675,7 +774,7 @@ export default function Home() {
             className="fade-up"
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <MapPin size={20} color="#B8924A" />
+              <MapPin size={20} color="#F3C623" />
               <h3 style={{ fontSize: '24px', fontFamily: 'var(--font-serif)', color: '#FAF7F2', fontWeight: 400 }}>
                 Rajkot Showroom
               </h3>
@@ -692,7 +791,7 @@ export default function Home() {
                 fontSize: '11px',
                 fontWeight: 700,
                 letterSpacing: '0.15em',
-                color: '#B8924A',
+                color: '#F3C623',
                 textTransform: 'uppercase',
                 textDecoration: 'none',
                 display: 'inline-flex',
@@ -709,7 +808,7 @@ export default function Home() {
           <div
             style={{
               background: '#050403',
-              border: '1px solid rgba(184, 146, 74, 0.15)',
+              border: '1px solid rgba(243, 198, 35, 0.15)',
               padding: '40px',
               borderRadius: '2px',
               display: 'flex',
@@ -719,7 +818,7 @@ export default function Home() {
             className="fade-up"
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <MapPin size={20} color="#B8924A" />
+              <MapPin size={20} color="#F3C623" />
               <h3 style={{ fontSize: '24px', fontFamily: 'var(--font-serif)', color: '#FAF7F2', fontWeight: 400 }}>
                 Ahmedabad Showroom
               </h3>
@@ -736,7 +835,7 @@ export default function Home() {
                 fontSize: '11px',
                 fontWeight: 700,
                 letterSpacing: '0.15em',
-                color: '#B8924A',
+                color: '#F3C623',
                 textTransform: 'uppercase',
                 textDecoration: 'none',
                 display: 'inline-flex',
@@ -756,17 +855,31 @@ export default function Home() {
         style={{
           padding: '120px clamp(24px, 6vw, 80px)',
           background: '#050403',
-          borderTop: '1px solid rgba(184, 146, 74, 0.1)',
+          borderTop: '1px solid rgba(243, 198, 35, 0.1)',
           textAlign: 'center',
           position: 'relative',
           zIndex: 10,
         }}
       >
-        <div style={{ maxWidth: '800px', margin: '0 auto' }} className="fade-up">
-          <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#B8924A', textTransform: 'uppercase', display: 'block', marginBottom: '16px' }}>
-            &mdash; Visual Portfolio
+        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <span style={{ 
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '12px',
+            fontSize: '9px', 
+            fontWeight: 700, 
+            letterSpacing: '0.2em', 
+            color: '#F3C623', 
+            textTransform: 'uppercase', 
+            marginBottom: '16px' 
+          }}>
+            <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#F3C623' }} />
+            Visual Portfolio
           </span>
-          <h2 style={{ fontSize: 'clamp(32px, 5vw, 64px)', fontFamily: 'var(--font-serif)', fontWeight: 300, color: '#F0EAE0', marginBottom: '24px' }}>
+          <h2 
+            ref={spacesHeadingRef}
+            style={{ fontSize: 'clamp(32px, 5vw, 64px)', fontFamily: 'var(--font-serif)', fontWeight: 300, color: '#F0EAE0', marginBottom: '24px' }}
+          >
             Spaces We've Helped Finish
           </h2>
           <p style={{ fontSize: '15px', color: 'rgba(240, 234, 224, 0.55)', lineHeight: 1.7, marginBottom: '36px', maxWidth: '480px', margin: '0 auto 36px' }}>
@@ -780,8 +893,8 @@ export default function Home() {
               height: '52px',
               padding: '0 36px',
               background: 'transparent',
-              color: '#B8924A',
-              border: '1px solid #B8924A',
+              color: '#F3C623',
+              border: '1px solid #F3C623',
               fontFamily: 'var(--font-sans)',
               fontSize: '11px',
               fontWeight: 700,
@@ -791,7 +904,7 @@ export default function Home() {
               transition: 'all 0.3s ease',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(184, 146, 74, 0.1)';
+              e.currentTarget.style.background = 'rgba(243, 198, 35, 0.1)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.background = 'transparent';

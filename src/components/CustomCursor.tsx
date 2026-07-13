@@ -1,168 +1,110 @@
 'use client';
-
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 export default function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
-  const [hovered, setHovered] = useState(false);
-  const [cursorText, setCursorText] = useState('');
-  const [visible, setVisible] = useState(false);
+  const labelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Check if device is touch-enabled
-    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    if (isTouchDevice) return;
+    if (typeof window === 'undefined') return;
+    // Hide on mobile/touch
+    if (window.matchMedia('(pointer: coarse)').matches) return;
 
-    setVisible(true);
-    document.documentElement.classList.add('custom-cursor-active');
+    const dot = dotRef.current!;
+    const ring = ringRef.current!;
+    const label = labelRef.current!;
 
-    const handleMouseMove = (e: MouseEvent) => {
-      const { clientX, clientY } = e;
+    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+    const onMove = (e: MouseEvent) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
       
-      if (dotRef.current) {
-        dotRef.current.style.transform = `translate3d(${clientX}px, ${clientY}px, 0) translate(-50%, -50%)`;
-      }
-
-      if (ringRef.current) {
-        ringRef.current.style.transform = `translate3d(${clientX}px, ${clientY}px, 0) translate(-50%, -50%)`;
+      // If dot is currently hidden during hover, preserve scale(0)
+      if (dot.classList.contains('hidden-state')) {
+        dot.style.transform += ' scale(0)';
       }
     };
 
-    const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (!target) return;
+    const animate = () => {
+      ringX += (mouseX - ringX) * 0.12;
+      ringY += (mouseY - ringY) * 0.12;
+      ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+      label.style.transform = `translate(${ringX + 20}px, ${ringY - 8}px)`;
+      requestAnimationFrame(animate);
+    };
 
-      // Check if target is interactive
-      const isLink = target.tagName === 'A' || target.closest('a');
-      const isButton = target.tagName === 'BUTTON' || target.closest('button') || target.getAttribute('role') === 'button';
-      const isExplore = target.closest('.explore-hover');
-      const isDrag = target.closest('.drag-hover');
-      const isSpecular = target.closest('.specular-hover');
-
-      if (isLink || isButton) {
-        setHovered(true);
-      } else {
-        setHovered(false);
-      }
-
-      if (isExplore) {
-        setCursorText('EXPLORE');
-        setHovered(true);
-      } else if (isDrag) {
-        setCursorText('DRAG');
-        setHovered(true);
-      } else if (isSpecular) {
-        setCursorText('LIGHT');
-        setHovered(true);
-      } else {
-        setCursorText('');
+    const onMouseOver = (e: MouseEvent) => {
+      const target = (e.target as HTMLElement).closest('a, button, [data-cursor], .explore-hover, .drag-hover');
+      if (target) {
+        let cursorLabel = 'View';
+        if (target.classList.contains('explore-hover')) cursorLabel = 'Explore';
+        else if (target.classList.contains('drag-hover')) cursorLabel = 'Drag';
+        else if (target instanceof HTMLElement && target.dataset.cursor) cursorLabel = target.dataset.cursor;
+        
+        dot.classList.add('hidden-state');
+        dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%) scale(0)`;
+        ring.style.width = '64px';
+        ring.style.height = '64px';
+        ring.style.borderColor = 'rgba(243,198,35,0.9)';
+        ring.style.background = 'rgba(243,198,35,0.06)';
+        label.textContent = cursorLabel;
+        label.style.opacity = '1';
       }
     };
 
-    const handleMouseLeaveWindow = () => {
-      if (dotRef.current) dotRef.current.style.opacity = '0';
-      if (ringRef.current) ringRef.current.style.opacity = '0';
+    const onMouseOut = (e: MouseEvent) => {
+      const target = (e.target as HTMLElement).closest('a, button, [data-cursor], .explore-hover, .drag-hover');
+      if (target) {
+        // Only trigger reset if we're moving to a non-interactive element
+        const relatedTarget = e.relatedTarget as HTMLElement | null;
+        if (!relatedTarget || !relatedTarget.closest('a, button, [data-cursor], .explore-hover, .drag-hover')) {
+          dot.classList.remove('hidden-state');
+          dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%) scale(1)`;
+          ring.style.width = '36px';
+          ring.style.height = '36px';
+          ring.style.borderColor = 'rgba(243,198,35,0.5)';
+          ring.style.background = 'transparent';
+          label.style.opacity = '0';
+        }
+      }
     };
 
-    const handleMouseEnterWindow = () => {
-      if (dotRef.current) dotRef.current.style.opacity = '1';
-      if (ringRef.current) ringRef.current.style.opacity = '1';
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mouseover', handleMouseOver);
-    document.addEventListener('mouseleave', handleMouseLeaveWindow);
-    document.addEventListener('mouseenter', handleMouseEnterWindow);
+    window.addEventListener('mousemove', onMove, { passive: true });
+    window.addEventListener('mouseover', onMouseOver, { passive: true });
+    window.addEventListener('mouseout', onMouseOut, { passive: true });
+    const raf = requestAnimationFrame(animate);
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseover', handleMouseOver);
-      document.removeEventListener('mouseleave', handleMouseLeaveWindow);
-      document.removeEventListener('mouseenter', handleMouseEnterWindow);
-      document.documentElement.classList.remove('custom-cursor-active');
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('mouseover', onMouseOver);
+      window.removeEventListener('mouseout', onMouseOut);
+      cancelAnimationFrame(raf);
     };
   }, []);
 
-  if (!visible) return null;
-
   return (
     <>
-      {/* Inner Dot */}
-      <div
-        ref={dotRef}
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '8px',
-          height: '8px',
-          backgroundColor: 'var(--amber)',
-          borderRadius: '50%',
-          pointerEvents: 'none',
-          zIndex: 9999,
-          mixBlendMode: 'difference',
-          transform: 'translate3d(-50%, -50%, 0)',
-          willChange: 'transform',
-          transition: 'width 0.2s, height 0.2s, background-color 0.2s',
-          ...(hovered && {
-            width: '4px',
-            height: '4px',
-            backgroundColor: 'var(--cream)',
-          }),
-        }}
-      />
-
-      {/* Outer Ring */}
-      <div
-        ref={ringRef}
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '36px',
-          height: '36px',
-          border: '1px solid var(--amber)',
-          borderRadius: '50%',
-          pointerEvents: 'none',
-          zIndex: 9998,
-          transform: 'translate3d(-50%, -50%, 0)',
-          willChange: 'transform',
-          transition: 'transform 0.08s cubic-bezier(0.25, 0.46, 0.45, 0.94), width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          overflow: 'hidden',
-          ...(hovered && {
-            width: cursorText ? '80px' : '56px',
-            height: cursorText ? '80px' : '56px',
-            backgroundColor: 'rgba(243, 198, 35, 0.15)',
-            borderColor: 'var(--amber)',
-          }),
-        }}
-      >
-        {cursorText && (
-          <span
-            style={{
-              fontFamily: 'var(--font-sans)',
-              fontSize: '10px',
-              fontWeight: 700,
-              color: '#FAF7F2',
-              letterSpacing: '0.15em',
-              animation: 'fadeIn 0.2s ease forwards',
-            }}
-          >
-            {cursorText}
-          </span>
-        )}
-      </div>
-
-      <style jsx global>{`
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-      `}</style>
+      <div ref={dotRef} style={{
+        width: '6px', height: '6px', borderRadius: '50%',
+        background: '#F3C623', position: 'fixed', zIndex: 99999,
+        pointerEvents: 'none', transition: 'transform 0.15s ease',
+      }} />
+      <div ref={ringRef} style={{
+        width: '36px', height: '36px', borderRadius: '50%',
+        border: '1px solid rgba(243,198,35,0.5)',
+        position: 'fixed', zIndex: 99998, pointerEvents: 'none',
+        transition: 'width 0.3s ease, height 0.3s ease, border-color 0.3s ease, background 0.3s ease',
+      }} />
+      <div ref={labelRef} style={{
+        position: 'fixed', zIndex: 99997, pointerEvents: 'none',
+        fontFamily: 'var(--font-sans)', fontSize: '9px', fontWeight: 700,
+        letterSpacing: '0.15em', textTransform: 'uppercase',
+        color: '#F3C623', opacity: 0, transition: 'opacity 0.2s ease',
+        whiteSpace: 'nowrap',
+      }} />
     </>
   );
 }

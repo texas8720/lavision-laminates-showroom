@@ -19,10 +19,11 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     
     lenis.on('scroll', ScrollTrigger.update);
 
-    gsap.ticker.add((time) => {
+    const updateLenis = (time: number) => {
       lenis.raf(time * 1000);
-    });
-
+    };
+    
+    gsap.ticker.add(updateLenis);
     gsap.ticker.lagSmoothing(0);
 
     // Store lenis globally for use in page if needed
@@ -30,7 +31,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
     return () => {
       lenis.destroy();
-      gsap.ticker.remove(ScrollTrigger.update);
+      gsap.ticker.remove(updateLenis);
     };
   }, []);
 

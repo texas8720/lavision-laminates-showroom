@@ -4,8 +4,11 @@ import React, { useEffect } from 'react';
 import { MapPin, Phone, Clock, ArrowUpRight } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useTextReveal } from '@/hooks/useTextReveal';
 
 export default function Showrooms() {
+  const h1Ref = useTextReveal();
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -33,15 +36,16 @@ export default function Showrooms() {
   }, []);
 
   return (
-    <main style={{ background: '#050403', minHeight: '100vh', paddingTop: '140px', paddingBottom: '80px' }}>
+    <main style={{ background: '#050403', minHeight: '100vh', paddingTop: '140px', paddingBottom: '80px', paddingLeft: 'clamp(24px, 4vw, 64px)', paddingRight: 'clamp(24px, 4vw, 64px)' }}>
       
       {/* ─── HERO SECTION ─── */}
-      <section className="container" style={{ marginBottom: '80px' }}>
+      <section style={{ marginBottom: '80px', maxWidth: '1400px', margin: '0 auto 80px' }}>
         <div style={{ maxWidth: '900px' }}>
-          <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: '#B8924A', textTransform: 'uppercase', display: 'block', marginBottom: '16px' }}>
+          <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: '#F3C623', textTransform: 'uppercase', display: 'block', marginBottom: '16px' }}>
             &mdash; Physical Presence
           </span>
           <h1
+            ref={h1Ref}
             style={{
               fontSize: 'clamp(36px, 6vw, 76px)',
               lineHeight: 1.05,
@@ -60,7 +64,7 @@ export default function Showrooms() {
       </section>
 
       {/* ─── SHOWROOM DETAILS BLOCKS ─── */}
-      <section className="container">
+      <section style={{ maxWidth: '1400px', margin: '0 auto' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '64px' }}>
           
           {/* RAJKOT */}
@@ -70,14 +74,30 @@ export default function Showrooms() {
               gridTemplateColumns: '1fr 1fr',
               gap: '64px',
               background: 'rgba(255, 255, 255, 0.01)',
-              border: '1px solid rgba(184, 146, 74, 0.15)',
+              border: '1px solid rgba(243, 198, 35, 0.15)',
               padding: '48px',
               borderRadius: '2px',
+              position: 'relative',
+              overflow: 'hidden'
             }}
             className="showroom-row fade-up"
           >
+            {/* Watermark index */}
+            <div style={{
+              position: 'absolute',
+              right: '30px',
+              bottom: '-20px',
+              fontSize: 'clamp(100px, 14vw, 220px)',
+              fontFamily: 'var(--font-serif)',
+              fontWeight: 900,
+              color: 'rgba(243, 198, 35, 0.025)',
+              pointerEvents: 'none',
+              lineHeight: 1,
+              userSelect: 'none'
+            }}>01</div>
+
             {/* Left Col: Info */}
-            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', position: 'relative', zIndex: 2 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
                 <span
                   style={{
@@ -85,7 +105,7 @@ export default function Showrooms() {
                     fontSize: '11px',
                     fontWeight: 700,
                     letterSpacing: '0.15em',
-                    color: '#B8924A',
+                    color: '#F3C623',
                     textTransform: 'uppercase',
                   }}
                 >
@@ -110,21 +130,21 @@ export default function Showrooms() {
               {/* Details table */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '24px' }}>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-                  <MapPin size={18} color="#B8924A" style={{ marginTop: '2px', flexShrink: 0 }} />
+                  <MapPin size={18} color="#F3C623" style={{ marginTop: '2px', flexShrink: 0 }} />
                   <div>
                     <span style={{ fontSize: '11px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.3)', display: 'block', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '2px' }}>Address</span>
                     <span style={{ fontSize: '13.5px', color: '#F0EAE0', lineHeight: 1.5 }}>2nd Floor, Royal Arcade, Gondal Road, Rajkot, Gujarat 360002</span>
                   </div>
                 </div>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-                  <Phone size={18} color="#B8924A" style={{ marginTop: '2px', flexShrink: 0 }} />
+                  <Phone size={18} color="#F3C623" style={{ marginTop: '2px', flexShrink: 0 }} />
                   <div>
                     <span style={{ fontSize: '11px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.3)', display: 'block', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '2px' }}>Phone</span>
-                    <a href="tel:+91281234567" style={{ fontSize: '13.5px', color: '#B8924A' }}>+91 281 234 5678</a>
+                    <a href="tel:+91281234567" style={{ fontSize: '13.5px', color: '#F3C623', textDecoration: 'none' }}>+91 281 234 5678</a>
                   </div>
                 </div>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-                  <Clock size={18} color="#B8924A" style={{ marginTop: '2px', flexShrink: 0 }} />
+                  <Clock size={18} color="#F3C623" style={{ marginTop: '2px', flexShrink: 0 }} />
                   <div>
                     <span style={{ fontSize: '11px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.3)', display: 'block', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '2px' }}>Hours</span>
                     <span style={{ fontSize: '13.5px', color: '#F0EAE0' }}>Mon &ndash; Sat &nbsp;|&nbsp; 10:00 AM &ndash; 7:30 PM</span>
@@ -138,8 +158,8 @@ export default function Showrooms() {
                 rel="noopener noreferrer"
                 style={{
                   height: '46px',
-                  border: '1px solid #B8924A',
-                  color: '#B8924A',
+                  border: '1px solid #F3C623',
+                  color: '#F3C623',
                   background: 'transparent',
                   fontFamily: 'var(--font-sans)',
                   fontSize: '11px',
@@ -157,7 +177,7 @@ export default function Showrooms() {
                   padding: '0 28px',
                   transition: 'all 0.3s ease',
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(184,146,74,0.06)')}
+                onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(243,198,35,0.06)')}
                 onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
               >
                 Get Directions
@@ -165,22 +185,24 @@ export default function Showrooms() {
               </a>
             </div>
 
-            {/* Right Col: Map placeholder / Image */}
+            {/* Right Col: Image */}
             <div
               style={{
                 width: '100%',
                 aspectRatio: '16/11',
                 background: 'radial-gradient(circle, #2A2218 0%, #080605 100%)',
-                border: '1px solid rgba(184, 146, 74, 0.25)',
+                border: '1px solid rgba(243, 198, 35, 0.25)',
                 borderRadius: '2px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 boxShadow: '0 15px 35px rgba(0,0,0,0.5)',
+                position: 'relative',
+                zIndex: 2
               }}
             >
               <span style={{ fontSize: '11px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.35)', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
-                Rajkot Map &amp; Photo Gallery
+                Rajkot Showroom Floor View
               </span>
             </div>
           </div>
@@ -192,14 +214,30 @@ export default function Showrooms() {
               gridTemplateColumns: '1fr 1fr',
               gap: '64px',
               background: 'rgba(255, 255, 255, 0.01)',
-              border: '1px solid rgba(184, 146, 74, 0.15)',
+              border: '1px solid rgba(243, 198, 35, 0.15)',
               padding: '48px',
               borderRadius: '2px',
+              position: 'relative',
+              overflow: 'hidden'
             }}
             className="showroom-row fade-up"
           >
+            {/* Watermark index */}
+            <div style={{
+              position: 'absolute',
+              right: '30px',
+              bottom: '-20px',
+              fontSize: 'clamp(100px, 14vw, 220px)',
+              fontFamily: 'var(--font-serif)',
+              fontWeight: 900,
+              color: 'rgba(243, 198, 35, 0.025)',
+              pointerEvents: 'none',
+              lineHeight: 1,
+              userSelect: 'none'
+            }}>02</div>
+
             {/* Left Col: Info */}
-            <div style={{ display: 'flex', flexDirection: 'column', justifySelf: 'start', width: '100%' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', justifySelf: 'start', width: '100%', position: 'relative', zIndex: 2 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
                 <span
                   style={{
@@ -207,7 +245,7 @@ export default function Showrooms() {
                     fontSize: '11px',
                     fontWeight: 700,
                     letterSpacing: '0.15em',
-                    color: '#B8924A',
+                    color: '#F3C623',
                     textTransform: 'uppercase',
                   }}
                 >
@@ -232,21 +270,21 @@ export default function Showrooms() {
               {/* Details table */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '24px' }}>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-                  <MapPin size={18} color="#B8924A" style={{ marginTop: '2px', flexShrink: 0 }} />
+                  <MapPin size={18} color="#F3C623" style={{ marginTop: '2px', flexShrink: 0 }} />
                   <div>
                     <span style={{ fontSize: '11px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.3)', display: 'block', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '2px' }}>Address</span>
                     <span style={{ fontSize: '13.5px', color: '#F0EAE0', lineHeight: 1.5 }}>G-14, Ramdevnagar Complex, Satellite Road, Ahmedabad, Gujarat 380015</span>
                   </div>
                 </div>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-                  <Phone size={18} color="#B8924A" style={{ marginTop: '2px', flexShrink: 0 }} />
+                  <Phone size={18} color="#F3C623" style={{ marginTop: '2px', flexShrink: 0 }} />
                   <div>
                     <span style={{ fontSize: '11px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.3)', display: 'block', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '2px' }}>Phone</span>
-                    <a href="tel:+91792345678" style={{ fontSize: '13.5px', color: '#B8924A' }}>+91 79 2345 6789</a>
+                    <a href="tel:+91792345678" style={{ fontSize: '13.5px', color: '#F3C623', textDecoration: 'none' }}>+91 79 2345 6789</a>
                   </div>
                 </div>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-                  <Clock size={18} color="#B8924A" style={{ marginTop: '2px', flexShrink: 0 }} />
+                  <Clock size={18} color="#F3C623" style={{ marginTop: '2px', flexShrink: 0 }} />
                   <div>
                     <span style={{ fontSize: '11px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.3)', display: 'block', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '2px' }}>Hours</span>
                     <span style={{ fontSize: '13.5px', color: '#F0EAE0' }}>Mon &ndash; Sat &nbsp;|&nbsp; 10:00 AM &ndash; 7:00 PM</span>
@@ -260,8 +298,8 @@ export default function Showrooms() {
                 rel="noopener noreferrer"
                 style={{
                   height: '46px',
-                  border: '1px solid #B8924A',
-                  color: '#B8924A',
+                  border: '1px solid #F3C623',
+                  color: '#F3C623',
                   background: 'transparent',
                   fontFamily: 'var(--font-sans)',
                   fontSize: '11px',
@@ -279,7 +317,7 @@ export default function Showrooms() {
                   padding: '0 28px',
                   transition: 'all 0.3s ease',
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(184,146,74,0.06)')}
+                onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(243,198,35,0.06)')}
                 onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
               >
                 Get Directions
@@ -287,22 +325,24 @@ export default function Showrooms() {
               </a>
             </div>
 
-            {/* Right Col: Map placeholder / Image */}
+            {/* Right Col: Image */}
             <div
               style={{
                 width: '100%',
                 aspectRatio: '16/11',
                 background: 'radial-gradient(circle, #2A2218 0%, #080605 100%)',
-                border: '1px solid rgba(184, 146, 74, 0.25)',
+                border: '1px solid rgba(243, 198, 35, 0.25)',
                 borderRadius: '2px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 boxShadow: '0 15px 35px rgba(0,0,0,0.5)',
+                position: 'relative',
+                zIndex: 2
               }}
             >
               <span style={{ fontSize: '11px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.35)', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
-                Ahmedabad Map &amp; Photo Gallery
+                Ahmedabad Showroom Floor View
               </span>
             </div>
           </div>

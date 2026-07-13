@@ -62,17 +62,17 @@ export default function DigitalShowroom() {
   };
 
   return (
-    <main style={{ minHeight: '100vh', background: '#0E0C0A', paddingTop: '100px', display: 'flex', flexDirection: 'column' }}>
+    <main style={{ minHeight: '100vh', background: '#0E0C0A', paddingTop: '72px', display: 'flex', flexDirection: 'column' }}>
       
       {/* Shortlist toast alert */}
       {showNotification && (
         <div
           style={{
             position: 'fixed',
-            top: '40px',
+            top: '90px',
             left: '50%',
             transform: 'translateX(-50%)',
-            background: 'rgba(184, 146, 74, 0.95)',
+            background: 'rgba(243, 198, 35, 0.95)',
             color: '#050403',
             padding: '12px 28px',
             zIndex: 10000,
@@ -80,7 +80,7 @@ export default function DigitalShowroom() {
             fontFamily: 'var(--font-sans)',
             fontSize: '12px',
             fontWeight: 700,
-            letterSpacing: '0.1em',
+            letterSpacing: '0.15em',
             boxShadow: '0 10px 30px rgba(0,0,0,0.5)',
             display: 'flex',
             alignItems: 'center',
@@ -99,7 +99,7 @@ export default function DigitalShowroom() {
           display: 'grid',
           gridTemplateColumns: 'repeat(12, 1fr)',
           flex: 1,
-          height: 'calc(100vh - 100px)',
+          height: 'calc(100vh - 72px)',
           minHeight: '600px',
         }}
         className="showroom-container-grid"
@@ -108,7 +108,7 @@ export default function DigitalShowroom() {
         <div
           style={{
             gridColumn: 'span 4',
-            borderRight: '1px solid rgba(184, 146, 74, 0.12)',
+            borderRight: '1px solid rgba(243, 198, 35, 0.12)',
             display: 'flex',
             flexDirection: 'column',
             overflowY: 'auto',
@@ -118,7 +118,7 @@ export default function DigitalShowroom() {
         >
           {/* Header */}
           <div style={{ padding: '32px 32px 20px', borderBottom: '1px solid rgba(255, 255, 255, 0.04)' }}>
-            <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#B8924A', textTransform: 'uppercase', display: 'block', marginBottom: '8px' }}>
+            <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#F3C623', textTransform: 'uppercase', display: 'block', marginBottom: '8px' }}>
               &mdash; FLAGSHIP INTERACTIVE
             </span>
             <h1 style={{ fontSize: 'clamp(24px, 2.5vw, 36px)', color: '#F0EAE0', fontFamily: 'var(--font-serif)', fontWeight: 300, lineHeight: 1.1 }}>
@@ -147,9 +147,9 @@ export default function DigitalShowroom() {
                 onClick={() => handleCategoryChange(cat.slug)}
                 style={{
                   padding: '8px 18px',
-                  background: selectedCategory === cat.slug ? '#B8924A' : 'rgba(255, 255, 255, 0.02)',
+                  background: selectedCategory === cat.slug ? '#F3C623' : 'rgba(255, 255, 255, 0.02)',
                   color: selectedCategory === cat.slug ? '#050403' : 'rgba(240, 234, 224, 0.7)',
-                  border: selectedCategory === cat.slug ? '1px solid #B8924A' : '1px solid rgba(255,255,255,0.06)',
+                  border: selectedCategory === cat.slug ? '1px solid #F3C623' : '1px solid rgba(255,255,255,0.06)',
                   borderRadius: '1px',
                   fontFamily: 'var(--font-sans)',
                   fontSize: '11px',
@@ -170,53 +170,59 @@ export default function DigitalShowroom() {
               Select Swatch Finishes
             </span>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px' }}>
-              {MATERIALS.filter((m) => m.categorySlug === selectedCategory).map((m) => (
-                <button
-                  key={m.code}
-                  onClick={() => setSelectedMaterial(m)}
-                  style={{
-                    padding: '16px',
-                    background: selectedMaterial.code === m.code ? 'rgba(184, 146, 74, 0.06)' : 'rgba(255, 255, 255, 0.01)',
-                    border: selectedMaterial.code === m.code ? '1px solid #B8924A' : '1px solid rgba(255,255,255,0.04)',
-                    cursor: 'pointer',
-                    textAlign: 'left',
-                    borderRadius: '2px',
-                    transition: 'all 0.25s ease',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '12px',
-                  }}
-                  onMouseEnter={(e) => {
-                    if (selectedMaterial.code !== m.code) {
-                      e.currentTarget.style.borderColor = 'rgba(184, 146, 74, 0.3)';
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (selectedMaterial.code !== m.code) {
-                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.04)';
-                    }
-                  }}
-                >
-                  {/* Swatch visual circle */}
-                  <div
+              {MATERIALS.filter((m) => m.categorySlug === selectedCategory).map((m) => {
+                const isActive = selectedMaterial.code === m.code;
+                return (
+                  <button
+                    key={m.code}
+                    onClick={() => setSelectedMaterial(m)}
                     style={{
-                      width: '100%',
-                      height: '48px',
+                      padding: '16px',
+                      background: isActive ? 'rgba(243, 198, 35, 0.06)' : 'rgba(255, 255, 255, 0.01)',
+                      border: isActive ? '1px solid #F3C623' : '1px solid rgba(255,255,255,0.04)',
+                      cursor: 'pointer',
+                      textAlign: 'left',
                       borderRadius: '2px',
-                      background: m.texture,
-                      border: '1px solid rgba(255, 255, 255, 0.08)',
+                      transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '12px',
+                      transform: isActive ? 'scale(1.04)' : 'scale(1)',
                     }}
-                  />
-                  <div>
-                    <div style={{ fontFamily: 'var(--font-sans)', fontSize: '11px', fontWeight: 700, color: '#F0EAE0', letterSpacing: '0.04em' }}>
-                      {m.name}
+                    onMouseEnter={(e) => {
+                      if (!isActive) {
+                        e.currentTarget.style.borderColor = 'rgba(243, 198, 35, 0.3)';
+                        e.currentTarget.style.transform = 'scale(1.02)';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive) {
+                        e.currentTarget.style.borderColor = 'rgba(255,255,255,0.04)';
+                        e.currentTarget.style.transform = 'scale(1)';
+                      }
+                    }}
+                  >
+                    {/* Swatch visual circle */}
+                    <div
+                      style={{
+                        width: '100%',
+                        height: '48px',
+                        borderRadius: '2px',
+                        background: m.texture,
+                        border: '1px solid rgba(255, 255, 255, 0.08)',
+                      }}
+                    />
+                    <div>
+                      <div style={{ fontFamily: 'var(--font-sans)', fontSize: '11px', fontWeight: 700, color: '#F0EAE0', letterSpacing: '0.04em' }}>
+                        {m.name}
+                      </div>
+                      <div style={{ fontFamily: 'var(--font-sans)', fontSize: '9px', color: 'rgba(240, 234, 224, 0.4)', marginTop: '2px', textTransform: 'uppercase' }}>
+                        {m.code}
+                      </div>
                     </div>
-                    <div style={{ fontFamily: 'var(--font-sans)', fontSize: '9px', color: 'rgba(240, 234, 224, 0.4)', marginTop: '2px', textTransform: 'uppercase' }}>
-                      {m.code}
-                    </div>
-                  </div>
-                </button>
-              ))}
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -228,17 +234,22 @@ export default function DigitalShowroom() {
             position: 'relative',
             display: 'flex',
             flexDirection: 'column',
+            boxShadow: 'inset 0 0 80px rgba(243, 198, 35, 0.04)',
           }}
           className="showroom-main-area"
         >
           {/* Main 3D viewport */}
-          <div style={{ flex: 1, position: 'relative', overflow: 'hidden' }} className="drag-hover">
+          <div 
+            style={{ flex: 1, position: 'relative', overflow: 'hidden', cursor: 'grab' }} 
+            className="drag-hover"
+            data-cursor="Drag"
+          >
             <ShowroomCanvas material={selectedMaterial} lightingMode={lightingMode} isPreviewMode={isPreviewMode} />
 
             {/* Hint overlay */}
             <div style={{ position: 'absolute', bottom: '24px', left: '24px', pointerEvents: 'none', zIndex: 10 }}>
-              <span style={{ fontFamily: 'var(--font-sans)', fontSize: '10px', fontWeight: 600, letterSpacing: '0.15em', color: 'rgba(240,234,224,0.4)', textTransform: 'uppercase' }}>
-                Drag to Rotate &bull; Pinch to Zoom
+              <span style={{ fontFamily: 'var(--font-sans)', fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#F3C623', textTransform: 'uppercase' }}>
+                Drag to Rotate · Scroll to Zoom
               </span>
             </div>
 
@@ -252,18 +263,19 @@ export default function DigitalShowroom() {
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '12px',
+                alignItems: 'flex-end',
               }}
             >
-              {/* Lighting Presets */}
+              {/* Segmented lighting control pill */}
               <div
                 style={{
                   background: 'rgba(5, 4, 3, 0.85)',
                   backdropFilter: 'blur(16px)',
-                  border: '1px solid rgba(184, 146, 74, 0.25)',
-                  padding: '6px',
+                  border: '1px solid rgba(243, 198, 35, 0.25)',
+                  padding: '4px',
                   borderRadius: '30px',
                   display: 'flex',
-                  gap: '6px',
+                  gap: '4px',
                 }}
               >
                 {[
@@ -275,21 +287,25 @@ export default function DigitalShowroom() {
                     key={item.mode}
                     onClick={() => setLightingMode(item.mode as any)}
                     style={{
-                      width: '32px',
-                      height: '32px',
-                      borderRadius: '50%',
+                      padding: '8px 16px',
+                      borderRadius: '20px',
                       border: 'none',
-                      background: lightingMode === item.mode ? '#B8924A' : 'transparent',
+                      background: lightingMode === item.mode ? '#F3C623' : 'transparent',
                       color: lightingMode === item.mode ? '#050403' : '#F0EAE0',
                       cursor: 'pointer',
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'center',
+                      gap: '6px',
+                      fontFamily: 'var(--font-sans)',
+                      fontSize: '10px',
+                      fontWeight: 700,
+                      letterSpacing: '0.05em',
+                      textTransform: 'uppercase',
                       transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
                     }}
-                    title={item.label}
                   >
                     {item.icon}
+                    <span>{item.label}</span>
                   </button>
                 ))}
               </div>
@@ -298,10 +314,10 @@ export default function DigitalShowroom() {
               <button
                 onClick={() => setIsPreviewMode(!isPreviewMode)}
                 style={{
-                  background: isPreviewMode ? '#B8924A' : 'rgba(5, 4, 3, 0.85)',
+                  background: isPreviewMode ? '#F3C623' : 'rgba(5, 4, 3, 0.85)',
                   backdropFilter: 'blur(16px)',
                   color: isPreviewMode ? '#050403' : '#F0EAE0',
-                  border: '1px solid rgba(184, 146, 74, 0.25)',
+                  border: '1px solid rgba(243, 198, 35, 0.25)',
                   padding: '10px 20px',
                   cursor: 'pointer',
                   borderRadius: '20px',
@@ -327,7 +343,7 @@ export default function DigitalShowroom() {
           <div
             style={{
               background: '#080605',
-              borderTop: '1px solid rgba(184, 146, 74, 0.12)',
+              borderTop: '1px solid rgba(243, 198, 35, 0.12)',
               padding: '24px 32px',
               display: 'flex',
               justifyContent: 'space-between',
@@ -342,7 +358,7 @@ export default function DigitalShowroom() {
                 <span style={{ fontSize: '20px', color: '#FAF7F2', fontFamily: 'var(--font-serif)' }}>
                   {selectedMaterial.name}
                 </span>
-                <span style={{ fontSize: '11px', color: '#B8924A', fontFamily: 'var(--font-sans)', fontWeight: 600, letterSpacing: '0.08em' }}>
+                <span style={{ fontSize: '11px', color: '#F3C623', fontFamily: 'var(--font-sans)', fontWeight: 600, letterSpacing: '0.08em' }}>
                   {selectedMaterial.code}
                 </span>
               </div>
@@ -377,7 +393,7 @@ export default function DigitalShowroom() {
                 style={{
                   height: '46px',
                   padding: '0 28px',
-                  background: '#B8924A',
+                  background: '#F3C623',
                   color: '#050403',
                   border: 'none',
                   borderRadius: '1px',
@@ -392,8 +408,8 @@ export default function DigitalShowroom() {
                   gap: '8px',
                   transition: 'all 0.3s ease',
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = '#D4AA6A')}
-                onMouseLeave={(e) => (e.currentTarget.style.background = '#B8924A')}
+                onMouseEnter={(e) => (e.currentTarget.style.background = '#F6D354')}
+                onMouseLeave={(e) => (e.currentTarget.style.background = '#F3C623')}
               >
                 <Plus size={14} />
                 Add to enquiry shortlist
@@ -408,7 +424,7 @@ export default function DigitalShowroom() {
         <div
           style={{
             background: '#050403',
-            borderTop: '1px solid rgba(184, 146, 74, 0.2)',
+            borderTop: '1px solid rgba(243, 198, 35, 0.2)',
             padding: '16px clamp(24px, 6vw, 80px)',
             display: 'flex',
             alignItems: 'center',
@@ -419,7 +435,7 @@ export default function DigitalShowroom() {
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-            <span style={{ fontSize: '11px', fontFamily: 'var(--font-sans)', color: '#B8924A', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase' }}>
+            <span style={{ fontSize: '11px', fontFamily: 'var(--font-sans)', color: '#F3C623', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase' }}>
               Enquiry Shortlist ({shortlist.length})
             </span>
             <div style={{ display: 'flex', gap: '10px', overflowX: 'auto', maxWidth: '60vw' }} className="scrollbar-hidden">
@@ -467,8 +483,8 @@ export default function DigitalShowroom() {
               height: '38px',
               padding: '0 24px',
               background: 'transparent',
-              color: '#B8924A',
-              border: '1px solid #B8924A',
+              color: '#F3C623',
+              border: '1px solid #F3C623',
               textDecoration: 'none',
               fontFamily: 'var(--font-sans)',
               fontSize: '10px',
@@ -481,7 +497,7 @@ export default function DigitalShowroom() {
               transition: 'all 0.3s ease',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(184, 146, 74, 0.1)';
+              e.currentTarget.style.background = 'rgba(243, 198, 35, 0.1)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.background = 'transparent';
@@ -492,7 +508,7 @@ export default function DigitalShowroom() {
         </div>
       )}
 
-      <style jsx global>{`
+      <style>{`
         .scrollbar-hidden::-webkit-scrollbar {
           display: none;
         }
@@ -508,7 +524,7 @@ export default function DigitalShowroom() {
           .showroom-sidebar {
             grid-column: span 12 !important;
             border-right: none !important;
-            border-bottom: 1px solid rgba(184, 146, 74, 0.12) !important;
+            border-bottom: 1px solid rgba(243, 198, 35, 0.12) !important;
             height: auto !important;
             max-height: 400px;
           }

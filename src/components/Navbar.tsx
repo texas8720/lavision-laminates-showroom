@@ -1,555 +1,175 @@
 'use client';
-
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import gsap from 'gsap';
 import { usePathname } from 'next/navigation';
 
 const NAV_ITEMS = [
-  { label: 'Home', href: '/', preview: 'linear-gradient(135deg, #1A1714 0%, #B8924A 100%)' },
-  { label: 'About Us', href: '/about', preview: 'radial-gradient(circle, #8F5E36 0%, #1A120B 100%)' },
-  {
-    label: 'Products',
-    href: '/products',
-    preview: 'repeating-linear-gradient(45deg, #8E6743 0px, #8E6743 10px, #2C2018 11px, #2C2018 20px)',
-    sub: [
-      { label: 'Laminates', href: '/products/laminates' },
-      { label: 'Louvers', href: '/products/louvers' },
-      { label: 'Acrylic Sheets', href: '/products/acrylic-sheets' },
-      { label: 'Polymer Sheets', href: '/products/polymer-sheets' },
-      { label: 'Leather Sheets', href: '/products/leather-sheets' },
-      { label: 'Natural Stone Veneer', href: '/products/natural-stone-veneer' },
-      { label: 'Decorative Panels', href: '/products/decorative-panels' },
-    ],
-  },
-  { label: 'Digital Showroom', href: '/digital-showroom', preview: 'linear-gradient(135deg, #FAF7F2 0%, #7F8C8D 100%)' },
-  { label: 'Showrooms', href: '/showrooms', preview: 'linear-gradient(45deg, #2D2F30 0%, #B8924A 100%)' },
-  { label: 'Inspiration Gallery', href: '/gallery', preview: 'radial-gradient(circle, #3A3225 0%, #050403 100%)' },
-  { label: 'Contact', href: '/contact', preview: 'linear-gradient(to right, #FAF7F2, #B8924A)' },
+  { label: 'Home', href: '/', preview: 'repeating-linear-gradient(45deg, #8E6743 0px, #2C2018 20px)' },
+  { label: 'About Us', href: '/about', preview: 'linear-gradient(135deg, #9CA382 0%, #5E4B31 100%)' },
+  { label: 'Products', href: '/products', preview: 'repeating-linear-gradient(90deg, #181410 0px, #181410 12px, #3A3225 13px, #3A3225 24px)' },
+  { label: 'Digital Showroom', href: '/digital-showroom', preview: 'radial-gradient(circle, #F3C623 0%, #5E4B31 70%)' },
+  { label: 'Showrooms', href: '/showrooms', preview: 'linear-gradient(45deg, #2D2F30 0%, #1A1B1C 100%)' },
+  { label: 'Gallery', href: '/gallery', preview: 'radial-gradient(circle, #8F5E36 0%, #6E401E 100%)' },
+  { label: 'Contact', href: '/contact', preview: 'linear-gradient(135deg, #FAF7F2 0%, #EFECE6 100%)' },
 ];
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
-  const [expandedProducts, setExpandedProducts] = useState(false);
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const itemsRef = useRef<HTMLLIElement[]>([]);
   const pathname = usePathname();
 
-  // Scroll detection for solid background
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Escape key to close menu
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setIsOpen(false);
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
-  // Prevent background scroll when menu is open
-  useEffect(() => {
-    if (isOpen) {
+    if (!overlayRef.current) return;
+    if (menuOpen) {
       document.body.style.overflow = 'hidden';
+      gsap.set(overlayRef.current, { display: 'flex' });
+      gsap.fromTo(overlayRef.current, { clipPath: 'circle(0% at calc(100% - 48px) 28px)' }, {
+        clipPath: 'circle(150% at calc(100% - 48px) 28px)',
+        duration: 0.7, ease: 'power3.inOut',
+      });
+      gsap.fromTo(itemsRef.current, { opacity: 0, y: 40 }, {
+        opacity: 1, y: 0, duration: 0.5, stagger: 0.07, ease: 'power3.out', delay: 0.3,
+      });
     } else {
       document.body.style.overflow = '';
+      gsap.to(overlayRef.current, {
+        clipPath: 'circle(0% at calc(100% - 48px) 28px)',
+        duration: 0.55, ease: 'power3.inOut',
+        onComplete: () => gsap.set(overlayRef.current, { display: 'none' }),
+      });
     }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isOpen]);
+  }, [menuOpen]);
 
-  // Close menu on route change
+  // Close menu when route changes
   useEffect(() => {
-    setIsOpen(false);
+    setMenuOpen(false);
   }, [pathname]);
-
-  const toggleMenu = () => setIsOpen(!isOpen);
-
-  // Active hover preview style
-  const activePreview = NAV_ITEMS.find((n) => n.label === hoveredItem)?.preview || '';
 
   return (
     <>
-      {/* ─── HEADER BAR ─── */}
-      <header
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 9999,
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          padding: '24px clamp(24px, 6vw, 80px)',
-          transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-          background: scrolled && !isOpen ? 'rgba(5, 4, 3, 0.88)' : 'transparent',
-          backdropFilter: scrolled && !isOpen ? 'blur(20px)' : 'none',
-          borderBottom: scrolled && !isOpen ? '1px solid rgba(184, 146, 74, 0.08)' : '1px solid transparent',
-        }}
-      >
-        {/* Left: Logo */}
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
-          <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
-            <rect x="1" y="1" width="26" height="26" stroke="#B8924A" strokeWidth="1" />
-            <path d="M7 14 L14 7 L21 14 L14 21 Z" stroke="#B8924A" strokeWidth="1" fill="none" />
-            <circle cx="14" cy="14" r="1.5" fill="#B8924A" />
-          </svg>
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <span
-              style={{
-                fontFamily: 'var(--font-serif)',
-                fontSize: '18px',
-                letterSpacing: '0.12em',
-                color: '#F0EAE0',
-                lineHeight: 1,
-              }}
-            >
-              LAVISION
-            </span>
-            <span
-              style={{
-                fontFamily: 'var(--font-sans)',
-                fontSize: '7px',
-                letterSpacing: '0.3em',
-                color: '#B8924A',
-                textTransform: 'uppercase',
-                marginTop: '2px',
-              }}
-            >
-              Laminates
-            </span>
-          </div>
+      <header style={{
+        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000,
+        padding: '0 clamp(24px, 4vw, 64px)',
+        height: '72px',
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        background: scrolled ? 'rgba(5,4,3,0.85)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(16px)' : 'none',
+        borderBottom: scrolled ? '1px solid rgba(243,198,35,0.08)' : 'none',
+        transition: 'background 0.4s ease, border-color 0.4s ease',
+      }}>
+        <Link href="/" style={{ textDecoration: 'none' }}>
+          <span style={{ fontFamily: 'var(--font-serif)', fontSize: '22px', fontWeight: 300, color: '#F0EAE0', letterSpacing: '-0.01em' }}>
+            lavision <span style={{ fontFamily: 'var(--font-sans)', fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: 'rgba(240,234,224,0.45)', verticalAlign: 'middle', textTransform: 'uppercase' }}>Laminates</span>
+          </span>
         </Link>
 
-        {/* Right: Menu Trigger */}
         <button
-          onClick={toggleMenu}
+          onClick={() => setMenuOpen(!menuOpen)}
           style={{
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px',
-            padding: '8px 4px',
-            color: '#F0EAE0',
+            background: 'none', border: 'none', cursor: 'pointer',
+            display: 'flex', alignItems: 'center', gap: '12px',
+            color: 'rgba(240,234,224,0.7)', padding: '8px',
           }}
-          className="menu-trigger-btn"
-          aria-label="Toggle Navigation Menu"
         >
-          <span
-            style={{
-              fontFamily: 'var(--font-sans)',
-              fontSize: '11px',
-              fontWeight: 600,
-              letterSpacing: '0.15em',
-              textTransform: 'uppercase',
-              color: isOpen ? '#B8924A' : '#F0EAE0',
-              transition: 'color 0.3s ease',
-            }}
-          >
-            {isOpen ? 'Close' : 'Menu'}
+          <span style={{ fontFamily: 'var(--font-sans)', fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase' }}>
+            {menuOpen ? 'CLOSE' : 'MENU'}
           </span>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              gap: '6px',
-              width: '24px',
-              height: '14px',
-            }}
-          >
-            <span
-              style={{
-                width: '24px',
-                height: '1.5px',
-                background: isOpen ? '#B8924A' : '#F0EAE0',
-                transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                transform: isOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none',
-              }}
-            />
-            <span
-              style={{
-                width: '24px',
-                height: '1.5px',
-                background: isOpen ? '#B8924A' : '#F0EAE0',
-                transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                transform: isOpen ? 'rotate(-45deg) translate(1px, -1px)' : 'none',
-                marginTop: isOpen ? '-1.5px' : '0',
-              }}
-            />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', width: '24px' }}>
+            <span style={{ display: 'block', height: '1px', background: menuOpen ? 'transparent' : '#F3C623', transition: 'all 0.3s ease', transform: menuOpen ? 'rotate(45deg) translate(4px, 4px)' : 'none' }} />
+            <span style={{ display: 'block', height: '1px', background: '#F3C623', transition: 'all 0.3s ease', transform: menuOpen ? 'rotate(-45deg)' : 'none' }} />
           </div>
         </button>
       </header>
 
-      {/* ─── FULL-SCREEN MENU OVERLAY ─── */}
+      {/* Full-Screen Menu Overlay */}
       <div
+        ref={overlayRef}
         style={{
-          position: 'fixed',
-          inset: 0,
-          zIndex: 9998,
-          background: '#050403',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          padding: '120px clamp(24px, 6vw, 80px) 40px',
-          opacity: isOpen ? 1 : 0,
-          pointerEvents: isOpen ? 'auto' : 'none',
-          transition: 'opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+          display: 'none', position: 'fixed', inset: 0, zIndex: 999,
+          background: '#1A160F',
+          flexDirection: 'column', justifyContent: 'center',
+          padding: 'clamp(80px, 10vw, 140px) clamp(32px, 6vw, 100px)',
         }}
       >
-        {/* Dynamic sliding color backdrop wipe */}
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            zIndex: 1,
-            background: 'linear-gradient(135deg, rgba(184, 146, 74, 0.04) 0%, rgba(5, 4, 3, 0) 100%)',
-            pointerEvents: 'none',
-          }}
-        />
-
-        <div
-          style={{
-            position: 'relative',
-            zIndex: 2,
-            display: 'grid',
-            gridTemplateColumns: '1.2fr 0.8fr',
-            gap: '40px',
-            alignItems: 'center',
-            maxWidth: '1400px',
-            margin: '0 auto',
-            width: '100%',
-            height: '100%',
-          }}
-          className="menu-content-grid"
-        >
-          {/* Left Column: Big Kinetic Typography Links */}
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              gap: '16px',
-            }}
-          >
-            {NAV_ITEMS.map((item, index) => {
-              const isProducts = item.label === 'Products';
-              return (
-                <div
-                  key={item.label}
-                  style={{
-                    opacity: isOpen ? 1 : 0,
-                    transform: isOpen ? 'translateY(0)' : 'translateY(20px)',
-                    transition: `all 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + index * 0.05}s`,
-                  }}
-                >
-                  <div
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '24px',
-                    }}
-                  >
-                    {/* Hover Swatch Indicator */}
-                    <div
-                      style={{
-                        width: hoveredItem === item.label ? '48px' : '0px',
-                        height: '24px',
-                        background: item.preview,
-                        border: hoveredItem === item.label ? '1px solid rgba(184,146,74,0.3)' : 'none',
-                        transition: 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
-                        opacity: hoveredItem === item.label ? 1 : 0,
-                        borderRadius: '2px',
-                        flexShrink: 0,
-                      }}
-                    />
-
-                    {isProducts ? (
-                      <div style={{ display: 'flex', flexDirection: 'column' }}>
-                        <button
-                          onClick={() => setExpandedProducts(!expandedProducts)}
-                          onMouseEnter={() => setHoveredItem(item.label)}
-                          onMouseLeave={() => setHoveredItem(null)}
-                          style={{
-                            background: 'none',
-                            border: 'none',
-                            cursor: 'pointer',
-                            textAlign: 'left',
-                            fontFamily: 'var(--font-serif)',
-                            fontSize: 'clamp(32px, 5.5vw, 68px)',
-                            fontWeight: 300,
-                            lineHeight: 1,
-                            color: expandedProducts ? '#B8924A' : '#F0EAE0',
-                            padding: 0,
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '16px',
-                            transition: 'color 0.3s ease',
-                          }}
-                        >
-                          {item.label}
-                          <svg
-                            style={{
-                              width: '24px',
-                              height: '24px',
-                              transform: expandedProducts ? 'rotate(90deg)' : 'none',
-                              transition: 'transform 0.3s ease',
-                            }}
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                          >
-                            <path d="M9 5l7 7-7 7" />
-                          </svg>
-                        </button>
-
-                        {/* Expandable sub-list */}
-                        <div
-                          style={{
-                            maxHeight: expandedProducts ? '360px' : '0px',
-                            opacity: expandedProducts ? 1 : 0,
-                            overflow: 'hidden',
-                            transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            gap: '10px',
-                            paddingLeft: '24px',
-                            marginTop: expandedProducts ? '12px' : '0',
-                          }}
-                        >
-                          {item.sub?.map((subItem) => (
-                            <Link
-                              key={subItem.label}
-                              href={subItem.href}
-                              style={{
-                                fontFamily: 'var(--font-sans)',
-                                fontSize: 'clamp(14px, 1.6vw, 18px)',
-                                color: 'rgba(240,234,224,0.6)',
-                                transition: 'color 0.25s ease',
-                                textDecoration: 'none',
-                              }}
-                              onMouseEnter={(e) => (e.currentTarget.style.color = '#B8924A')}
-                              onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(240,234,224,0.6)')}
-                            >
-                              {subItem.label}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    ) : (
-                      <Link
-                        href={item.href}
-                        onMouseEnter={() => setHoveredItem(item.label)}
-                        onMouseLeave={() => setHoveredItem(null)}
-                        style={{
-                          fontFamily: 'var(--font-serif)',
-                          fontSize: 'clamp(32px, 5.5vw, 68px)',
-                          fontWeight: 300,
-                          lineHeight: 1,
-                          color: pathname === item.href ? '#B8924A' : '#F0EAE0',
-                          transition: 'color 0.3s ease, transform 0.3s ease',
-                          textDecoration: 'none',
-                        }}
-                      >
-                        {item.label}
-                      </Link>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Right Column: Dynamic Hover Preview & Secondary Typography info */}
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              height: '70%',
-              borderLeft: '1px solid rgba(184, 146, 74, 0.1)',
-              paddingLeft: '48px',
-            }}
-            className="menu-right-panel"
-          >
-            {/* Visualizer window */}
-            <div
-              style={{
-                width: '100%',
-                aspectRatio: '16/10',
-                background: activePreview || 'radial-gradient(circle, #1A1A1A 0%, #050403 100%)',
-                border: '1px solid rgba(184, 146, 74, 0.2)',
-                borderRadius: '4px',
-                transition: 'background 0.5s ease',
-                position: 'relative',
-                overflow: 'hidden',
-                boxShadow: '0 20px 40px rgba(0,0,0,0.4)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
+        <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+          {NAV_ITEMS.map((item, i) => (
+            <li
+              key={item.label}
+              ref={(el) => { if (el) itemsRef.current[i] = el; }}
+              style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '0' }}
             >
-              {hoveredItem ? (
-                <div
+              <div
+                style={{
+                  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                  position: 'relative', overflow: 'visible',
+                }}
+              >
+                <Link
+                  href={item.href}
+                  onClick={() => setMenuOpen(false)}
                   style={{
-                    position: 'absolute',
-                    bottom: '16px',
-                    left: '16px',
-                    fontFamily: 'var(--font-sans)',
-                    fontSize: '10px',
-                    fontWeight: 700,
-                    letterSpacing: '0.2em',
-                    textTransform: 'uppercase',
-                    color: '#050403',
-                    background: '#B8924A',
-                    padding: '4px 10px',
-                    borderRadius: '1px',
-                  }}
-                >
-                  {hoveredItem} Specimen
-                </div>
-              ) : (
-                <div
-                  style={{
-                    fontFamily: 'var(--font-sans)',
-                    fontSize: '10px',
-                    fontWeight: 500,
-                    letterSpacing: '0.15em',
-                    textTransform: 'uppercase',
-                    color: 'rgba(240, 234, 224, 0.3)',
-                  }}
-                >
-                  Hover links to inspect texture
-                </div>
-              )}
-            </div>
-
-            {/* Bottom contacts info */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-              <div>
-                <span
-                  style={{
-                    fontFamily: 'var(--font-sans)',
-                    fontSize: '9px',
-                    fontWeight: 700,
-                    letterSpacing: '0.22em',
-                    textTransform: 'uppercase',
-                    color: '#B8924A',
                     display: 'block',
-                    marginBottom: '8px',
+                    padding: '20px 0', textDecoration: 'none',
+                    fontFamily: 'var(--font-serif)', fontSize: 'clamp(36px, 6vw, 72px)',
+                    fontWeight: 300, color: '#F0EAE0', lineHeight: 1,
+                    transition: 'color 0.2s ease',
+                    flex: 1
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = '#F3C623';
+                    const sib = e.currentTarget.nextElementSibling as HTMLElement;
+                    if (sib) sib.style.opacity = '1';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = '#F0EAE0';
+                    const sib = e.currentTarget.nextElementSibling as HTMLElement;
+                    if (sib) sib.style.opacity = '0';
                   }}
                 >
-                  Physical Showrooms
-                </span>
-                <span
+                  {item.label}
+                </Link>
+                {/* Texture mini-preview */}
+                <div 
                   style={{
-                    fontFamily: 'var(--font-sans)',
-                    fontSize: '13px',
-                    color: 'rgba(240, 234, 224, 0.65)',
-                    lineHeight: 1.5,
-                    display: 'block',
+                    width: '80px', height: '50px',
+                    background: item.preview,
+                    border: '1px solid rgba(243,198,35,0.2)',
+                    borderRadius: '2px',
+                    opacity: 0,
+                    transition: 'opacity 0.3s ease',
+                    pointerEvents: 'none'
                   }}
-                >
-                  Rajkot &bull; Ahmedabad, Gujarat
-                </span>
+                />
               </div>
+            </li>
+          ))}
+        </ul>
 
-              <div>
-                <span
-                  style={{
-                    fontFamily: 'var(--font-sans)',
-                    fontSize: '9px',
-                    fontWeight: 700,
-                    letterSpacing: '0.22em',
-                    textTransform: 'uppercase',
-                    color: '#B8924A',
-                    display: 'block',
-                    marginBottom: '8px',
-                  }}
-                >
-                  Contact Enquiry
-                </span>
-                <a
-                  href="tel:+919876543210"
-                  style={{
-                    fontFamily: 'var(--font-sans)',
-                    fontSize: '14px',
-                    color: '#FAF7F2',
-                    textDecoration: 'none',
-                    display: 'block',
-                  }}
-                >
-                  +91 98765 43210
-                </a>
-                <a
-                  href="mailto:hello@lavision.in"
-                  style={{
-                    fontFamily: 'var(--font-sans)',
-                    fontSize: '12px',
-                    color: 'rgba(184, 146, 74, 0.6)',
-                    textDecoration: 'none',
-                    display: 'block',
-                    marginTop: '4px',
-                  }}
-                >
-                  hello@lavision.in
-                </a>
-              </div>
-
-              {/* Social icons */}
-              <div style={{ display: 'flex', gap: '16px', marginTop: '10px' }}>
-                {['Instagram', 'Pinterest', 'WhatsApp'].map((s) => (
-                  <a
-                    key={s}
-                    href="#"
-                    style={{
-                      fontFamily: 'var(--font-sans)',
-                      fontSize: '11px',
-                      color: 'rgba(240, 234, 224, 0.4)',
-                      transition: 'color 0.25s ease',
-                      textDecoration: 'none',
-                    }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = '#B8924A')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(240, 234, 224, 0.4)')}
-                  >
-                    {s}
-                  </a>
-                ))}
-              </div>
-            </div>
+        {/* Footer of overlay */}
+        <div style={{
+          position: 'absolute', bottom: '40px', left: 'clamp(32px, 6vw, 100px)', right: 'clamp(32px, 6vw, 100px)',
+          display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end',
+        }}>
+          <div style={{ display: 'flex', gap: '32px' }}>
+            <span style={{ fontFamily: 'var(--font-sans)', fontSize: '11px', color: 'rgba(240,234,224,0.35)', letterSpacing: '0.08em' }}>Rajkot · Ahmedabad</span>
+            <a href="tel:+919876543210" style={{ fontFamily: 'var(--font-sans)', fontSize: '11px', color: 'rgba(240,234,224,0.35)', letterSpacing: '0.08em', textDecoration: 'none' }}>+91 98765 43210</a>
+          </div>
+          <div style={{ display: 'flex', gap: '24px' }}>
+            {['Instagram', 'Pinterest', 'WhatsApp'].map(s => (
+              <a key={s} href="#" style={{ fontFamily: 'var(--font-sans)', fontSize: '9px', fontWeight: 700, letterSpacing: '0.18em', color: 'rgba(240,234,224,0.35)', textTransform: 'uppercase', textDecoration: 'none' }}>{s}</a>
+            ))}
           </div>
         </div>
       </div>
-
-      <style jsx global>{`
-        @media (max-width: 900px) {
-          .menu-content-grid {
-            grid-template-columns: 1fr !important;
-            gap: 24px !important;
-          }
-          .menu-right-panel {
-            border-left: none !important;
-            padding-left: 0 !important;
-            height: auto !important;
-            gap: 32px !important;
-          }
-          .menu-right-panel > div:first-child {
-            display: none !important; /* Hide visualizer on mobile */
-          }
-        }
-      `}</style>
     </>
   );
 }

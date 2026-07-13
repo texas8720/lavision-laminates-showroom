@@ -101,7 +101,7 @@ function generatePBRTextures(material: MaterialSpec) {
     }
   } else if (slug === 'decorative-panels') {
     // Brass lines inlay pattern
-    ctx.fillStyle = '#B8924A';
+    ctx.fillStyle = '#F3C623';
     for (let x = 60; x < 512; x += 120) {
       ctx.fillRect(x, 0, 6, 512);
       bCtx.fillStyle = '#a0a0a0';

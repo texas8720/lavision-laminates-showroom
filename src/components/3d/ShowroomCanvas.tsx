@@ -15,7 +15,7 @@ const Scene = dynamic(() => import('./ShowroomScene'), {
         alignItems: 'center',
         justifyContent: 'center',
         background: '#0E0C0A',
-        color: '#B8924A',
+        color: '#F3C623',
         fontFamily: 'var(--font-sans)',
         fontSize: '11px',
         letterSpacing: '0.2em',
@@ -28,7 +28,7 @@ const Scene = dynamic(() => import('./ShowroomScene'), {
             width: '28px',
             height: '28px',
             border: '2px solid rgba(184, 146, 74, 0.2)',
-            borderTopColor: '#B8924A',
+            borderTopColor: '#F3C623',
             borderRadius: '50%',
             animation: 'spin 1s linear infinite',
           }}

@@ -37,7 +37,7 @@ export default function TermsPage() {
         </div>
       </div>
       <style jsx>{`
-        .back-link:hover { color: #B8924A !important; }
+        .back-link:hover { color: #F3C623 !important; }
       `}</style>
     </main>
   );

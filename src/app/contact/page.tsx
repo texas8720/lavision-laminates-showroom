@@ -1,10 +1,11 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Mail, Phone, MessageSquare, MapPin, Check, Plus, Trash2 } from 'lucide-react';
+import { Mail, Phone, MessageSquare, Check, Trash2 } from 'lucide-react';
 import { MaterialSpec } from '@/data/materialsData';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useTextReveal } from '@/hooks/useTextReveal';
 
 export default function Contact() {
   const [role, setRole] = useState('Architect');
@@ -19,6 +20,8 @@ export default function Contact() {
     city: '',
     message: '',
   });
+
+  const h1Ref = useTextReveal();
 
   // Load shortlist from localStorage
   useEffect(() => {
@@ -74,7 +77,6 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate submission
     setFormSubmitted(true);
     setFormData({ name: '', phone: '', email: '', city: '', message: '' });
     setSelectedInterests([]);
@@ -84,15 +86,16 @@ export default function Contact() {
   };
 
   return (
-    <main style={{ background: '#050403', minHeight: '100vh', paddingTop: '140px', paddingBottom: '80px' }}>
+    <main style={{ background: '#050403', minHeight: '100vh', paddingTop: '140px', paddingBottom: '80px', paddingLeft: 'clamp(24px, 4vw, 64px)', paddingRight: 'clamp(24px, 4vw, 64px)' }}>
       
       {/* ─── HERO SECTION ─── */}
-      <section className="container" style={{ marginBottom: '64px' }}>
+      <section style={{ marginBottom: '64px', maxWidth: '1400px', margin: '0 auto 64px' }}>
         <div style={{ maxWidth: '900px' }}>
-          <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: '#B8924A', textTransform: 'uppercase', display: 'block', marginBottom: '16px' }}>
+          <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: '#F3C623', textTransform: 'uppercase', display: 'block', marginBottom: '16px' }}>
             &mdash; Get in Touch
           </span>
           <h1
+            ref={h1Ref}
             style={{
               fontSize: 'clamp(36px, 6vw, 76px)',
               lineHeight: 1.05,
@@ -111,7 +114,7 @@ export default function Contact() {
       </section>
 
       {/* ─── FORM & INFO SECTION ─── */}
-      <section className="container">
+      <section style={{ maxWidth: '1400px', margin: '0 auto' }}>
         <div
           style={{
             display: 'grid',
@@ -126,15 +129,15 @@ export default function Contact() {
             {formSubmitted ? (
               <div
                 style={{
-                  background: 'rgba(184, 146, 74, 0.05)',
-                  border: '1px solid #B8924A',
+                  background: 'rgba(243, 198, 35, 0.05)',
+                  border: '1px solid #F3C623',
                   padding: '48px',
                   textAlign: 'center',
                   borderRadius: '2px',
                 }}
               >
-                <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'rgba(184,146,74,0.1)', border: '1px solid #B8924A', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
-                  <Check size={24} color="#B8924A" />
+                <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'rgba(243,198,35,0.1)', border: '1px solid #F3C623', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
+                  <Check size={24} color="#F3C623" />
                 </div>
                 <h3 style={{ fontSize: '28px', fontFamily: 'var(--font-serif)', color: '#FAF7F2', fontWeight: 300, marginBottom: '16px' }}>
                   Enquiry Submitted Successfully
@@ -144,82 +147,97 @@ export default function Contact() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
                 
                 {/* Text fields row */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }} className="contact-form-row">
-                  <div>
-                    <label style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.4)', textTransform: 'uppercase', letterSpacing: '0.12em', display: 'block', marginBottom: '8px' }}>Your Name *</label>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px' }} className="contact-form-row">
+                  <div style={{ position: 'relative' }}>
+                    <label style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.45)', textTransform: 'uppercase', letterSpacing: '0.15em', display: 'block' }}>Your Name *</label>
                     <input
                       type="text"
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      style={{ width: '100%', height: '50px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '2px', padding: '0 16px', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '14px', outline: 'none', transition: 'border-color 0.3s' }}
-                      onFocus={(e) => (e.currentTarget.style.borderColor = '#B8924A')}
-                      onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)')}
+                      style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(255,255,255,0.15)', padding: '12px 0', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '15px', outline: 'none', transition: 'border-color 0.3s' }}
+                      onFocus={(e) => (e.currentTarget.style.borderColor = '#F3C623')}
+                      onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)')}
                     />
                   </div>
-                  <div>
-                    <label style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.4)', textTransform: 'uppercase', letterSpacing: '0.12em', display: 'block', marginBottom: '8px' }}>Phone Number *</label>
+                  <div style={{ position: 'relative' }}>
+                    <label style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.45)', textTransform: 'uppercase', letterSpacing: '0.15em', display: 'block' }}>Phone Number *</label>
                     <input
                       type="tel"
                       required
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      style={{ width: '100%', height: '50px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '2px', padding: '0 16px', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '14px', outline: 'none', transition: 'border-color 0.3s' }}
-                      onFocus={(e) => (e.currentTarget.style.borderColor = '#B8924A')}
-                      onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)')}
+                      style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(255,255,255,0.15)', padding: '12px 0', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '15px', outline: 'none', transition: 'border-color 0.3s' }}
+                      onFocus={(e) => (e.currentTarget.style.borderColor = '#F3C623')}
+                      onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)')}
                     />
                   </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }} className="contact-form-row">
-                  <div>
-                    <label style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.4)', textTransform: 'uppercase', letterSpacing: '0.12em', display: 'block', marginBottom: '8px' }}>Email Address *</label>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px' }} className="contact-form-row">
+                  <div style={{ position: 'relative' }}>
+                    <label style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.45)', textTransform: 'uppercase', letterSpacing: '0.15em', display: 'block' }}>Email Address *</label>
                     <input
                       type="email"
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      style={{ width: '100%', height: '50px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '2px', padding: '0 16px', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '14px', outline: 'none', transition: 'border-color 0.3s' }}
-                      onFocus={(e) => (e.currentTarget.style.borderColor = '#B8924A')}
-                      onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)')}
+                      style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(255,255,255,0.15)', padding: '12px 0', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '15px', outline: 'none', transition: 'border-color 0.3s' }}
+                      onFocus={(e) => (e.currentTarget.style.borderColor = '#F3C623')}
+                      onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)')}
                     />
                   </div>
-                  <div>
-                    <label style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.4)', textTransform: 'uppercase', letterSpacing: '0.12em', display: 'block', marginBottom: '8px' }}>City *</label>
+                  <div style={{ position: 'relative' }}>
+                    <label style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.45)', textTransform: 'uppercase', letterSpacing: '0.15em', display: 'block' }}>City *</label>
                     <input
                       type="text"
                       required
                       value={formData.city}
                       onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                      style={{ width: '100%', height: '50px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '2px', padding: '0 16px', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '14px', outline: 'none', transition: 'border-color 0.3s' }}
-                      onFocus={(e) => (e.currentTarget.style.borderColor = '#B8924A')}
-                      onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)')}
+                      style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(255,255,255,0.15)', padding: '12px 0', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '15px', outline: 'none', transition: 'border-color 0.3s' }}
+                      onFocus={(e) => (e.currentTarget.style.borderColor = '#F3C623')}
+                      onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)')}
                     />
                   </div>
                 </div>
 
-                {/* Role selection dropdown */}
+                {/* Role selection dropdown -> visually selectable pills */}
                 <div>
-                  <label style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.4)', textTransform: 'uppercase', letterSpacing: '0.12em', display: 'block', marginBottom: '8px' }}>I am a...</label>
-                  <select
-                    value={role}
-                    onChange={(e) => setRole(e.target.value)}
-                    style={{ width: '100%', height: '50px', background: '#0E0C0A', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '2px', padding: '0 16px', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '14px', outline: 'none', transition: 'border-color 0.3s', cursor: 'pointer' }}
-                    onFocus={(e) => (e.currentTarget.style.borderColor = '#B8924A')}
-                    onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)')}
-                  >
-                    {['Architect', 'Interior Designer', 'Contractor', 'Homeowner', 'Dealer'].map((r) => (
-                      <option key={r} value={r} style={{ background: '#050403', color: '#F0EAE0' }}>{r}</option>
-                    ))}
-                  </select>
+                  <label style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.45)', textTransform: 'uppercase', letterSpacing: '0.15em', display: 'block', marginBottom: '16px' }}>I am a...</label>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+                    {['Architect', 'Interior Designer', 'Contractor', 'Homeowner', 'Dealer'].map((r) => {
+                      const isSelected = role === r;
+                      return (
+                        <button
+                          key={r}
+                          type="button"
+                          onClick={() => setRole(r)}
+                          style={{
+                            padding: '8px 20px',
+                            background: isSelected ? 'rgba(243, 198, 35, 0.1)' : 'transparent',
+                            color: isSelected ? '#F3C623' : 'rgba(240, 234, 224, 0.6)',
+                            border: isSelected ? '1px solid #F3C623' : '1px solid rgba(255, 255, 255, 0.08)',
+                            borderRadius: '30px',
+                            fontFamily: 'var(--font-sans)',
+                            fontSize: '11px',
+                            fontWeight: 600,
+                            cursor: 'pointer',
+                            transition: 'all 0.25s ease',
+                          }}
+                        >
+                          {r}
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
 
                 {/* Multi-select interest */}
                 <div>
-                  <label style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.4)', textTransform: 'uppercase', letterSpacing: '0.12em', display: 'block', marginBottom: '12px' }}>Product Interest (multi-select)</label>
+                  <label style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.45)', textTransform: 'uppercase', letterSpacing: '0.15em', display: 'block', marginBottom: '16px' }}>Product Interest (multi-select)</label>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
                     {['Laminates', 'Louvers', 'Acrylic Sheets', 'Polymer Sheets', 'Leather Sheets', 'Natural Stone Veneer', 'Decorative Panels'].map((item) => {
                       const isSelected = selectedInterests.includes(item);
@@ -229,11 +247,11 @@ export default function Contact() {
                           type="button"
                           onClick={() => handleInterestToggle(item)}
                           style={{
-                            padding: '8px 18px',
-                            background: isSelected ? 'rgba(184, 146, 74, 0.1)' : 'transparent',
-                            color: isSelected ? '#B8924A' : 'rgba(240, 234, 224, 0.6)',
-                            border: isSelected ? '1px solid #B8924A' : '1px solid rgba(255, 255, 255, 0.08)',
-                            borderRadius: '1px',
+                            padding: '8px 20px',
+                            background: isSelected ? 'rgba(243, 198, 35, 0.1)' : 'transparent',
+                            color: isSelected ? '#F3C623' : 'rgba(240, 234, 224, 0.6)',
+                            border: isSelected ? '1px solid #F3C623' : '1px solid rgba(255, 255, 255, 0.08)',
+                            borderRadius: '30px',
                             fontFamily: 'var(--font-sans)',
                             fontSize: '11px',
                             fontWeight: 600,
@@ -250,8 +268,8 @@ export default function Contact() {
 
                 {/* Shortlisted items display */}
                 {shortlist.length > 0 && (
-                  <div style={{ background: 'rgba(184, 146, 74, 0.03)', border: '1px solid rgba(184, 146, 74, 0.15)', padding: '24px', borderRadius: '2px' }}>
-                    <span style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: '#B8924A', textTransform: 'uppercase', letterSpacing: '0.12em', display: 'block', marginBottom: '12px' }}>
+                  <div style={{ background: 'rgba(243, 198, 35, 0.03)', border: '1px solid rgba(243, 198, 35, 0.15)', padding: '24px', borderRadius: '2px' }}>
+                    <span style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: '#F3C623', textTransform: 'uppercase', letterSpacing: '0.12em', display: 'block', marginBottom: '12px' }}>
                       Auto-attached swatches ({shortlist.length})
                     </span>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -278,15 +296,15 @@ export default function Contact() {
                 )}
 
                 {/* Message */}
-                <div>
-                  <label style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.4)', textTransform: 'uppercase', letterSpacing: '0.12em', display: 'block', marginBottom: '8px' }}>Your Message</label>
+                <div style={{ position: 'relative' }}>
+                  <label style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.45)', textTransform: 'uppercase', letterSpacing: '0.15em', display: 'block' }}>Your Message</label>
                   <textarea
-                    rows={5}
+                    rows={4}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    style={{ width: '100%', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '2px', padding: '16px', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '14px', outline: 'none', resize: 'vertical', transition: 'border-color 0.3s' }}
-                    onFocus={(e) => (e.currentTarget.style.borderColor = '#B8924A')}
-                    onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)')}
+                    style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(255,255,255,0.15)', padding: '12px 0', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '15px', outline: 'none', resize: 'vertical', transition: 'border-color 0.3s' }}
+                    onFocus={(e) => (e.currentTarget.style.borderColor = '#F3C623')}
+                    onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)')}
                   />
                 </div>
 
@@ -294,7 +312,7 @@ export default function Contact() {
                   type="submit"
                   style={{
                     height: '54px',
-                    background: '#B8924A',
+                    background: '#F3C623',
                     color: '#050403',
                     border: 'none',
                     borderRadius: '1px',
@@ -305,10 +323,10 @@ export default function Contact() {
                     textTransform: 'uppercase',
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
-                    boxShadow: '0 0 30px rgba(184, 146, 74, 0.2)',
+                    boxShadow: '0 0 30px rgba(243, 198, 35, 0.2)',
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = '#D4AA6A')}
-                  onMouseLeave={(e) => (e.currentTarget.style.background = '#B8924A')}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = '#F6D354')}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = '#F3C623')}
                 >
                   Submit Curation Request
                 </button>
@@ -325,7 +343,7 @@ export default function Contact() {
             
             {/* Showrooms */}
             <div>
-              <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#B8924A', textTransform: 'uppercase', display: 'block', marginBottom: '20px' }}>
+              <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#F3C623', textTransform: 'uppercase', display: 'block', marginBottom: '20px' }}>
                 Prefer to Visit?
               </span>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
@@ -336,7 +354,7 @@ export default function Contact() {
                   <p style={{ fontSize: '13.5px', color: 'rgba(240, 234, 224, 0.5)', lineHeight: 1.6, margin: 0 }}>
                     2nd Floor, Royal Arcade, Gondal Road, Rajkot, Gujarat 360002.
                   </p>
-                  <a href="tel:+912812345678" style={{ fontSize: '13px', color: '#B8924A', display: 'block', marginTop: '6px' }}>+91 281 234 5678</a>
+                  <a href="tel:+912812345678" style={{ fontSize: '13px', color: '#F3C623', display: 'block', marginTop: '6px', textDecoration: 'none' }}>+91 281 234 5678</a>
                 </div>
                 <div>
                   <span style={{ fontSize: '13px', fontFamily: 'var(--font-sans)', fontWeight: 600, color: '#F0EAE0', display: 'block', marginBottom: '6px' }}>
@@ -345,14 +363,14 @@ export default function Contact() {
                   <p style={{ fontSize: '13.5px', color: 'rgba(240, 234, 224, 0.5)', lineHeight: 1.6, margin: 0 }}>
                     G-14, Ramdevnagar Complex, Satellite Road, Ahmedabad, Gujarat 380015.
                   </p>
-                  <a href="tel:+917923456789" style={{ fontSize: '13px', color: '#B8924A', display: 'block', marginTop: '6px' }}>+91 79 2345 6789</a>
+                  <a href="tel:+917923456789" style={{ fontSize: '13px', color: '#F3C623', display: 'block', marginTop: '6px', textDecoration: 'none' }}>+91 79 2345 6789</a>
                 </div>
               </div>
             </div>
 
             {/* Quick Contact & WhatsApp */}
             <div>
-              <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#B8924A', textTransform: 'uppercase', display: 'block', marginBottom: '20px' }}>
+              <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#F3C623', textTransform: 'uppercase', display: 'block', marginBottom: '20px' }}>
                 Quick Response
               </span>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -367,7 +385,7 @@ export default function Contact() {
                     fontSize: '15px',
                   }}
                 >
-                  <Phone size={16} color="#B8924A" />
+                  <Phone size={16} color="#F3C623" />
                   +91 98765 43210
                 </a>
                 <a
@@ -381,7 +399,7 @@ export default function Contact() {
                     fontSize: '15px',
                   }}
                 >
-                  <Mail size={16} color="#B8924A" />
+                  <Mail size={16} color="#F3C623" />
                   hello@lavision.in
                 </a>
                 <a
@@ -393,7 +411,7 @@ export default function Contact() {
                     alignItems: 'center',
                     gap: '12px',
                     textDecoration: 'none',
-                    color: '#B8924A',
+                    color: '#F3C623',
                     fontSize: '14px',
                     fontWeight: 700,
                     letterSpacing: '0.05em',

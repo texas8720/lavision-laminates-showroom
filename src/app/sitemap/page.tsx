@@ -18,7 +18,7 @@ export default function SitemapPage() {
               fontSize: '13px',
               fontWeight: 600,
               letterSpacing: '0.25em',
-              color: '#B8924A',
+              color: '#F3C623',
               textTransform: 'uppercase',
               display: 'block',
               marginBottom: '16px',
@@ -54,7 +54,7 @@ export default function SitemapPage() {
           {/* Main Pages */}
           <div style={{ backgroundColor: '#0E0C0A', padding: '32px', borderRadius: '2px', border: '1px solid rgba(184, 146, 74, 0.15)' }}>
             <h3 style={{ fontSize: '18px', fontWeight: 400, fontFamily: 'var(--font-serif)', color: '#FAF7F2', marginBottom: '20px', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <Compass size={18} style={{ color: '#B8924A' }} /> Core Routes
+              <Compass size={18} style={{ color: '#F3C623' }} /> Core Routes
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <Link href="/" className="site-link" style={{ color: 'rgba(240,234,224,0.65)', textDecoration: 'none' }}>Home Page</Link>
@@ -70,7 +70,7 @@ export default function SitemapPage() {
           {/* Collection Ranges */}
           <div style={{ backgroundColor: '#0E0C0A', padding: '32px', borderRadius: '2px', border: '1px solid rgba(184, 146, 74, 0.15)' }}>
             <h3 style={{ fontSize: '18px', fontWeight: 400, fontFamily: 'var(--font-serif)', color: '#FAF7F2', marginBottom: '20px', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <LinkIcon size={18} style={{ color: '#B8924A' }} /> Product Categories
+              <LinkIcon size={18} style={{ color: '#F3C623' }} /> Product Categories
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {CATEGORIES.map((col) => (
@@ -84,7 +84,7 @@ export default function SitemapPage() {
           {/* Case Studies */}
           <div style={{ backgroundColor: '#0E0C0A', padding: '32px', borderRadius: '2px', border: '1px solid rgba(184, 146, 74, 0.15)' }}>
             <h3 style={{ fontSize: '18px', fontWeight: 400, fontFamily: 'var(--font-serif)', color: '#FAF7F2', marginBottom: '20px', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <LinkIcon size={18} style={{ color: '#B8924A' }} /> Inspiration Case Studies
+              <LinkIcon size={18} style={{ color: '#F3C623' }} /> Inspiration Case Studies
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {PROJECTS.map((proj) => (
@@ -98,7 +98,7 @@ export default function SitemapPage() {
           {/* Material Codes */}
           <div style={{ backgroundColor: '#0E0C0A', padding: '32px', borderRadius: '2px', border: '1px solid rgba(184, 146, 74, 0.15)' }}>
             <h3 style={{ fontSize: '18px', fontWeight: 400, fontFamily: 'var(--font-serif)', color: '#FAF7F2', marginBottom: '20px', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <LinkIcon size={18} style={{ color: '#B8924A' }} /> Material Finishes
+              <LinkIcon size={18} style={{ color: '#F3C623' }} /> Material Finishes
             </h3>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
               {MATERIALS.map((mat) => (
@@ -113,7 +113,7 @@ export default function SitemapPage() {
 
       <style jsx>{`
         .site-link:hover {
-          color: #B8924A !important;
+          color: #F3C623 !important;
           padding-left: 4px;
         }
         .site-link {
