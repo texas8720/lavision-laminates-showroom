@@ -51,8 +51,9 @@ export default function ProductsHub() {
       {/* ─── HERO SECTION ─── */}
       <section className="container" style={{ marginBottom: '80px' }}>
         <div style={{ maxWidth: '900px' }}>
-          <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: '#F3C623', textTransform: 'uppercase', display: 'block', marginBottom: '16px' }}>
-            &mdash; The Catalog
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: '#F3C623', textTransform: 'uppercase', marginBottom: '20px' }}>
+            <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#F3C623' }} />
+            The Catalog
           </span>
           <h1
             style={{

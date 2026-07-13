@@ -52,7 +52,8 @@ export default function CategoryPage({ params }: { params: Promise<{ category: s
       {/* ─── CATEGORY HERO ─── */}
       <section className="container" style={{ marginBottom: '64px' }}>
         <div style={{ maxWidth: '900px' }}>
-          <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: '#F3C623', textTransform: 'uppercase', display: 'block', marginBottom: '16px' }}>
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: '#F3C623', textTransform: 'uppercase', marginBottom: '20px' }}>
+            <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#F3C623' }} />
             Category Curation &mdash; {categoryInfo.name}
           </span>
           <h1

@@ -20,11 +20,14 @@ export default function SitemapPage() {
               letterSpacing: '0.25em',
               color: '#F3C623',
               textTransform: 'uppercase',
-              display: 'block',
-              marginBottom: '16px',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '12px',
+              marginBottom: '20px',
             }}
           >
-            &mdash; Directory Map
+            <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#F3C623' }} />
+            Directory Map
           </span>
           <h1
             style={{
