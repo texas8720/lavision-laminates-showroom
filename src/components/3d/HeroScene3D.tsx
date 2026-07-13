@@ -265,6 +265,16 @@ function Scene({ mousePos, scrollProgress }: SceneProps) {
 
 /* ─── CANVAS EXPORT ───────────────────────────────────────────── */
 export default function HeroScene3D({ mousePos, scrollProgress }: SceneProps) {
+  const isLowEnd = typeof navigator !== 'undefined' && (
+    /Android.*Chrome\/[.0-9]* Mobile/.test(navigator.userAgent) ||
+    /iPhone|iPod|iPad/.test(navigator.userAgent) ||
+    navigator.hardwareConcurrency <= 2
+  );
+
+  if (isLowEnd) {
+    return <div style={{ width: '100%', height: '100%', background: 'radial-gradient(circle at center, #1E1A17 0%, #050403 100%)' }} />;
+  }
+
   return (
     <Canvas
       shadows

@@ -232,3 +232,10 @@ hr.subtle { border: none; border-top: 1px solid rgba(255, 255, 255, 0.05); }
   :root { --gutter: 20px; --section-v: 64px; }
   .hide-mobile { display: none !important; }
 }
+
+/* ─── TYPOGRAPHY INSTRUMENT SERIF ITAlICS ────────────────────── */
+.hero-em, h1 em, h2 em, .timeline-step-content em {
+  font-family: 'Instrument Serif', serif !important;
+  font-style: italic !important;
+  font-weight: 400 !important;
+}

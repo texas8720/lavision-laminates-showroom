@@ -52,7 +52,7 @@ export default function About() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Fade up elements
+    // Fade up elements (excluding pillars)
     gsap.utils.toArray<Element>('.fade-up').forEach((el) => {
       gsap.fromTo(
         el,
@@ -69,6 +69,39 @@ export default function About() {
           },
         }
       );
+    });
+
+    // Staggered reveal for the 4 pillars (one-by-one in sequence)
+    gsap.fromTo(
+      '.pillar-card',
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        stagger: 0.22,
+        scrollTrigger: {
+          trigger: '.about-pillars-grid',
+          start: 'top 80%',
+          once: true,
+        }
+      }
+    );
+
+    // Timeline dots fill trigger (empty -> gold fill)
+    gsap.utils.toArray<HTMLElement>('.timeline-dot').forEach((dot) => {
+      gsap.to(dot, {
+        background: '#F3C623',
+        borderColor: '#F3C623',
+        boxShadow: '0 0 15px rgba(243, 198, 35, 0.65)',
+        duration: 0.4,
+        scrollTrigger: {
+          trigger: dot,
+          start: 'top 50%',
+          toggleActions: 'play none none reverse',
+        }
+      });
     });
 
     if (timelineContainerRef.current) {
@@ -118,8 +151,9 @@ export default function About() {
       {/* ─── HERO SECTION ─── */}
       <section className="container" style={{ marginBottom: '80px', padding: '0 clamp(24px, 4vw, 64px)' }}>
         <div style={{ maxWidth: '900px' }}>
-          <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: '#F3C623', textTransform: 'uppercase', display: 'block', marginBottom: '16px' }}>
-            &mdash; Behind the Brand
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: '#F3C623', textTransform: 'uppercase', marginBottom: '20px' }}>
+            <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#F3C623' }} />
+            Behind the Brand
           </span>
           <h1
             ref={h1Ref}
@@ -183,8 +217,9 @@ export default function About() {
       {/* ─── WHAT WE STAND FOR SECTION ─── */}
       <section style={{ padding: '120px clamp(24px, 4vw, 64px)', maxWidth: '1400px', margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: '64px' }} className="fade-up">
-          <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#F3C623', textTransform: 'uppercase', display: 'block', marginBottom: '16px' }}>
-            &mdash; Brand values
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#F3C623', textTransform: 'uppercase', marginBottom: '20px' }}>
+            <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#F3C623' }} />
+            Brand values
           </span>
           <h2 
             ref={codeHeadingRef}
@@ -214,7 +249,7 @@ export default function About() {
                 flexDirection: 'column',
                 gap: '20px',
               }}
-              className="fade-up"
+              className="pillar-card"
             >
               <div
                 style={{
@@ -247,8 +282,9 @@ export default function About() {
       <section style={{ background: '#080605', borderTop: '1px solid rgba(243, 198, 35, 0.1)', borderBottom: '1px solid rgba(243, 198, 35, 0.1)', padding: '120px clamp(24px, 4vw, 64px)' }}>
         <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '80px' }} className="fade-up">
-            <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#F3C623', textTransform: 'uppercase', display: 'block', marginBottom: '16px' }}>
-              &mdash; Core Landmarks
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#F3C623', textTransform: 'uppercase', marginBottom: '20px' }}>
+              <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#F3C623' }} />
+              Core Landmarks
             </span>
             <h2 
               ref={journeyHeadingRef}
@@ -368,8 +404,9 @@ export default function About() {
                     </p>
                   </div>
 
-                  {/* Dot indicator on timeline */}
+                  {/* Dot indicator on timeline (fills from transparent -> gold) */}
                   <div
+                    className="timeline-dot"
                     style={{
                       position: 'absolute',
                       top: '8px',
@@ -378,10 +415,10 @@ export default function About() {
                       width: '10px',
                       height: '10px',
                       borderRadius: '50%',
-                      background: '#F3C623',
-                      border: '2px solid #050403',
-                      boxShadow: '0 0 10px #F3C623',
+                      background: 'transparent',
+                      border: '2px solid rgba(255, 255, 255, 0.2)',
                       zIndex: 4,
+                      transition: 'background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease'
                     }}
                   />
                 </div>

@@ -41,8 +41,9 @@ export default function Showrooms() {
       {/* ─── HERO SECTION ─── */}
       <section style={{ marginBottom: '80px', maxWidth: '1400px', margin: '0 auto 80px' }}>
         <div style={{ maxWidth: '900px' }}>
-          <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: '#F3C623', textTransform: 'uppercase', display: 'block', marginBottom: '16px' }}>
-            &mdash; Physical Presence
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: '#F3C623', textTransform: 'uppercase', marginBottom: '20px' }}>
+            <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#F3C623' }} />
+            Physical Presence
           </span>
           <h1
             ref={h1Ref}
@@ -147,7 +148,7 @@ export default function Showrooms() {
                   <Clock size={18} color="#F3C623" style={{ marginTop: '2px', flexShrink: 0 }} />
                   <div>
                     <span style={{ fontSize: '11px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.3)', display: 'block', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '2px' }}>Hours</span>
-                    <span style={{ fontSize: '13.5px', color: '#F0EAE0' }}>Mon &ndash; Sat &nbsp;|&nbsp; 10:00 AM &ndash; 7:30 PM</span>
+                    <span style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', fontWeight: 700, letterSpacing: '0.15em', color: '#FAF7F2', textTransform: 'uppercase' }}>Mon–Sat: 10:00 AM – 7:30 PM</span>
                   </div>
                 </div>
               </div>
@@ -156,6 +157,7 @@ export default function Showrooms() {
                 href="https://maps.google.com"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="get-directions-link"
                 style={{
                   height: '46px',
                   border: '1px solid #F3C623',
@@ -169,19 +171,32 @@ export default function Showrooms() {
                   display: 'inline-flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: '8px',
                   borderRadius: '1px',
                   textDecoration: 'none',
                   marginTop: '36px',
                   width: 'fit-content',
-                  padding: '0 28px',
+                  padding: '0 28px 0 38px', // Extra left padding for sliding arrow
+                  position: 'relative',
+                  overflow: 'hidden',
                   transition: 'all 0.3s ease',
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(243,198,35,0.06)')}
-                onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
               >
-                Get Directions
-                <ArrowUpRight size={14} />
+                <span className="arrow-icon" style={{
+                  position: 'absolute',
+                  left: '14px',
+                  opacity: 0,
+                  transform: 'translateX(-8px)',
+                  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                  display: 'flex',
+                  alignItems: 'center'
+                }}>
+                  <ArrowUpRight size={14} />
+                </span>
+                <span className="link-text" style={{
+                  transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                }}>
+                  Get Directions
+                </span>
               </a>
             </div>
 
@@ -287,7 +302,7 @@ export default function Showrooms() {
                   <Clock size={18} color="#F3C623" style={{ marginTop: '2px', flexShrink: 0 }} />
                   <div>
                     <span style={{ fontSize: '11px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.3)', display: 'block', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '2px' }}>Hours</span>
-                    <span style={{ fontSize: '13.5px', color: '#F0EAE0' }}>Mon &ndash; Sat &nbsp;|&nbsp; 10:00 AM &ndash; 7:00 PM</span>
+                    <span style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', fontWeight: 700, letterSpacing: '0.15em', color: '#FAF7F2', textTransform: 'uppercase' }}>Mon–Sat: 10:00 AM – 7:00 PM</span>
                   </div>
                 </div>
               </div>
@@ -296,6 +311,7 @@ export default function Showrooms() {
                 href="https://maps.google.com"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="get-directions-link"
                 style={{
                   height: '46px',
                   border: '1px solid #F3C623',
@@ -309,19 +325,32 @@ export default function Showrooms() {
                   display: 'inline-flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: '8px',
                   borderRadius: '1px',
                   textDecoration: 'none',
                   marginTop: '36px',
                   width: 'fit-content',
-                  padding: '0 28px',
+                  padding: '0 28px 0 38px', // Extra left padding for sliding arrow
+                  position: 'relative',
+                  overflow: 'hidden',
                   transition: 'all 0.3s ease',
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(243,198,35,0.06)')}
-                onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
               >
-                Get Directions
-                <ArrowUpRight size={14} />
+                <span className="arrow-icon" style={{
+                  position: 'absolute',
+                  left: '14px',
+                  opacity: 0,
+                  transform: 'translateX(-8px)',
+                  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                  display: 'flex',
+                  alignItems: 'center'
+                }}>
+                  <ArrowUpRight size={14} />
+                </span>
+                <span className="link-text" style={{
+                  transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                }}>
+                  Get Directions
+                </span>
               </a>
             </div>
 
@@ -351,6 +380,13 @@ export default function Showrooms() {
       </section>
 
       <style jsx global>{`
+        .get-directions-link:hover .arrow-icon {
+          opacity: 1 !important;
+          transform: translateX(0) !important;
+        }
+        .get-directions-link:hover .link-text {
+          transform: translateX(8px) !important;
+        }
         @media (max-width: 900px) {
           .showroom-row {
             grid-template-columns: 1fr !important;

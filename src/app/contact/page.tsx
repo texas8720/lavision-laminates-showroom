@@ -91,8 +91,9 @@ export default function Contact() {
       {/* ─── HERO SECTION ─── */}
       <section style={{ marginBottom: '64px', maxWidth: '1400px', margin: '0 auto 64px' }}>
         <div style={{ maxWidth: '900px' }}>
-          <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: '#F3C623', textTransform: 'uppercase', display: 'block', marginBottom: '16px' }}>
-            &mdash; Get in Touch
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: '#F3C623', textTransform: 'uppercase', marginBottom: '20px' }}>
+            <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#F3C623' }} />
+            Get in Touch
           </span>
           <h1
             ref={h1Ref}
@@ -151,60 +152,60 @@ export default function Contact() {
                 
                 {/* Text fields row */}
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px' }} className="contact-form-row">
-                  <div style={{ position: 'relative' }}>
+                  <div className="input-container" style={{ position: 'relative' }}>
                     <label style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.45)', textTransform: 'uppercase', letterSpacing: '0.15em', display: 'block' }}>Your Name *</label>
                     <input
                       type="text"
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(255,255,255,0.15)', padding: '12px 0', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '15px', outline: 'none', transition: 'border-color 0.3s' }}
-                      onFocus={(e) => (e.currentTarget.style.borderColor = '#F3C623')}
-                      onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)')}
+                      className="floating-input"
+                      style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(243, 198, 35, 0.2)', padding: '12px 0', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '15px', outline: 'none' }}
                     />
+                    <span className="input-underline" />
                   </div>
-                  <div style={{ position: 'relative' }}>
+                  <div className="input-container" style={{ position: 'relative' }}>
                     <label style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.45)', textTransform: 'uppercase', letterSpacing: '0.15em', display: 'block' }}>Phone Number *</label>
                     <input
                       type="tel"
                       required
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(255,255,255,0.15)', padding: '12px 0', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '15px', outline: 'none', transition: 'border-color 0.3s' }}
-                      onFocus={(e) => (e.currentTarget.style.borderColor = '#F3C623')}
-                      onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)')}
+                      className="floating-input"
+                      style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(243, 198, 35, 0.2)', padding: '12px 0', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '15px', outline: 'none' }}
                     />
+                    <span className="input-underline" />
                   </div>
                 </div>
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px' }} className="contact-form-row">
-                  <div style={{ position: 'relative' }}>
+                  <div className="input-container" style={{ position: 'relative' }}>
                     <label style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.45)', textTransform: 'uppercase', letterSpacing: '0.15em', display: 'block' }}>Email Address *</label>
                     <input
                       type="email"
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(255,255,255,0.15)', padding: '12px 0', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '15px', outline: 'none', transition: 'border-color 0.3s' }}
-                      onFocus={(e) => (e.currentTarget.style.borderColor = '#F3C623')}
-                      onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)')}
+                      className="floating-input"
+                      style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(243, 198, 35, 0.2)', padding: '12px 0', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '15px', outline: 'none' }}
                     />
+                    <span className="input-underline" />
                   </div>
-                  <div style={{ position: 'relative' }}>
+                  <div className="input-container" style={{ position: 'relative' }}>
                     <label style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.45)', textTransform: 'uppercase', letterSpacing: '0.15em', display: 'block' }}>City *</label>
                     <input
                       type="text"
                       required
                       value={formData.city}
                       onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                      style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(255,255,255,0.15)', padding: '12px 0', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '15px', outline: 'none', transition: 'border-color 0.3s' }}
-                      onFocus={(e) => (e.currentTarget.style.borderColor = '#F3C623')}
-                      onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)')}
+                      className="floating-input"
+                      style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(243, 198, 35, 0.2)', padding: '12px 0', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '15px', outline: 'none' }}
                     />
+                    <span className="input-underline" />
                   </div>
                 </div>
 
-                {/* Role selection dropdown -> visually selectable pills */}
+                {/* Role selection -> visually selectable pills */}
                 <div>
                   <label style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.45)', textTransform: 'uppercase', letterSpacing: '0.15em', display: 'block', marginBottom: '16px' }}>I am a...</label>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
@@ -296,22 +297,23 @@ export default function Contact() {
                 )}
 
                 {/* Message */}
-                <div style={{ position: 'relative' }}>
+                <div className="input-container" style={{ position: 'relative' }}>
                   <label style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.45)', textTransform: 'uppercase', letterSpacing: '0.15em', display: 'block' }}>Your Message</label>
                   <textarea
                     rows={4}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(255,255,255,0.15)', padding: '12px 0', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '15px', outline: 'none', resize: 'vertical', transition: 'border-color 0.3s' }}
-                    onFocus={(e) => (e.currentTarget.style.borderColor = '#F3C623')}
-                    onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)')}
+                    className="floating-input"
+                    style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(243, 198, 35, 0.2)', padding: '12px 0', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '15px', outline: 'none', resize: 'vertical' }}
                   />
+                  <span className="input-underline" />
                 </div>
 
                 <button
                   type="submit"
                   style={{
-                    height: '54px',
+                    width: '100%',
+                    height: '60px',
                     background: '#F3C623',
                     color: '#050403',
                     border: 'none',
@@ -319,7 +321,7 @@ export default function Contact() {
                     fontFamily: 'var(--font-sans)',
                     fontSize: '11px',
                     fontWeight: 700,
-                    letterSpacing: '0.18em',
+                    letterSpacing: '0.2em',
                     textTransform: 'uppercase',
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
@@ -429,6 +431,21 @@ export default function Contact() {
       </section>
 
       <style jsx global>{`
+        .floating-input:focus ~ .input-underline {
+          transform: scaleX(1) !important;
+        }
+        .input-underline {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 1.5px;
+          background: #F3C623;
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+          pointer-events: none;
+        }
         @media (max-width: 900px) {
           .contact-form-row {
             grid-template-columns: 1fr !important;
