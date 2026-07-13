@@ -6,6 +6,7 @@ export default function PreloaderWrapper({ children }: { children: React.ReactNo
   const [loaded, setLoaded] = useState(false);
   const [styleIndex, setStyleIndex] = useState(1);
   const [progress, setProgress] = useState(0);
+  const [showEnterButton, setShowEnterButton] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
   
@@ -32,10 +33,22 @@ export default function PreloaderWrapper({ children }: { children: React.ReactNo
   // Logo Reference
   const logoRef = useRef<HTMLDivElement>(null);
 
+  const proceedToHome = () => {
+    if (containerRef.current) {
+      gsap.to(containerRef.current, {
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power2.inOut',
+        onComplete: () => setLoaded(true)
+      });
+    }
+  };
+
   const triggerAnimation = (styleIdx: number) => {
     // Reset loading state
     setLoaded(false);
     setProgress(0);
+    setShowEnterButton(false);
     
     // Reset background curtain
     if (containerRef.current) {
@@ -47,13 +60,12 @@ export default function PreloaderWrapper({ children }: { children: React.ReactNo
 
     const tl = gsap.timeline({
       onComplete: () => {
-        // Curtain wipe out
-        gsap.to(containerRef.current, {
-          opacity: 0,
-          duration: 0.8,
-          ease: 'power2.inOut',
-          onComplete: () => setLoaded(true)
-        });
+        // Fade in Enter Showroom button instead of auto-proceeding
+        setShowEnterButton(true);
+        gsap.fromTo('.enter-showroom-btn',
+          { opacity: 0, y: 15 },
+          { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }
+        );
       }
     });
 
@@ -739,6 +751,36 @@ export default function PreloaderWrapper({ children }: { children: React.ReactNo
                   more than most
                 </text>
               </svg>
+            )}
+            
+            {showEnterButton && (
+              <button
+                className="enter-showroom-btn"
+                onClick={proceedToHome}
+                style={{
+                  marginTop: '36px',
+                  height: '52px',
+                  padding: '0 38px',
+                  background: '#D4B28C',
+                  color: '#050403',
+                  border: 'none',
+                  borderRadius: '1px',
+                  fontFamily: 'var(--font-sans)',
+                  fontSize: '11px',
+                  fontWeight: 700,
+                  letterSpacing: '0.18em',
+                  textTransform: 'uppercase',
+                  cursor: 'pointer',
+                  boxShadow: '0 0 35px rgba(212, 178, 140, 0.45)',
+                  transition: 'all 0.3s ease',
+                  zIndex: 10,
+                  opacity: 0,
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.background = '#E4C7A5')}
+                onMouseLeave={(e) => (e.currentTarget.style.background = '#D4B28C')}
+              >
+                Enter Showroom &rarr;
+              </button>
             )}
           </div>
 
