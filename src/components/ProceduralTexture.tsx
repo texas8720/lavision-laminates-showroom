@@ -69,7 +69,7 @@ export default function ProceduralTexture({ type, dark = false }: TextureProps) 
       }
 
       // Veins
-      ctx.strokeStyle = dark ? 'rgba(243,198,35,0.15)' : 'rgba(142, 120, 80, 0.18)';
+      ctx.strokeStyle = dark ? 'rgba(212,178,140,0.15)' : 'rgba(142, 120, 80, 0.18)';
       ctx.lineWidth = 0.8;
       for (let v = 0; v < 3; v++) {
         let cx = Math.random() * w;
@@ -171,7 +171,7 @@ export default function ProceduralTexture({ type, dark = false }: TextureProps) 
       ctx.stroke();
 
       // Gold inlay accents
-      ctx.strokeStyle = '#F3C623';
+      ctx.strokeStyle = '#D4B28C';
       ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.moveTo(80, 0); ctx.lineTo(80, h);

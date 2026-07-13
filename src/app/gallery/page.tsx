@@ -96,7 +96,7 @@ export default function InspirationGallery() {
       {/* ─── HERO SECTION ─── */}
       <section style={{ marginBottom: '64px', maxWidth: '1400px', margin: '0 auto 64px' }}>
         <div style={{ maxWidth: '900px' }}>
-          <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: '#F3C623', textTransform: 'uppercase', display: 'block', marginBottom: '16px' }}>
+          <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: '#D4B28C', textTransform: 'uppercase', display: 'block', marginBottom: '16px' }}>
             &mdash; Curation Portfolio
           </span>
           <h1
@@ -131,7 +131,7 @@ export default function InspirationGallery() {
             position: 'relative',
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginRight: '16px', color: '#F3C623' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginRight: '16px', color: '#D4B28C' }}>
             <Filter size={14} />
             <span style={{ fontSize: '11px', fontFamily: 'var(--font-sans)', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase' }}>Filters</span>
           </div>
@@ -144,7 +144,7 @@ export default function InspirationGallery() {
               style={{
                 padding: '6px 16px',
                 background: 'transparent',
-                color: selectedFilter === filter ? '#F3C623' : 'rgba(240, 234, 224, 0.6)',
+                color: selectedFilter === filter ? '#D4B28C' : 'rgba(240, 234, 224, 0.6)',
                 border: 'none',
                 cursor: 'pointer',
                 fontFamily: 'var(--font-sans)',
@@ -167,7 +167,7 @@ export default function InspirationGallery() {
               left: `${underlineStyle.left}px`,
               width: `${underlineStyle.width}px`,
               height: '2px',
-              background: '#F3C623',
+              background: '#D4B28C',
               transition: 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
             }}
           />
@@ -217,7 +217,7 @@ export default function InspirationGallery() {
                     position: 'relative',
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(243, 198, 35, 0.3)';
+                    e.currentTarget.style.borderColor = 'rgba(212, 178, 140, 0.3)';
                     e.currentTarget.style.transform = 'translateY(-6px)';
                   }}
                   onMouseLeave={(e) => {
@@ -240,7 +240,7 @@ export default function InspirationGallery() {
 
                   {/* Top category label */}
                   <div style={{ padding: '24px', zIndex: 1, display: 'flex', justifyContent: 'space-between', background: 'linear-gradient(to bottom, rgba(5,4,3,0.6) 0%, transparent 100%)' }}>
-                    <span style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: '#F3C623', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase' }}>
+                    <span style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: '#D4B28C', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase' }}>
                       {proj.category}
                     </span>
                     <ArrowUpRight size={14} color="rgba(240, 234, 224, 0.3)" />
@@ -248,8 +248,8 @@ export default function InspirationGallery() {
 
                   {/* Center branding icon */}
                   <div style={{ display: 'flex', justifyContent: 'center', zIndex: 1, padding: '20px' }}>
-                    <div style={{ width: '48px', height: '48px', borderRadius: '50%', border: '1px solid rgba(243,198,35,0.2)', background: 'rgba(5,4,3,0.6)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <Compass size={18} color="#F3C623" />
+                    <div style={{ width: '48px', height: '48px', borderRadius: '50%', border: '1px solid rgba(212,178,140,0.2)', background: 'rgba(5,4,3,0.6)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <Compass size={18} color="#D4B28C" />
                     </div>
                   </div>
 
@@ -259,7 +259,7 @@ export default function InspirationGallery() {
                     style={{
                       padding: '28px 24px',
                       background: 'linear-gradient(to top, rgba(5,4,3,0.98) 0%, rgba(5,4,3,0.3) 100%)',
-                      borderTop: '1px solid rgba(243,198,35,0.15)',
+                      borderTop: '1px solid rgba(212,178,140,0.15)',
                       zIndex: 2,
                       clipPath: 'inset(100% 0 0 0)',
                       position: 'absolute',
@@ -301,7 +301,7 @@ export default function InspirationGallery() {
             onClick={(e) => e.stopPropagation()} // Prevent closing when clicking drawer body
             style={{
               background: '#0E0C0A',
-              borderLeft: '1px solid rgba(243, 198, 35, 0.25)',
+              borderLeft: '1px solid rgba(212, 178, 140, 0.25)',
               width: '100%',
               maxWidth: '560px',
               height: '100%',
@@ -334,7 +334,7 @@ export default function InspirationGallery() {
             {/* Case Note Content */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
               <div>
-                <span style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: '#F3C623', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', display: 'block', marginBottom: '8px' }}>
+                <span style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: '#D4B28C', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', display: 'block', marginBottom: '8px' }}>
                   Project Case Curation
                 </span>
                 <h2 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontFamily: 'var(--font-serif)', color: '#FAF7F2', fontWeight: 300, lineHeight: 1.15 }}>
@@ -349,7 +349,7 @@ export default function InspirationGallery() {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '24px', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '24px' }}>
                 <div>
                   <span style={{ fontSize: '10px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.3)', letterSpacing: '0.08em', textTransform: 'uppercase', display: 'block', marginBottom: '4px' }}>Surfaces Used</span>
-                  <span style={{ fontSize: '13px', color: '#F3C623', fontWeight: 600 }}>{activeProject.materialsUsed.join(', ')}</span>
+                  <span style={{ fontSize: '13px', color: '#D4B28C', fontWeight: 600 }}>{activeProject.materialsUsed.join(', ')}</span>
                 </div>
                 <div>
                   <span style={{ fontSize: '10px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.3)', letterSpacing: '0.08em', textTransform: 'uppercase', display: 'block', marginBottom: '4px' }}>Curated Year</span>
@@ -375,7 +375,7 @@ export default function InspirationGallery() {
                 onClick={handleCloseDrawer}
                 style={{
                   height: '52px',
-                  background: '#F3C623',
+                  background: '#D4B28C',
                   color: '#050403',
                   textDecoration: 'none',
                   fontFamily: 'var(--font-sans)',
@@ -390,8 +390,8 @@ export default function InspirationGallery() {
                   marginTop: '16px',
                   transition: 'all 0.3s ease',
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = '#F6D354')}
-                onMouseLeave={(e) => (e.currentTarget.style.background = '#F3C623')}
+                onMouseEnter={(e) => (e.currentTarget.style.background = '#E4C7A5')}
+                onMouseLeave={(e) => (e.currentTarget.style.background = '#D4B28C')}
               >
                 Inquire About this Surface
               </Link>

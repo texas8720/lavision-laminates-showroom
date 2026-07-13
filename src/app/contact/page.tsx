@@ -91,8 +91,8 @@ export default function Contact() {
       {/* ─── HERO SECTION ─── */}
       <section style={{ marginBottom: '64px', maxWidth: '1400px', margin: '0 auto 64px' }}>
         <div style={{ maxWidth: '900px' }}>
-          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: '#F3C623', textTransform: 'uppercase', marginBottom: '20px' }}>
-            <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#F3C623' }} />
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: '#D4B28C', textTransform: 'uppercase', marginBottom: '20px' }}>
+            <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#D4B28C' }} />
             Get in Touch
           </span>
           <h1
@@ -130,15 +130,15 @@ export default function Contact() {
             {formSubmitted ? (
               <div
                 style={{
-                  background: 'rgba(243, 198, 35, 0.05)',
-                  border: '1px solid #F3C623',
+                  background: 'rgba(212, 178, 140, 0.05)',
+                  border: '1px solid #D4B28C',
                   padding: '48px',
                   textAlign: 'center',
                   borderRadius: '2px',
                 }}
               >
-                <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'rgba(243,198,35,0.1)', border: '1px solid #F3C623', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
-                  <Check size={24} color="#F3C623" />
+                <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'rgba(212,178,140,0.1)', border: '1px solid #D4B28C', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
+                  <Check size={24} color="#D4B28C" />
                 </div>
                 <h3 style={{ fontSize: '28px', fontFamily: 'var(--font-serif)', color: '#FAF7F2', fontWeight: 300, marginBottom: '16px' }}>
                   Enquiry Submitted Successfully
@@ -160,7 +160,7 @@ export default function Contact() {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="floating-input"
-                      style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(243, 198, 35, 0.2)', padding: '12px 0', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '15px', outline: 'none' }}
+                      style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(212, 178, 140, 0.2)', padding: '12px 0', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '15px', outline: 'none' }}
                     />
                     <span className="input-underline" />
                   </div>
@@ -172,7 +172,7 @@ export default function Contact() {
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="floating-input"
-                      style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(243, 198, 35, 0.2)', padding: '12px 0', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '15px', outline: 'none' }}
+                      style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(212, 178, 140, 0.2)', padding: '12px 0', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '15px', outline: 'none' }}
                     />
                     <span className="input-underline" />
                   </div>
@@ -187,7 +187,7 @@ export default function Contact() {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="floating-input"
-                      style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(243, 198, 35, 0.2)', padding: '12px 0', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '15px', outline: 'none' }}
+                      style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(212, 178, 140, 0.2)', padding: '12px 0', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '15px', outline: 'none' }}
                     />
                     <span className="input-underline" />
                   </div>
@@ -199,7 +199,7 @@ export default function Contact() {
                       value={formData.city}
                       onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                       className="floating-input"
-                      style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(243, 198, 35, 0.2)', padding: '12px 0', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '15px', outline: 'none' }}
+                      style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(212, 178, 140, 0.2)', padding: '12px 0', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '15px', outline: 'none' }}
                     />
                     <span className="input-underline" />
                   </div>
@@ -218,9 +218,9 @@ export default function Contact() {
                           onClick={() => setRole(r)}
                           style={{
                             padding: '8px 20px',
-                            background: isSelected ? 'rgba(243, 198, 35, 0.1)' : 'transparent',
-                            color: isSelected ? '#F3C623' : 'rgba(240, 234, 224, 0.6)',
-                            border: isSelected ? '1px solid #F3C623' : '1px solid rgba(255, 255, 255, 0.08)',
+                            background: isSelected ? 'rgba(212, 178, 140, 0.1)' : 'transparent',
+                            color: isSelected ? '#D4B28C' : 'rgba(240, 234, 224, 0.6)',
+                            border: isSelected ? '1px solid #D4B28C' : '1px solid rgba(255, 255, 255, 0.08)',
                             borderRadius: '30px',
                             fontFamily: 'var(--font-sans)',
                             fontSize: '11px',
@@ -249,9 +249,9 @@ export default function Contact() {
                           onClick={() => handleInterestToggle(item)}
                           style={{
                             padding: '8px 20px',
-                            background: isSelected ? 'rgba(243, 198, 35, 0.1)' : 'transparent',
-                            color: isSelected ? '#F3C623' : 'rgba(240, 234, 224, 0.6)',
-                            border: isSelected ? '1px solid #F3C623' : '1px solid rgba(255, 255, 255, 0.08)',
+                            background: isSelected ? 'rgba(212, 178, 140, 0.1)' : 'transparent',
+                            color: isSelected ? '#D4B28C' : 'rgba(240, 234, 224, 0.6)',
+                            border: isSelected ? '1px solid #D4B28C' : '1px solid rgba(255, 255, 255, 0.08)',
                             borderRadius: '30px',
                             fontFamily: 'var(--font-sans)',
                             fontSize: '11px',
@@ -269,8 +269,8 @@ export default function Contact() {
 
                 {/* Shortlisted items display */}
                 {shortlist.length > 0 && (
-                  <div style={{ background: 'rgba(243, 198, 35, 0.03)', border: '1px solid rgba(243, 198, 35, 0.15)', padding: '24px', borderRadius: '2px' }}>
-                    <span style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: '#F3C623', textTransform: 'uppercase', letterSpacing: '0.12em', display: 'block', marginBottom: '12px' }}>
+                  <div style={{ background: 'rgba(212, 178, 140, 0.03)', border: '1px solid rgba(212, 178, 140, 0.15)', padding: '24px', borderRadius: '2px' }}>
+                    <span style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', color: '#D4B28C', textTransform: 'uppercase', letterSpacing: '0.12em', display: 'block', marginBottom: '12px' }}>
                       Auto-attached swatches ({shortlist.length})
                     </span>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -304,7 +304,7 @@ export default function Contact() {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="floating-input"
-                    style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(243, 198, 35, 0.2)', padding: '12px 0', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '15px', outline: 'none', resize: 'vertical' }}
+                    style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(212, 178, 140, 0.2)', padding: '12px 0', color: '#FAF7F2', fontFamily: 'var(--font-sans)', fontSize: '15px', outline: 'none', resize: 'vertical' }}
                   />
                   <span className="input-underline" />
                 </div>
@@ -314,7 +314,7 @@ export default function Contact() {
                   style={{
                     width: '100%',
                     height: '60px',
-                    background: '#F3C623',
+                    background: '#D4B28C',
                     color: '#050403',
                     border: 'none',
                     borderRadius: '1px',
@@ -325,10 +325,10 @@ export default function Contact() {
                     textTransform: 'uppercase',
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
-                    boxShadow: '0 0 30px rgba(243, 198, 35, 0.2)',
+                    boxShadow: '0 0 30px rgba(212, 178, 140, 0.2)',
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = '#F6D354')}
-                  onMouseLeave={(e) => (e.currentTarget.style.background = '#F3C623')}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = '#E4C7A5')}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = '#D4B28C')}
                 >
                   Submit Curation Request
                 </button>
@@ -345,7 +345,7 @@ export default function Contact() {
             
             {/* Showrooms */}
             <div>
-              <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#F3C623', textTransform: 'uppercase', display: 'block', marginBottom: '20px' }}>
+              <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#D4B28C', textTransform: 'uppercase', display: 'block', marginBottom: '20px' }}>
                 Prefer to Visit?
               </span>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
@@ -356,7 +356,7 @@ export default function Contact() {
                   <p style={{ fontSize: '13.5px', color: 'rgba(240, 234, 224, 0.5)', lineHeight: 1.6, margin: 0 }}>
                     2nd Floor, Royal Arcade, Gondal Road, Rajkot, Gujarat 360002.
                   </p>
-                  <a href="tel:+912812345678" style={{ fontSize: '13px', color: '#F3C623', display: 'block', marginTop: '6px', textDecoration: 'none' }}>+91 281 234 5678</a>
+                  <a href="tel:+912812345678" style={{ fontSize: '13px', color: '#D4B28C', display: 'block', marginTop: '6px', textDecoration: 'none' }}>+91 281 234 5678</a>
                 </div>
                 <div>
                   <span style={{ fontSize: '13px', fontFamily: 'var(--font-sans)', fontWeight: 600, color: '#F0EAE0', display: 'block', marginBottom: '6px' }}>
@@ -365,14 +365,14 @@ export default function Contact() {
                   <p style={{ fontSize: '13.5px', color: 'rgba(240, 234, 224, 0.5)', lineHeight: 1.6, margin: 0 }}>
                     G-14, Ramdevnagar Complex, Satellite Road, Ahmedabad, Gujarat 380015.
                   </p>
-                  <a href="tel:+917923456789" style={{ fontSize: '13px', color: '#F3C623', display: 'block', marginTop: '6px', textDecoration: 'none' }}>+91 79 2345 6789</a>
+                  <a href="tel:+917923456789" style={{ fontSize: '13px', color: '#D4B28C', display: 'block', marginTop: '6px', textDecoration: 'none' }}>+91 79 2345 6789</a>
                 </div>
               </div>
             </div>
 
             {/* Quick Contact & WhatsApp */}
             <div>
-              <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#F3C623', textTransform: 'uppercase', display: 'block', marginBottom: '20px' }}>
+              <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#D4B28C', textTransform: 'uppercase', display: 'block', marginBottom: '20px' }}>
                 Quick Response
               </span>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -387,7 +387,7 @@ export default function Contact() {
                     fontSize: '15px',
                   }}
                 >
-                  <Phone size={16} color="#F3C623" />
+                  <Phone size={16} color="#D4B28C" />
                   +91 98765 43210
                 </a>
                 <a
@@ -401,7 +401,7 @@ export default function Contact() {
                     fontSize: '15px',
                   }}
                 >
-                  <Mail size={16} color="#F3C623" />
+                  <Mail size={16} color="#D4B28C" />
                   hello@lavision.in
                 </a>
                 <a
@@ -413,7 +413,7 @@ export default function Contact() {
                     alignItems: 'center',
                     gap: '12px',
                     textDecoration: 'none',
-                    color: '#F3C623',
+                    color: '#D4B28C',
                     fontSize: '14px',
                     fontWeight: 700,
                     letterSpacing: '0.05em',
@@ -440,7 +440,7 @@ export default function Contact() {
           left: 0;
           width: 100%;
           height: 1.5px;
-          background: #F3C623;
+          background: #D4B28C;
           transform: scaleX(0);
           transform-origin: left;
           transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);

@@ -42,7 +42,7 @@ export default function ProductsHub() {
     'polymer-sheets': 'linear-gradient(to bottom, #E8E2D5, #D1C9BC)',
     'leather-sheets': 'radial-gradient(circle, #8F5E36 0%, #6E401E 100%)',
     'natural-stone-veneer': 'linear-gradient(45deg, #2D2F30 0%, #1A1B1C 100%)',
-    'decorative-panels': 'repeating-linear-gradient(90deg, #3A3225 0px, #F3C623 24px)'
+    'decorative-panels': 'repeating-linear-gradient(90deg, #3A3225 0px, #D4B28C 24px)'
   };
 
   return (
@@ -51,8 +51,8 @@ export default function ProductsHub() {
       {/* ─── HERO SECTION ─── */}
       <section className="container" style={{ marginBottom: '80px' }}>
         <div style={{ maxWidth: '900px' }}>
-          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: '#F3C623', textTransform: 'uppercase', marginBottom: '20px' }}>
-            <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#F3C623' }} />
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: '#D4B28C', textTransform: 'uppercase', marginBottom: '20px' }}>
+            <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#D4B28C' }} />
             The Catalog
           </span>
           <h1
@@ -127,7 +127,7 @@ export default function ProductsHub() {
                 {/* Content details */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{ fontSize: '11px', fontFamily: 'var(--font-sans)', color: '#F3C623', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase' }}>
+                    <span style={{ fontSize: '11px', fontFamily: 'var(--font-sans)', color: '#D4B28C', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase' }}>
                       Collection {idx + 1} &mdash; {cat.name}
                     </span>
                     <ArrowUpRight size={18} color="rgba(240, 234, 224, 0.4)" />
@@ -138,7 +138,7 @@ export default function ProductsHub() {
                   <p style={{ fontSize: '14px', color: 'rgba(240, 234, 224, 0.5)', lineHeight: 1.65, margin: 0 }}>
                     {cat.description}
                   </p>
-                  <span style={{ fontSize: '12px', fontFamily: 'var(--font-sans)', color: '#F3C623', fontWeight: 600 }}>
+                  <span style={{ fontSize: '12px', fontFamily: 'var(--font-sans)', color: '#D4B28C', fontWeight: 600 }}>
                     Explore Category &rarr;
                   </span>
                 </div>

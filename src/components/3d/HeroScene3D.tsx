@@ -84,7 +84,7 @@ function DustParticles() {
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
-      <pointsMaterial size={0.016} color="#F3C623" transparent opacity={0.45} sizeAttenuation />
+      <pointsMaterial size={0.016} color="#D4B28C" transparent opacity={0.45} sizeAttenuation />
     </points>
   );
 }
@@ -100,7 +100,7 @@ function GlowRing() {
   return (
     <mesh ref={ref} position={[0, 0, -3.5]}>
       <torusGeometry args={[4.2, 0.008, 8, 120]} />
-      <meshBasicMaterial color="#F3C623" transparent opacity={0.12} />
+      <meshBasicMaterial color="#D4B28C" transparent opacity={0.12} />
     </mesh>
   );
 }

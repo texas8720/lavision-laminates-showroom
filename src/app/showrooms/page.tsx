@@ -41,8 +41,8 @@ export default function Showrooms() {
       {/* ─── HERO SECTION ─── */}
       <section style={{ marginBottom: '80px', maxWidth: '1400px', margin: '0 auto 80px' }}>
         <div style={{ maxWidth: '900px' }}>
-          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: '#F3C623', textTransform: 'uppercase', marginBottom: '20px' }}>
-            <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#F3C623' }} />
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: '#D4B28C', textTransform: 'uppercase', marginBottom: '20px' }}>
+            <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#D4B28C' }} />
             Physical Presence
           </span>
           <h1
@@ -75,7 +75,7 @@ export default function Showrooms() {
               gridTemplateColumns: '1fr 1fr',
               gap: '64px',
               background: 'rgba(255, 255, 255, 0.01)',
-              border: '1px solid rgba(243, 198, 35, 0.15)',
+              border: '1px solid rgba(212, 178, 140, 0.15)',
               padding: '48px',
               borderRadius: '2px',
               position: 'relative',
@@ -91,7 +91,7 @@ export default function Showrooms() {
               fontSize: 'clamp(100px, 14vw, 220px)',
               fontFamily: 'var(--font-serif)',
               fontWeight: 900,
-              color: 'rgba(243, 198, 35, 0.025)',
+              color: 'rgba(212, 178, 140, 0.025)',
               pointerEvents: 'none',
               lineHeight: 1,
               userSelect: 'none'
@@ -106,7 +106,7 @@ export default function Showrooms() {
                     fontSize: '11px',
                     fontWeight: 700,
                     letterSpacing: '0.15em',
-                    color: '#F3C623',
+                    color: '#D4B28C',
                     textTransform: 'uppercase',
                   }}
                 >
@@ -131,21 +131,21 @@ export default function Showrooms() {
               {/* Details table */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '24px' }}>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-                  <MapPin size={18} color="#F3C623" style={{ marginTop: '2px', flexShrink: 0 }} />
+                  <MapPin size={18} color="#D4B28C" style={{ marginTop: '2px', flexShrink: 0 }} />
                   <div>
                     <span style={{ fontSize: '11px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.3)', display: 'block', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '2px' }}>Address</span>
                     <span style={{ fontSize: '13.5px', color: '#F0EAE0', lineHeight: 1.5 }}>2nd Floor, Royal Arcade, Gondal Road, Rajkot, Gujarat 360002</span>
                   </div>
                 </div>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-                  <Phone size={18} color="#F3C623" style={{ marginTop: '2px', flexShrink: 0 }} />
+                  <Phone size={18} color="#D4B28C" style={{ marginTop: '2px', flexShrink: 0 }} />
                   <div>
                     <span style={{ fontSize: '11px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.3)', display: 'block', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '2px' }}>Phone</span>
-                    <a href="tel:+91281234567" style={{ fontSize: '13.5px', color: '#F3C623', textDecoration: 'none' }}>+91 281 234 5678</a>
+                    <a href="tel:+91281234567" style={{ fontSize: '13.5px', color: '#D4B28C', textDecoration: 'none' }}>+91 281 234 5678</a>
                   </div>
                 </div>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-                  <Clock size={18} color="#F3C623" style={{ marginTop: '2px', flexShrink: 0 }} />
+                  <Clock size={18} color="#D4B28C" style={{ marginTop: '2px', flexShrink: 0 }} />
                   <div>
                     <span style={{ fontSize: '11px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.3)', display: 'block', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '2px' }}>Hours</span>
                     <span style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', fontWeight: 700, letterSpacing: '0.15em', color: '#FAF7F2', textTransform: 'uppercase' }}>Mon–Sat: 10:00 AM – 7:30 PM</span>
@@ -160,8 +160,8 @@ export default function Showrooms() {
                 className="get-directions-link"
                 style={{
                   height: '46px',
-                  border: '1px solid #F3C623',
-                  color: '#F3C623',
+                  border: '1px solid #D4B28C',
+                  color: '#D4B28C',
                   background: 'transparent',
                   fontFamily: 'var(--font-sans)',
                   fontSize: '11px',
@@ -206,7 +206,7 @@ export default function Showrooms() {
                 width: '100%',
                 aspectRatio: '16/11',
                 background: 'radial-gradient(circle, #2A2218 0%, #080605 100%)',
-                border: '1px solid rgba(243, 198, 35, 0.25)',
+                border: '1px solid rgba(212, 178, 140, 0.25)',
                 borderRadius: '2px',
                 display: 'flex',
                 alignItems: 'center',
@@ -229,7 +229,7 @@ export default function Showrooms() {
               gridTemplateColumns: '1fr 1fr',
               gap: '64px',
               background: 'rgba(255, 255, 255, 0.01)',
-              border: '1px solid rgba(243, 198, 35, 0.15)',
+              border: '1px solid rgba(212, 178, 140, 0.15)',
               padding: '48px',
               borderRadius: '2px',
               position: 'relative',
@@ -245,7 +245,7 @@ export default function Showrooms() {
               fontSize: 'clamp(100px, 14vw, 220px)',
               fontFamily: 'var(--font-serif)',
               fontWeight: 900,
-              color: 'rgba(243, 198, 35, 0.025)',
+              color: 'rgba(212, 178, 140, 0.025)',
               pointerEvents: 'none',
               lineHeight: 1,
               userSelect: 'none'
@@ -260,7 +260,7 @@ export default function Showrooms() {
                     fontSize: '11px',
                     fontWeight: 700,
                     letterSpacing: '0.15em',
-                    color: '#F3C623',
+                    color: '#D4B28C',
                     textTransform: 'uppercase',
                   }}
                 >
@@ -285,21 +285,21 @@ export default function Showrooms() {
               {/* Details table */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '24px' }}>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-                  <MapPin size={18} color="#F3C623" style={{ marginTop: '2px', flexShrink: 0 }} />
+                  <MapPin size={18} color="#D4B28C" style={{ marginTop: '2px', flexShrink: 0 }} />
                   <div>
                     <span style={{ fontSize: '11px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.3)', display: 'block', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '2px' }}>Address</span>
                     <span style={{ fontSize: '13.5px', color: '#F0EAE0', lineHeight: 1.5 }}>G-14, Ramdevnagar Complex, Satellite Road, Ahmedabad, Gujarat 380015</span>
                   </div>
                 </div>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-                  <Phone size={18} color="#F3C623" style={{ marginTop: '2px', flexShrink: 0 }} />
+                  <Phone size={18} color="#D4B28C" style={{ marginTop: '2px', flexShrink: 0 }} />
                   <div>
                     <span style={{ fontSize: '11px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.3)', display: 'block', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '2px' }}>Phone</span>
-                    <a href="tel:+91792345678" style={{ fontSize: '13.5px', color: '#F3C623', textDecoration: 'none' }}>+91 79 2345 6789</a>
+                    <a href="tel:+91792345678" style={{ fontSize: '13.5px', color: '#D4B28C', textDecoration: 'none' }}>+91 79 2345 6789</a>
                   </div>
                 </div>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-                  <Clock size={18} color="#F3C623" style={{ marginTop: '2px', flexShrink: 0 }} />
+                  <Clock size={18} color="#D4B28C" style={{ marginTop: '2px', flexShrink: 0 }} />
                   <div>
                     <span style={{ fontSize: '11px', fontFamily: 'var(--font-sans)', color: 'rgba(240,234,224,0.3)', display: 'block', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '2px' }}>Hours</span>
                     <span style={{ fontSize: '9px', fontFamily: 'var(--font-sans)', fontWeight: 700, letterSpacing: '0.15em', color: '#FAF7F2', textTransform: 'uppercase' }}>Mon–Sat: 10:00 AM – 7:00 PM</span>
@@ -314,8 +314,8 @@ export default function Showrooms() {
                 className="get-directions-link"
                 style={{
                   height: '46px',
-                  border: '1px solid #F3C623',
-                  color: '#F3C623',
+                  border: '1px solid #D4B28C',
+                  color: '#D4B28C',
                   background: 'transparent',
                   fontFamily: 'var(--font-sans)',
                   fontSize: '11px',
@@ -360,7 +360,7 @@ export default function Showrooms() {
                 width: '100%',
                 aspectRatio: '16/11',
                 background: 'radial-gradient(circle, #2A2218 0%, #080605 100%)',
-                border: '1px solid rgba(243, 198, 35, 0.25)',
+                border: '1px solid rgba(212, 178, 140, 0.25)',
                 borderRadius: '2px',
                 display: 'flex',
                 alignItems: 'center',

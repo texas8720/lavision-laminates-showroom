@@ -37,7 +37,7 @@ export default function PrivacyPage() {
         </div>
       </div>
       <style jsx>{`
-        .back-link:hover { color: #F3C623 !important; }
+        .back-link:hover { color: #D4B28C !important; }
       `}</style>
     </main>
   );

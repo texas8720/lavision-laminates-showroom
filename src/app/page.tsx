@@ -103,7 +103,7 @@ function StatCounter({ value, label }: { value: string; label: string }) {
         style={{
           fontFamily: 'var(--font-serif)',
           fontSize: 'clamp(44px, 5vw, 72px)',
-          color: '#F3C623',
+          color: '#D4B28C',
           fontWeight: 300,
           lineHeight: 1,
           marginBottom: '8px',
@@ -217,26 +217,26 @@ export default function Home() {
                 alignItems: 'center',
                 gap: '12px',
                 padding: '8px 20px',
-                border: '1px solid rgba(243, 198, 35, 0.3)',
-                background: 'rgba(243, 198, 35, 0.05)',
+                border: '1px solid rgba(212, 178, 140, 0.3)',
+                background: 'rgba(212, 178, 140, 0.05)',
                 backdropFilter: 'blur(10px)',
                 marginBottom: '32px',
               }}
             >
-              <span style={{ width: '16px', height: '1px', background: '#F3C623' }} />
+              <span style={{ width: '16px', height: '1px', background: '#D4B28C' }} />
               <span
                 style={{
                   fontFamily: 'var(--font-sans)',
                   fontSize: '9px',
                   fontWeight: 700,
                   letterSpacing: '0.2em',
-                  color: '#F3C623',
+                  color: '#D4B28C',
                   textTransform: 'uppercase',
                 }}
               >
                 15 Years of Surface Curation
               </span>
-              <span style={{ width: '16px', height: '1px', background: '#F3C623' }} />
+              <span style={{ width: '16px', height: '1px', background: '#D4B28C' }} />
             </div>
 
             {/* Kinetic Main Headline */}
@@ -278,7 +278,7 @@ export default function Home() {
                   alignItems: 'center',
                   height: '54px',
                   padding: '0 36px',
-                  background: '#F3C623',
+                  background: '#D4B28C',
                   color: '#050403',
                   fontFamily: 'var(--font-sans)',
                   fontSize: '11px',
@@ -286,15 +286,15 @@ export default function Home() {
                   letterSpacing: '0.16em',
                   textTransform: 'uppercase',
                   transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                  boxShadow: '0 0 35px rgba(243, 198, 35, 0.25)',
+                  boxShadow: '0 0 35px rgba(212, 178, 140, 0.25)',
                   textDecoration: 'none'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = '#F6D354';
+                  e.currentTarget.style.background = '#E4C7A5';
                   e.currentTarget.style.transform = 'translateY(-2px)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.background = '#F3C623';
+                  e.currentTarget.style.background = '#D4B28C';
                   e.currentTarget.style.transform = 'translateY(0)';
                 }}
               >
@@ -320,8 +320,8 @@ export default function Home() {
                   textDecoration: 'none'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(243, 198, 35, 0.4)';
-                  e.currentTarget.style.color = '#F3C623';
+                  e.currentTarget.style.borderColor = 'rgba(212, 178, 140, 0.4)';
+                  e.currentTarget.style.color = '#D4B28C';
                   e.currentTarget.style.transform = 'translateY(-2px)';
                 }}
                 onMouseLeave={(e) => {
@@ -348,11 +348,11 @@ export default function Home() {
             <span style={{
               fontFamily: 'var(--font-sans)', fontSize: '8px', fontWeight: 700,
               letterSpacing: '0.25em', textTransform: 'uppercase',
-              color: 'rgba(243,198,35,0.5)',
+              color: 'rgba(212,178,140,0.5)',
             }}>Scroll</span>
             <div style={{
               width: '1px', height: '48px',
-              background: 'linear-gradient(to bottom, rgba(243,198,35,0.5), transparent)',
+              background: 'linear-gradient(to bottom, rgba(212,178,140,0.5), transparent)',
             }} />
           </div>
         </div>
@@ -362,8 +362,8 @@ export default function Home() {
       <section
         style={{
           background: '#080605',
-          borderTop: '1px solid rgba(243, 198, 35, 0.1)',
-          borderBottom: '1px solid rgba(243, 198, 35, 0.1)',
+          borderTop: '1px solid rgba(212, 178, 140, 0.1)',
+          borderBottom: '1px solid rgba(212, 178, 140, 0.1)',
           padding: '64px clamp(24px, 6vw, 80px)',
           position: 'relative',
           zIndex: 10,
@@ -417,11 +417,11 @@ export default function Home() {
                 fontWeight: 700,
                 letterSpacing: '0.22em',
                 textTransform: 'uppercase',
-                color: '#F3C623',
+                color: '#D4B28C',
                 marginBottom: '20px',
               }}
             >
-              <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#F3C623' }} />
+              <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#D4B28C' }} />
               Core Philosophy
             </span>
             <h2
@@ -453,7 +453,7 @@ export default function Home() {
                 fontWeight: 700,
                 letterSpacing: '0.15em',
                 textTransform: 'uppercase',
-                color: '#F3C623',
+                color: '#D4B28C',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '8px',
@@ -471,7 +471,7 @@ export default function Home() {
         style={{
           padding: '120px clamp(24px, 6vw, 80px)',
           background: '#080605',
-          borderTop: '1px solid rgba(243, 198, 35, 0.1)',
+          borderTop: '1px solid rgba(212, 178, 140, 0.1)',
           position: 'relative',
           zIndex: 10,
         }}
@@ -484,11 +484,11 @@ export default function Home() {
             fontSize: '9px', 
             fontWeight: 700, 
             letterSpacing: '0.2em', 
-            color: '#F3C623', 
+            color: '#D4B28C', 
             textTransform: 'uppercase', 
             marginBottom: '16px' 
           }}>
-            <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#F3C623' }} />
+            <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#D4B28C' }} />
             The Collection
           </span>
           <h2 
@@ -541,9 +541,9 @@ export default function Home() {
                     overflow: 'hidden'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(243, 198, 35, 0.3)';
-                    e.currentTarget.style.background = 'rgba(243, 198, 35, 0.015)';
-                    e.currentTarget.style.boxShadow = '0 0 40px rgba(243, 198, 35, 0.08)';
+                    e.currentTarget.style.borderColor = 'rgba(212, 178, 140, 0.3)';
+                    e.currentTarget.style.background = 'rgba(212, 178, 140, 0.015)';
+                    e.currentTarget.style.boxShadow = '0 0 40px rgba(212, 178, 140, 0.08)';
                     const previewInner = e.currentTarget.querySelector('.texture-preview-inner') as HTMLElement;
                     if (previewInner) previewInner.style.transform = 'scale(1.05)';
                   }}
@@ -560,7 +560,7 @@ export default function Home() {
                     fontSize: '10px',
                     fontWeight: 700,
                     letterSpacing: '0.2em',
-                    color: '#F3C623',
+                    color: '#D4B28C',
                     textTransform: 'uppercase'
                   }}>
                     {numStr}
@@ -617,7 +617,7 @@ export default function Home() {
         style={{
           padding: '120px clamp(24px, 6vw, 80px)',
           background: 'linear-gradient(180deg, #050403 0%, #0D0906 100%)',
-          borderTop: '1px solid rgba(243, 198, 35, 0.1)',
+          borderTop: '1px solid rgba(212, 178, 140, 0.1)',
           position: 'relative',
           zIndex: 10,
         }}
@@ -640,7 +640,7 @@ export default function Home() {
               width: '100%',
               aspectRatio: '16/11',
               borderRadius: '4px',
-              border: '1px solid rgba(243, 198, 35, 0.25)',
+              border: '1px solid rgba(212, 178, 140, 0.25)',
               overflow: 'hidden',
               boxShadow: '0 30px 60px rgba(0,0,0,0.6)',
               background: 'radial-gradient(circle at center, #1E1A17 0%, #050403 100%)',
@@ -672,11 +672,11 @@ export default function Home() {
               fontSize: '9px', 
               fontWeight: 700, 
               letterSpacing: '0.2em', 
-              color: '#F3C623', 
+              color: '#D4B28C', 
               textTransform: 'uppercase', 
               marginBottom: '16px' 
             }}>
-              <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#F3C623' }} />
+              <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#D4B28C' }} />
               Next-Gen Showroom
             </span>
             <h2 
@@ -695,7 +695,7 @@ export default function Home() {
                 alignItems: 'center',
                 height: '52px',
                 padding: '0 32px',
-                background: '#F3C623',
+                background: '#D4B28C',
                 color: '#050403',
                 fontFamily: 'var(--font-sans)',
                 fontSize: '11px',
@@ -705,8 +705,8 @@ export default function Home() {
                 textDecoration: 'none',
                 transition: 'all 0.3s ease',
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = '#F6D354')}
-              onMouseLeave={(e) => (e.currentTarget.style.background = '#F3C623')}
+              onMouseEnter={(e) => (e.currentTarget.style.background = '#E4C7A5')}
+              onMouseLeave={(e) => (e.currentTarget.style.background = '#D4B28C')}
             >
               Launch Digital Showroom &rarr;
             </Link>
@@ -719,7 +719,7 @@ export default function Home() {
         style={{
           padding: '120px clamp(24px, 6vw, 80px)',
           background: '#080605',
-          borderTop: '1px solid rgba(243, 198, 35, 0.1)',
+          borderTop: '1px solid rgba(212, 178, 140, 0.1)',
           position: 'relative',
           zIndex: 10,
         }}
@@ -732,11 +732,11 @@ export default function Home() {
             fontSize: '9px', 
             fontWeight: 700, 
             letterSpacing: '0.2em', 
-            color: '#F3C623', 
+            color: '#D4B28C', 
             textTransform: 'uppercase', 
             marginBottom: '16px' 
           }}>
-            <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#F3C623' }} />
+            <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#D4B28C' }} />
             Locate Us
           </span>
           <h2 
@@ -764,7 +764,7 @@ export default function Home() {
           <div
             style={{
               background: '#050403',
-              border: '1px solid rgba(243, 198, 35, 0.15)',
+              border: '1px solid rgba(212, 178, 140, 0.15)',
               padding: '40px',
               borderRadius: '2px',
               display: 'flex',
@@ -774,7 +774,7 @@ export default function Home() {
             className="fade-up"
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <MapPin size={20} color="#F3C623" />
+              <MapPin size={20} color="#D4B28C" />
               <h3 style={{ fontSize: '24px', fontFamily: 'var(--font-serif)', color: '#FAF7F2', fontWeight: 400 }}>
                 Rajkot Showroom
               </h3>
@@ -791,7 +791,7 @@ export default function Home() {
                 fontSize: '11px',
                 fontWeight: 700,
                 letterSpacing: '0.15em',
-                color: '#F3C623',
+                color: '#D4B28C',
                 textTransform: 'uppercase',
                 textDecoration: 'none',
                 display: 'inline-flex',
@@ -808,7 +808,7 @@ export default function Home() {
           <div
             style={{
               background: '#050403',
-              border: '1px solid rgba(243, 198, 35, 0.15)',
+              border: '1px solid rgba(212, 178, 140, 0.15)',
               padding: '40px',
               borderRadius: '2px',
               display: 'flex',
@@ -818,7 +818,7 @@ export default function Home() {
             className="fade-up"
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <MapPin size={20} color="#F3C623" />
+              <MapPin size={20} color="#D4B28C" />
               <h3 style={{ fontSize: '24px', fontFamily: 'var(--font-serif)', color: '#FAF7F2', fontWeight: 400 }}>
                 Ahmedabad Showroom
               </h3>
@@ -835,7 +835,7 @@ export default function Home() {
                 fontSize: '11px',
                 fontWeight: 700,
                 letterSpacing: '0.15em',
-                color: '#F3C623',
+                color: '#D4B28C',
                 textTransform: 'uppercase',
                 textDecoration: 'none',
                 display: 'inline-flex',
@@ -855,7 +855,7 @@ export default function Home() {
         style={{
           padding: '120px clamp(24px, 6vw, 80px)',
           background: '#050403',
-          borderTop: '1px solid rgba(243, 198, 35, 0.1)',
+          borderTop: '1px solid rgba(212, 178, 140, 0.1)',
           textAlign: 'center',
           position: 'relative',
           zIndex: 10,
@@ -869,11 +869,11 @@ export default function Home() {
             fontSize: '9px', 
             fontWeight: 700, 
             letterSpacing: '0.2em', 
-            color: '#F3C623', 
+            color: '#D4B28C', 
             textTransform: 'uppercase', 
             marginBottom: '16px' 
           }}>
-            <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#F3C623' }} />
+            <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#D4B28C' }} />
             Visual Portfolio
           </span>
           <h2 
@@ -893,8 +893,8 @@ export default function Home() {
               height: '52px',
               padding: '0 36px',
               background: 'transparent',
-              color: '#F3C623',
-              border: '1px solid #F3C623',
+              color: '#D4B28C',
+              border: '1px solid #D4B28C',
               fontFamily: 'var(--font-sans)',
               fontSize: '11px',
               fontWeight: 700,
@@ -904,7 +904,7 @@ export default function Home() {
               transition: 'all 0.3s ease',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(243, 198, 35, 0.1)';
+              e.currentTarget.style.background = 'rgba(212, 178, 140, 0.1)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.background = 'transparent';

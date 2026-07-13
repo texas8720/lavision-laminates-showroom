@@ -52,8 +52,8 @@ export default function CategoryPage({ params }: { params: Promise<{ category: s
       {/* ─── CATEGORY HERO ─── */}
       <section className="container" style={{ marginBottom: '64px' }}>
         <div style={{ maxWidth: '900px' }}>
-          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: '#F3C623', textTransform: 'uppercase', marginBottom: '20px' }}>
-            <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#F3C623' }} />
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: '#D4B28C', textTransform: 'uppercase', marginBottom: '20px' }}>
+            <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#D4B28C' }} />
             Category Curation &mdash; {categoryInfo.name}
           </span>
           <h1
@@ -72,7 +72,7 @@ export default function CategoryPage({ params }: { params: Promise<{ category: s
             style={{
               fontStyle: 'italic',
               fontSize: 'clamp(18px, 2.2vw, 28px)',
-              color: '#F3C623',
+              color: '#D4B28C',
               fontFamily: 'var(--font-serif)',
               fontWeight: 300,
               lineHeight: 1.2,
@@ -116,7 +116,7 @@ export default function CategoryPage({ params }: { params: Promise<{ category: s
                 borderRadius: '50%',
               }}
             >
-              <Compass size={20} color="#F3C623" />
+              <Compass size={20} color="#D4B28C" />
             </div>
             <div>
               <span style={{ fontSize: '13px', fontFamily: 'var(--font-sans)', color: '#FAF7F2', fontWeight: 700, display: 'block', marginBottom: '4px' }}>
@@ -132,7 +132,7 @@ export default function CategoryPage({ params }: { params: Promise<{ category: s
             style={{
               height: '46px',
               padding: '0 28px',
-              background: '#F3C623',
+              background: '#D4B28C',
               color: '#050403',
               border: 'none',
               borderRadius: '1px',
@@ -149,7 +149,7 @@ export default function CategoryPage({ params }: { params: Promise<{ category: s
               whiteSpace: 'nowrap',
             }}
             onMouseEnter={(e) => (e.currentTarget.style.background = '#D4AA6A')}
-            onMouseLeave={(e) => (e.currentTarget.style.background = '#F3C623')}
+            onMouseLeave={(e) => (e.currentTarget.style.background = '#D4B28C')}
           >
             Open in Digital Showroom
             <ArrowRight size={14} />
@@ -205,7 +205,7 @@ export default function CategoryPage({ params }: { params: Promise<{ category: s
                   <h3 style={{ fontSize: '20px', fontFamily: 'var(--font-serif)', color: '#FAF7F2', fontWeight: 400 }}>
                     {mat.name}
                   </h3>
-                  <span style={{ fontSize: '11px', fontFamily: 'var(--font-sans)', color: '#F3C623', fontWeight: 600 }}>
+                  <span style={{ fontSize: '11px', fontFamily: 'var(--font-sans)', color: '#D4B28C', fontWeight: 600 }}>
                     {mat.code}
                   </span>
                 </div>
@@ -236,7 +236,7 @@ export default function CategoryPage({ params }: { params: Promise<{ category: s
       <section style={{ background: '#080605', padding: '100px 0', borderTop: '1px solid rgba(184, 146, 74, 0.1)', borderBottom: '1px solid rgba(184, 146, 74, 0.1)' }}>
         <div className="container about-split-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px' }}>
           <div className="fade-up">
-            <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#F3C623', textTransform: 'uppercase', display: 'block', marginBottom: '16px' }}>
+            <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#D4B28C', textTransform: 'uppercase', display: 'block', marginBottom: '16px' }}>
               &mdash; Applications
             </span>
             <h2 style={{ fontSize: 'clamp(28px, 4vw, 48px)', fontFamily: 'var(--font-serif)', color: '#FAF7F2', fontWeight: 300, lineHeight: 1.15 }}>
@@ -260,7 +260,7 @@ export default function CategoryPage({ params }: { params: Promise<{ category: s
                   border: '1px solid rgba(255,255,255,0.04)',
                 }}
               >
-                <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#F3C623' }} />
+                <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#D4B28C' }} />
                 <span style={{ fontSize: '13px', fontFamily: 'var(--font-sans)', color: '#F0EAE0', fontWeight: 500 }}>
                   {app}
                 </span>
@@ -274,7 +274,7 @@ export default function CategoryPage({ params }: { params: Promise<{ category: s
       <section className="container" style={{ padding: '100px 0 40px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '80px', alignItems: 'center' }} className="about-split-grid">
           <div className="fade-up">
-            <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#F3C623', textTransform: 'uppercase', display: 'block', marginBottom: '16px' }}>
+            <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#D4B28C', textTransform: 'uppercase', display: 'block', marginBottom: '16px' }}>
               &mdash; Core standard
             </span>
             <h2 style={{ fontSize: 'clamp(28px, 4vw, 48px)', fontFamily: 'var(--font-serif)', color: '#FAF7F2', fontWeight: 300, lineHeight: 1.15, marginBottom: '24px' }}>
@@ -307,7 +307,7 @@ export default function CategoryPage({ params }: { params: Promise<{ category: s
                 href="/contact"
                 style={{
                   height: '46px',
-                  background: '#F3C623',
+                  background: '#D4B28C',
                   color: '#050403',
                   textDecoration: 'none',
                   fontFamily: 'var(--font-sans)',
@@ -322,7 +322,7 @@ export default function CategoryPage({ params }: { params: Promise<{ category: s
                   transition: 'all 0.3s ease',
                 }}
                 onMouseEnter={(e) => (e.currentTarget.style.background = '#D4AA6A')}
-                onMouseLeave={(e) => (e.currentTarget.style.background = '#F3C623')}
+                onMouseLeave={(e) => (e.currentTarget.style.background = '#D4B28C')}
               >
                 Request Samples
               </Link>
@@ -331,8 +331,8 @@ export default function CategoryPage({ params }: { params: Promise<{ category: s
                 style={{
                   height: '46px',
                   background: 'transparent',
-                  color: '#F3C623',
-                  border: '1px solid #F3C623',
+                  color: '#D4B28C',
+                  border: '1px solid #D4B28C',
                   textDecoration: 'none',
                   fontFamily: 'var(--font-sans)',
                   fontSize: '11px',

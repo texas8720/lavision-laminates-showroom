@@ -11,22 +11,22 @@ const PILLARS = [
   {
     title: 'Craftsmanship',
     desc: 'Every sheet in our catalogue is selected for consistency in grain, tone, and finish quality.',
-    icon: <Award size={24} color="#F3C623" />,
+    icon: <Award size={24} color="#D4B28C" />,
   },
   {
     title: 'Range',
     desc: 'From laminates to natural stone veneer, we\'ve built one of the region\'s most comprehensive surface libraries under one roof.',
-    icon: <Compass size={24} color="#F3C623" />,
+    icon: <Compass size={24} color="#D4B28C" />,
   },
   {
     title: 'Trust',
     desc: 'Fifteen years of relationships with architects, contractors, and homeowners built on straightforward advice and reliable supply.',
-    icon: <ShieldCheck size={24} color="#F3C623" />,
+    icon: <ShieldCheck size={24} color="#D4B28C" />,
   },
   {
     title: 'Innovation',
     desc: 'From in-showroom experience to our new Digital Showroom platform, we keep finding new ways to help you choose with confidence.',
-    icon: <Zap size={24} color="#F3C623" />,
+    icon: <Zap size={24} color="#D4B28C" />,
   },
 ];
 
@@ -92,9 +92,9 @@ export default function About() {
     // Timeline dots fill trigger (empty -> gold fill)
     gsap.utils.toArray<HTMLElement>('.timeline-dot').forEach((dot) => {
       gsap.to(dot, {
-        background: '#F3C623',
-        borderColor: '#F3C623',
-        boxShadow: '0 0 15px rgba(243, 198, 35, 0.65)',
+        background: '#D4B28C',
+        borderColor: '#D4B28C',
+        boxShadow: '0 0 15px rgba(212, 178, 140, 0.65)',
         duration: 0.4,
         scrollTrigger: {
           trigger: dot,
@@ -151,8 +151,8 @@ export default function About() {
       {/* ─── HERO SECTION ─── */}
       <section className="container" style={{ marginBottom: '80px', padding: '0 clamp(24px, 4vw, 64px)' }}>
         <div style={{ maxWidth: '900px' }}>
-          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: '#F3C623', textTransform: 'uppercase', marginBottom: '20px' }}>
-            <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#F3C623' }} />
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: '#D4B28C', textTransform: 'uppercase', marginBottom: '20px' }}>
+            <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#D4B28C' }} />
             Behind the Brand
           </span>
           <h1
@@ -171,7 +171,7 @@ export default function About() {
         </div>
       </section>
 
-      <section style={{ background: '#080605', borderTop: '1px solid rgba(243, 198, 35, 0.1)', borderBottom: '1px solid rgba(243, 198, 35, 0.1)', padding: '100px clamp(24px, 4vw, 64px)' }}>
+      <section style={{ background: '#080605', borderTop: '1px solid rgba(212, 178, 140, 0.1)', borderBottom: '1px solid rgba(212, 178, 140, 0.1)', padding: '100px clamp(24px, 4vw, 64px)' }}>
         <div className="about-split-grid" style={{ maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: '80px', alignItems: 'start' }}>
           <div className="fade-up">
             <h2 
@@ -186,7 +186,7 @@ export default function About() {
                 marginTop: '40px',
                 aspectRatio: '16/9',
                 background: 'radial-gradient(circle, #2A2218 0%, #050403 100%)',
-                border: '1px solid rgba(243, 198, 35, 0.2)',
+                border: '1px solid rgba(212, 178, 140, 0.2)',
                 borderRadius: '2px',
                 display: 'flex',
                 alignItems: 'center',
@@ -217,8 +217,8 @@ export default function About() {
       {/* ─── WHAT WE STAND FOR SECTION ─── */}
       <section style={{ padding: '120px clamp(24px, 4vw, 64px)', maxWidth: '1400px', margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: '64px' }} className="fade-up">
-          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#F3C623', textTransform: 'uppercase', marginBottom: '20px' }}>
-            <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#F3C623' }} />
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#D4B28C', textTransform: 'uppercase', marginBottom: '20px' }}>
+            <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#D4B28C' }} />
             Brand values
           </span>
           <h2 
@@ -255,8 +255,8 @@ export default function About() {
                 style={{
                   width: '48px',
                   height: '48px',
-                  border: '1px solid rgba(243, 198, 35, 0.25)',
-                  background: 'rgba(243, 198, 35, 0.05)',
+                  border: '1px solid rgba(212, 178, 140, 0.25)',
+                  background: 'rgba(212, 178, 140, 0.05)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -279,11 +279,11 @@ export default function About() {
       </section>
 
       {/* ─── TIMELINE SECTION ─── */}
-      <section style={{ background: '#080605', borderTop: '1px solid rgba(243, 198, 35, 0.1)', borderBottom: '1px solid rgba(243, 198, 35, 0.1)', padding: '120px clamp(24px, 4vw, 64px)' }}>
+      <section style={{ background: '#080605', borderTop: '1px solid rgba(212, 178, 140, 0.1)', borderBottom: '1px solid rgba(212, 178, 140, 0.1)', padding: '120px clamp(24px, 4vw, 64px)' }}>
         <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '80px' }} className="fade-up">
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#F3C623', textTransform: 'uppercase', marginBottom: '20px' }}>
-              <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#F3C623' }} />
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', color: '#D4B28C', textTransform: 'uppercase', marginBottom: '20px' }}>
+              <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#D4B28C' }} />
               Core Landmarks
             </span>
             <h2 
@@ -334,7 +334,7 @@ export default function About() {
               <path 
                 ref={pathRef}
                 d={`M 20 0 Q 30 ${(timelineHeight || 600) * 0.25} 20 ${(timelineHeight || 600) * 0.5} T 20 ${timelineHeight || 600}`}
-                stroke="#F3C623"
+                stroke="#D4B28C"
                 strokeWidth="2.5"
                 fill="none"
               />
@@ -366,13 +366,13 @@ export default function About() {
                     <div
                       style={{
                         display: 'inline-block',
-                        background: 'rgba(243, 198, 35, 0.08)',
-                        border: '1px solid rgba(243, 198, 35, 0.3)',
+                        background: 'rgba(212, 178, 140, 0.08)',
+                        border: '1px solid rgba(212, 178, 140, 0.3)',
                         padding: '4px 14px',
                         fontFamily: 'var(--font-sans)',
                         fontSize: '14px',
                         fontWeight: 700,
-                        color: '#F3C623',
+                        color: '#D4B28C',
                         borderRadius: '20px',
                         marginBottom: '16px',
                       }}
@@ -446,7 +446,7 @@ export default function About() {
                 gap: '8px',
                 height: '52px',
                 padding: '0 32px',
-                background: '#F3C623',
+                background: '#D4B28C',
                 color: '#050403',
                 fontFamily: 'var(--font-sans)',
                 fontSize: '11px',
@@ -456,8 +456,8 @@ export default function About() {
                 textDecoration: 'none',
                 transition: 'all 0.3s ease',
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = '#F6D354')}
-              onMouseLeave={(e) => (e.currentTarget.style.background = '#F3C623')}
+              onMouseEnter={(e) => (e.currentTarget.style.background = '#E4C7A5')}
+              onMouseLeave={(e) => (e.currentTarget.style.background = '#D4B28C')}
             >
               Visit a Showroom
               <ArrowUpRight size={14} />
@@ -470,8 +470,8 @@ export default function About() {
                 height: '52px',
                 padding: '0 32px',
                 background: 'transparent',
-                color: '#F3C623',
-                border: '1px solid #F3C623',
+                color: '#D4B28C',
+                border: '1px solid #D4B28C',
                 fontFamily: 'var(--font-sans)',
                 fontSize: '11px',
                 fontWeight: 700,
@@ -481,7 +481,7 @@ export default function About() {
                 transition: 'all 0.3s ease',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(243, 198, 35, 0.1)';
+                e.currentTarget.style.background = 'rgba(212, 178, 140, 0.1)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.background = 'transparent';

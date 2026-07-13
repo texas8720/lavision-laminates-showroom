@@ -18,14 +18,14 @@ export default function Footer() {
       <section style={{
         padding: 'clamp(80px, 12vw, 160px) clamp(32px, 6vw, 100px)',
         background: '#080605',
-        borderTop: '1px solid rgba(243,198,35,0.08)',
+        borderTop: '1px solid rgba(212,178,140,0.08)',
         textAlign: 'center',
         overflow: 'hidden',
       }}>
         <span style={{
           fontFamily: 'var(--font-sans)', fontSize: '9px', fontWeight: 700,
           letterSpacing: '0.22em', textTransform: 'uppercase',
-          color: '#F3C623', display: 'block', marginBottom: '24px',
+          color: '#D4B28C', display: 'block', marginBottom: '24px',
         }}>— Start a Conversation</span>
 
         <h2 style={{
@@ -35,7 +35,7 @@ export default function Footer() {
           color: '#F0EAE0',
           marginBottom: '48px',
         }}>
-          Let's Build Something <em className="hero-em" style={{ fontStyle: 'italic', color: '#F3C623' }}>Tactile</em>.
+          Let's Build Something <em className="hero-em" style={{ fontStyle: 'italic', color: '#D4B28C' }}>Tactile</em>.
         </h2>
 
         <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -46,7 +46,7 @@ export default function Footer() {
               alignItems: 'center',
               height: '54px',
               padding: '0 38px',
-              background: '#F3C623', 
+              background: '#D4B28C', 
               color: '#050403',
               fontFamily: 'var(--font-sans)',
               fontSize: '11px',
@@ -54,15 +54,15 @@ export default function Footer() {
               letterSpacing: '0.18em',
               textTransform: 'uppercase',
               transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-              boxShadow: '0 0 30px rgba(243,198,35,0.2)',
+              boxShadow: '0 0 30px rgba(212,178,140,0.2)',
               textDecoration: 'none'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = '#F6D354';
+              e.currentTarget.style.background = '#E4C7A5';
               e.currentTarget.style.transform = 'translateY(-2px)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = '#F3C623';
+              e.currentTarget.style.background = '#D4B28C';
               e.currentTarget.style.transform = 'translateY(0)';
             }}
           >
@@ -88,8 +88,8 @@ export default function Footer() {
               textDecoration: 'none'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = 'rgba(243,198,35,0.45)';
-              e.currentTarget.style.color = '#F3C623';
+              e.currentTarget.style.borderColor = 'rgba(212,178,140,0.45)';
+              e.currentTarget.style.color = '#D4B28C';
               e.currentTarget.style.transform = 'translateY(-2px)';
             }}
             onMouseLeave={(e) => {
@@ -112,7 +112,7 @@ export default function Footer() {
           width: '600px',
           height: '400px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(243,198,35,0.035) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(212,178,140,0.035) 0%, transparent 70%)',
           filter: 'blur(80px)',
           pointerEvents: 'none',
           zIndex: 0,
@@ -134,9 +134,9 @@ export default function Footer() {
           <div style={{ gridColumn: 'span 4' }} className="footer-col-brand">
             <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '24px', textDecoration: 'none' }}>
               <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
-                <rect x="1" y="1" width="26" height="26" stroke="#F3C623" strokeWidth="1" />
-                <path d="M7 14 L14 7 L21 14 L14 21 Z" stroke="#F3C623" strokeWidth="1" fill="none" />
-                <circle cx="14" cy="14" r="1.5" fill="#F3C623" />
+                <rect x="1" y="1" width="26" height="26" stroke="#D4B28C" strokeWidth="1" />
+                <path d="M7 14 L14 7 L21 14 L14 21 Z" stroke="#D4B28C" strokeWidth="1" fill="none" />
+                <circle cx="14" cy="14" r="1.5" fill="#D4B28C" />
               </svg>
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <span
@@ -155,7 +155,7 @@ export default function Footer() {
                     fontFamily: 'var(--font-sans)',
                     fontSize: '7px',
                     letterSpacing: '0.3em',
-                    color: '#F3C623',
+                    color: '#D4B28C',
                     textTransform: 'uppercase',
                     marginTop: '2px',
                   }}
@@ -178,7 +178,7 @@ export default function Footer() {
                 fontWeight: 700,
                 letterSpacing: '0.22em',
                 textTransform: 'uppercase',
-                color: '#F3C623',
+                color: '#D4B28C',
                 display: 'block',
                 marginBottom: '20px',
               }}
@@ -203,7 +203,7 @@ export default function Footer() {
                     transition: 'color 0.25s ease',
                     textDecoration: 'none'
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = '#F3C623')}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = '#D4B28C')}
                   onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(240, 234, 224, 0.65)')}
                 >
                   {link.label}
@@ -221,7 +221,7 @@ export default function Footer() {
                 fontWeight: 700,
                 letterSpacing: '0.22em',
                 textTransform: 'uppercase',
-                color: '#F3C623',
+                color: '#D4B28C',
                 display: 'block',
                 marginBottom: '20px',
               }}
@@ -260,7 +260,7 @@ export default function Footer() {
                   style={{
                     fontFamily: 'var(--font-sans)',
                     fontSize: '11px',
-                    color: '#F3C623',
+                    color: '#D4B28C',
                     marginTop: '4px',
                     display: 'inline-block',
                     textDecoration: 'none'
@@ -301,7 +301,7 @@ export default function Footer() {
                   style={{
                     fontFamily: 'var(--font-sans)',
                     fontSize: '11px',
-                    color: '#F3C623',
+                    color: '#D4B28C',
                     marginTop: '4px',
                     display: 'inline-block',
                     textDecoration: 'none'
@@ -322,7 +322,7 @@ export default function Footer() {
                 fontWeight: 700,
                 letterSpacing: '0.22em',
                 textTransform: 'uppercase',
-                color: '#F3C623',
+                color: '#D4B28C',
                 display: 'block',
                 marginBottom: '20px',
               }}
@@ -363,7 +363,7 @@ export default function Footer() {
                     transition: 'color 0.25s ease',
                     textDecoration: 'none'
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = '#F3C623')}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = '#D4B28C')}
                   onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(240, 234, 224, 0.5)')}
                 >
                   {s}

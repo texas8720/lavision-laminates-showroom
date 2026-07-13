@@ -8,7 +8,7 @@ const NAV_ITEMS = [
   { label: 'Home', href: '/', preview: 'repeating-linear-gradient(45deg, #8E6743 0px, #2C2018 20px)' },
   { label: 'About Us', href: '/about', preview: 'linear-gradient(135deg, #9CA382 0%, #5E4B31 100%)' },
   { label: 'Products', href: '/products', preview: 'repeating-linear-gradient(90deg, #181410 0px, #181410 12px, #3A3225 13px, #3A3225 24px)' },
-  { label: 'Digital Showroom', href: '/digital-showroom', preview: 'radial-gradient(circle, #F3C623 0%, #5E4B31 70%)' },
+  { label: 'Digital Showroom', href: '/digital-showroom', preview: 'radial-gradient(circle, #D4B28C 0%, #5E4B31 70%)' },
   { label: 'Showrooms', href: '/showrooms', preview: 'linear-gradient(45deg, #2D2F30 0%, #1A1B1C 100%)' },
   { label: 'Gallery', href: '/gallery', preview: 'radial-gradient(circle, #8F5E36 0%, #6E401E 100%)' },
   { label: 'Contact', href: '/contact', preview: 'linear-gradient(135deg, #FAF7F2 0%, #EFECE6 100%)' },
@@ -63,7 +63,7 @@ export default function Navbar() {
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         background: scrolled ? 'rgba(5,4,3,0.85)' : 'transparent',
         backdropFilter: scrolled ? 'blur(16px)' : 'none',
-        borderBottom: scrolled ? '1px solid rgba(243,198,35,0.08)' : 'none',
+        borderBottom: scrolled ? '1px solid rgba(212,178,140,0.08)' : 'none',
         transition: 'background 0.4s ease, border-color 0.4s ease',
       }}>
         <Link href="/" style={{ textDecoration: 'none' }}>
@@ -84,8 +84,8 @@ export default function Navbar() {
             {menuOpen ? 'CLOSE' : 'MENU'}
           </span>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', width: '24px' }}>
-            <span style={{ display: 'block', height: '1px', background: menuOpen ? 'transparent' : '#F3C623', transition: 'all 0.3s ease', transform: menuOpen ? 'rotate(45deg) translate(4px, 4px)' : 'none' }} />
-            <span style={{ display: 'block', height: '1px', background: '#F3C623', transition: 'all 0.3s ease', transform: menuOpen ? 'rotate(-45deg)' : 'none' }} />
+            <span style={{ display: 'block', height: '1px', background: menuOpen ? 'transparent' : '#D4B28C', transition: 'all 0.3s ease', transform: menuOpen ? 'rotate(45deg) translate(4px, 4px)' : 'none' }} />
+            <span style={{ display: 'block', height: '1px', background: '#D4B28C', transition: 'all 0.3s ease', transform: menuOpen ? 'rotate(-45deg)' : 'none' }} />
           </div>
         </button>
       </header>
@@ -125,7 +125,7 @@ export default function Navbar() {
                     flex: 1
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.color = '#F3C623';
+                    e.currentTarget.style.color = '#D4B28C';
                     const sib = e.currentTarget.nextElementSibling as HTMLElement;
                     if (sib) sib.style.opacity = '1';
                   }}
@@ -142,7 +142,7 @@ export default function Navbar() {
                   style={{
                     width: '80px', height: '50px',
                     background: item.preview,
-                    border: '1px solid rgba(243,198,35,0.2)',
+                    border: '1px solid rgba(212,178,140,0.2)',
                     borderRadius: '2px',
                     opacity: 0,
                     transition: 'opacity 0.3s ease',

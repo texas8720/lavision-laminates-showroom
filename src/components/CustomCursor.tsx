@@ -48,8 +48,8 @@ export default function CustomCursor() {
         dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%) scale(0)`;
         ring.style.width = '64px';
         ring.style.height = '64px';
-        ring.style.borderColor = 'rgba(243,198,35,0.9)';
-        ring.style.background = 'rgba(243,198,35,0.06)';
+        ring.style.borderColor = 'rgba(212,178,140,0.9)';
+        ring.style.background = 'rgba(212,178,140,0.06)';
         label.textContent = cursorLabel;
         label.style.opacity = '1';
       }
@@ -65,7 +65,7 @@ export default function CustomCursor() {
           dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%) scale(1)`;
           ring.style.width = '36px';
           ring.style.height = '36px';
-          ring.style.borderColor = 'rgba(243,198,35,0.5)';
+          ring.style.borderColor = 'rgba(212,178,140,0.5)';
           ring.style.background = 'transparent';
           label.style.opacity = '0';
         }
@@ -89,12 +89,12 @@ export default function CustomCursor() {
     <>
       <div ref={dotRef} style={{
         width: '6px', height: '6px', borderRadius: '50%',
-        background: '#F3C623', position: 'fixed', zIndex: 99999,
+        background: '#D4B28C', position: 'fixed', zIndex: 99999,
         pointerEvents: 'none', transition: 'transform 0.15s ease',
       }} />
       <div ref={ringRef} style={{
         width: '36px', height: '36px', borderRadius: '50%',
-        border: '1px solid rgba(243,198,35,0.5)',
+        border: '1px solid rgba(212,178,140,0.5)',
         position: 'fixed', zIndex: 99998, pointerEvents: 'none',
         transition: 'width 0.3s ease, height 0.3s ease, border-color 0.3s ease, background 0.3s ease',
       }} />
@@ -102,7 +102,7 @@ export default function CustomCursor() {
         position: 'fixed', zIndex: 99997, pointerEvents: 'none',
         fontFamily: 'var(--font-sans)', fontSize: '9px', fontWeight: 700,
         letterSpacing: '0.15em', textTransform: 'uppercase',
-        color: '#F3C623', opacity: 0, transition: 'opacity 0.2s ease',
+        color: '#D4B28C', opacity: 0, transition: 'opacity 0.2s ease',
         whiteSpace: 'nowrap',
       }} />
     </>

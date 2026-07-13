@@ -18,7 +18,7 @@ export default function SitemapPage() {
               fontSize: '13px',
               fontWeight: 600,
               letterSpacing: '0.25em',
-              color: '#F3C623',
+              color: '#D4B28C',
               textTransform: 'uppercase',
               display: 'inline-flex',
               alignItems: 'center',
@@ -26,7 +26,7 @@ export default function SitemapPage() {
               marginBottom: '20px',
             }}
           >
-            <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#F3C623' }} />
+            <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#D4B28C' }} />
             Directory Map
           </span>
           <h1
@@ -57,7 +57,7 @@ export default function SitemapPage() {
           {/* Main Pages */}
           <div style={{ backgroundColor: '#0E0C0A', padding: '32px', borderRadius: '2px', border: '1px solid rgba(184, 146, 74, 0.15)' }}>
             <h3 style={{ fontSize: '18px', fontWeight: 400, fontFamily: 'var(--font-serif)', color: '#FAF7F2', marginBottom: '20px', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <Compass size={18} style={{ color: '#F3C623' }} /> Core Routes
+              <Compass size={18} style={{ color: '#D4B28C' }} /> Core Routes
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <Link href="/" className="site-link" style={{ color: 'rgba(240,234,224,0.65)', textDecoration: 'none' }}>Home Page</Link>
@@ -73,7 +73,7 @@ export default function SitemapPage() {
           {/* Collection Ranges */}
           <div style={{ backgroundColor: '#0E0C0A', padding: '32px', borderRadius: '2px', border: '1px solid rgba(184, 146, 74, 0.15)' }}>
             <h3 style={{ fontSize: '18px', fontWeight: 400, fontFamily: 'var(--font-serif)', color: '#FAF7F2', marginBottom: '20px', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <LinkIcon size={18} style={{ color: '#F3C623' }} /> Product Categories
+              <LinkIcon size={18} style={{ color: '#D4B28C' }} /> Product Categories
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {CATEGORIES.map((col) => (
@@ -87,7 +87,7 @@ export default function SitemapPage() {
           {/* Case Studies */}
           <div style={{ backgroundColor: '#0E0C0A', padding: '32px', borderRadius: '2px', border: '1px solid rgba(184, 146, 74, 0.15)' }}>
             <h3 style={{ fontSize: '18px', fontWeight: 400, fontFamily: 'var(--font-serif)', color: '#FAF7F2', marginBottom: '20px', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <LinkIcon size={18} style={{ color: '#F3C623' }} /> Inspiration Case Studies
+              <LinkIcon size={18} style={{ color: '#D4B28C' }} /> Inspiration Case Studies
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {PROJECTS.map((proj) => (
@@ -101,7 +101,7 @@ export default function SitemapPage() {
           {/* Material Codes */}
           <div style={{ backgroundColor: '#0E0C0A', padding: '32px', borderRadius: '2px', border: '1px solid rgba(184, 146, 74, 0.15)' }}>
             <h3 style={{ fontSize: '18px', fontWeight: 400, fontFamily: 'var(--font-serif)', color: '#FAF7F2', marginBottom: '20px', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <LinkIcon size={18} style={{ color: '#F3C623' }} /> Material Finishes
+              <LinkIcon size={18} style={{ color: '#D4B28C' }} /> Material Finishes
             </h3>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
               {MATERIALS.map((mat) => (
@@ -116,7 +116,7 @@ export default function SitemapPage() {
 
       <style jsx>{`
         .site-link:hover {
-          color: #F3C623 !important;
+          color: #D4B28C !important;
           padding-left: 4px;
         }
         .site-link {

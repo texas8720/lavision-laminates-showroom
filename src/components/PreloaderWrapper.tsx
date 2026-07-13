@@ -51,7 +51,7 @@ export default function PreloaderWrapper({ children }: { children: React.ReactNo
               fontFamily="'Cormorant Garamond', serif"
               fontSize="28" fontWeight="300"
               fill="none"
-              stroke="#F3C623"
+              stroke="#D4B28C"
               strokeWidth="0.5"
               style={{
                 strokeDasharray: 1000,
@@ -84,7 +84,7 @@ export default function PreloaderWrapper({ children }: { children: React.ReactNo
             <div
               style={{
                 position: 'absolute', left: 0, top: 0, height: '100%',
-                background: '#F3C623',
+                background: '#D4B28C',
                 width: `${Math.min(progress, 100)}%`,
                 transition: 'width 0.1s linear',
               }}
