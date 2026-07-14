@@ -6,32 +6,47 @@ export function useTextReveal() {
   const ref = useRef<any>(null);
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
     const el = ref.current;
-    if (!el) return;
+    if (!el || typeof window === 'undefined') return;
 
-    const text = el.textContent || '';
-    const words = text.split(' ');
-    el.innerHTML = words.map((w: string) =>
-      `<span style="display:inline-block; overflow:hidden; vertical-align:bottom">` +
-      `<span class="word-inner" style="display:inline-block; transform:translateY(110%)">${w}&nbsp;</span>` +
-      `</span>`
-    ).join('');
+    gsap.registerPlugin(ScrollTrigger);
 
-    const anim = gsap.to(el.querySelectorAll('.word-inner'), {
-      y: 0,
-      duration: 0.9,
-      ease: 'power3.out',
-      stagger: 0.04,
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 85%',
-        once: true,
-      },
-    });
+    // Small delay to ensure DOM and layout are complete
+    const timer = setTimeout(() => {
+      const text = el.textContent || '';
+      const words = text.split(' ').filter(Boolean);
+      
+      el.innerHTML = words.map((w: string) =>
+        `<span style="display:inline-block; overflow:hidden; vertical-align:bottom; margin-right:0.25em">` +
+        `<span class="word-inner" style="display:inline-block">${w}</span>` +
+        `</span>`
+      ).join('');
+
+      const innerWords = el.querySelectorAll('.word-inner');
+
+      // Set initial state
+      gsap.set(innerWords, { y: '105%' });
+
+      // Animate in on scroll
+      gsap.to(innerWords, {
+        y: 0,
+        duration: 1.0,
+        ease: 'power3.out',
+        stagger: 0.05,
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 90%',
+          once: true,
+        },
+        onComplete: () => {
+          // Safety: always ensure visible after animation
+          gsap.set(innerWords, { y: 0, clearProps: 'transform' });
+        }
+      });
+    }, 100);
 
     return () => {
-      anim.kill();
+      clearTimeout(timer);
     };
   }, []);
 
