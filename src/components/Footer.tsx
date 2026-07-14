@@ -9,52 +9,85 @@ export default function Footer() {
   return (
     <footer
       style={{
-        background: '#050403',
+        background: '#0D0906',
         position: 'relative',
         overflow: 'hidden',
       }}
     >
+      {/* KINETIC MARQUEE ROW */}
+      <div
+        style={{
+          borderTop: '1px solid rgba(212,178,140,0.15)',
+          borderBottom: '1px solid rgba(212,178,140,0.15)',
+          background: '#090705',
+          overflow: 'hidden',
+          whiteSpace: 'nowrap',
+          padding: '24px 0',
+          display: 'flex',
+          alignItems: 'center',
+          userSelect: 'none'
+        }}
+      >
+        <div className="marquee-content" style={{ display: 'inline-flex', gap: '30px' }}>
+          {[1, 2, 3, 4].map((group) => (
+            <div key={group} style={{ display: 'inline-flex', gap: '30px', alignItems: 'center' }}>
+              <span className="marquee-text">SURFACES FOR THE IMAGINATION</span>
+              <span className="marquee-dot">•</span>
+              <span className="marquee-text-accent">15 YEARS OF SURFACES MASTERFUL CURATION</span>
+              <span className="marquee-dot">•</span>
+              <span className="marquee-text">LAMINATES</span>
+              <span className="marquee-dot">•</span>
+              <span className="marquee-text">LOUVERS</span>
+              <span className="marquee-dot">•</span>
+              <span className="marquee-text-accent">NATURAL STONE VENEER</span>
+              <span className="marquee-dot">•</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* PRE-FOOTER EDITORIAL MOMENT */}
       <section style={{
-        padding: 'clamp(80px, 12vw, 160px) clamp(32px, 6vw, 100px)',
-        background: '#080605',
-        borderTop: '1px solid rgba(212,178,140,0.08)',
+        padding: 'clamp(90px, 14vw, 170px) clamp(32px, 6vw, 100px)',
+        background: '#0D0906',
         textAlign: 'center',
         overflow: 'hidden',
+        position: 'relative',
+        zIndex: 1
       }}>
         <span style={{
           fontFamily: 'var(--font-sans)', fontSize: '9px', fontWeight: 700,
-          letterSpacing: '0.22em', textTransform: 'uppercase',
-          color: '#D4B28C', display: 'block', marginBottom: '24px',
+          letterSpacing: '0.25em', textTransform: 'uppercase',
+          color: '#D4B28C', display: 'block', marginBottom: '28px',
         }}>— Start a Conversation</span>
 
         <h2 style={{
           fontFamily: 'var(--font-serif)',
           fontSize: 'clamp(48px, 9vw, 128px)',
           fontWeight: 300, lineHeight: 1.0, letterSpacing: '-0.02em',
-          color: '#F0EAE0',
-          marginBottom: '48px',
+          color: '#FAF7F2',
+          marginBottom: '54px',
         }}>
           Let's Build Something <em className="hero-em" style={{ fontStyle: 'italic', color: '#D4B28C' }}>Tactile</em>.
         </h2>
 
-        <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
           <Link 
             href="/contact" 
             style={{ 
               display: 'inline-flex',
               alignItems: 'center',
-              height: '54px',
-              padding: '0 38px',
+              height: '56px',
+              padding: '0 40px',
               background: '#D4B28C', 
-              color: '#050403',
+              color: '#0D0906',
               fontFamily: 'var(--font-sans)',
               fontSize: '11px',
               fontWeight: 700,
               letterSpacing: '0.18em',
               textTransform: 'uppercase',
               transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-              boxShadow: '0 0 30px rgba(212,178,140,0.2)',
+              boxShadow: '0 0 35px rgba(212,178,140,0.22)',
               textDecoration: 'none'
             }}
             onMouseEnter={(e) => {
@@ -73,11 +106,11 @@ export default function Footer() {
             style={{ 
               display: 'inline-flex',
               alignItems: 'center',
-              height: '54px',
-              padding: '0 32px',
+              height: '56px',
+              padding: '0 34px',
               background: 'transparent',
-              color: 'rgba(240, 234, 224, 0.8)',
-              border: '1px solid rgba(240, 234, 224, 0.16)',
+              color: 'rgba(246, 242, 231, 0.8)',
+              border: '1px solid rgba(246, 242, 231, 0.18)',
               fontFamily: 'var(--font-sans)',
               fontSize: '11px',
               fontWeight: 500,
@@ -93,8 +126,8 @@ export default function Footer() {
               e.currentTarget.style.transform = 'translateY(-2px)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'rgba(240, 234, 224, 0.16)';
-              e.currentTarget.style.color = 'rgba(240, 234, 224, 0.8)';
+              e.currentTarget.style.borderColor = 'rgba(246, 242, 231, 0.18)';
+              e.currentTarget.style.color = 'rgba(246, 242, 231, 0.8)';
               e.currentTarget.style.transform = 'translateY(0)';
             }}
           >
@@ -119,7 +152,7 @@ export default function Footer() {
         }}
       />
 
-      <div style={{ position: 'relative', zIndex: 1, padding: '80px clamp(32px, 6vw, 100px) 0' }}>
+      <div style={{ position: 'relative', zIndex: 2, padding: '80px clamp(32px, 6vw, 100px) 0' }}>
         {/* Footer Grid System */}
         <div
           style={{
@@ -144,7 +177,7 @@ export default function Footer() {
                     fontFamily: 'var(--font-serif)',
                     fontSize: '18px',
                     letterSpacing: '0.12em',
-                    color: '#F0EAE0',
+                    color: '#FAF7F2',
                     lineHeight: 1,
                   }}
                 >
@@ -164,7 +197,7 @@ export default function Footer() {
                 </span>
               </div>
             </Link>
-            <p style={{ fontSize: '13px', lineHeight: 1.7, color: 'rgba(240, 234, 224, 0.45)', maxWidth: '280px' }}>
+            <p style={{ fontSize: '13px', lineHeight: 1.75, color: 'rgba(246, 242, 231, 0.45)', maxWidth: '280px' }}>
               15 years of engineering surfaces for imagination. Bridging traditional craftsmanship with digital-first material exploration.
             </p>
           </div>
@@ -199,12 +232,12 @@ export default function Footer() {
                   style={{
                     fontFamily: 'var(--font-sans)',
                     fontSize: '13px',
-                    color: 'rgba(240, 234, 224, 0.65)',
+                    color: 'rgba(246, 242, 231, 0.65)',
                     transition: 'color 0.25s ease',
                     textDecoration: 'none'
                   }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = '#D4B28C')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(240, 234, 224, 0.65)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(246, 242, 231, 0.65)')}
                 >
                   {link.label}
                 </Link>
@@ -246,7 +279,7 @@ export default function Footer() {
                   style={{
                     fontFamily: 'var(--font-sans)',
                     fontSize: '13px',
-                    color: 'rgba(240, 234, 224, 0.5)',
+                    color: 'rgba(246, 242, 231, 0.5)',
                     lineHeight: 1.5,
                     display: 'block',
                   }}
@@ -287,7 +320,7 @@ export default function Footer() {
                   style={{
                     fontFamily: 'var(--font-sans)',
                     fontSize: '13px',
-                    color: 'rgba(240, 234, 224, 0.5)',
+                    color: 'rgba(246, 242, 231, 0.5)',
                     lineHeight: 1.5,
                     display: 'block',
                   }}
@@ -335,7 +368,7 @@ export default function Footer() {
                 style={{
                   fontFamily: 'var(--font-sans)',
                   fontSize: '13px',
-                  color: 'rgba(240, 234, 224, 0.65)',
+                  color: 'rgba(246, 242, 231, 0.65)',
                   textDecoration: 'none'
                 }}
               >
@@ -346,7 +379,7 @@ export default function Footer() {
                 style={{
                   fontFamily: 'var(--font-sans)',
                   fontSize: '13px',
-                  color: 'rgba(240, 234, 224, 0.65)',
+                  color: 'rgba(246, 242, 231, 0.65)',
                   textDecoration: 'none'
                 }}
               >
@@ -359,12 +392,12 @@ export default function Footer() {
                   style={{
                     fontFamily: 'var(--font-sans)',
                     fontSize: '13px',
-                    color: 'rgba(240, 234, 224, 0.5)',
+                    color: 'rgba(246, 242, 231, 0.5)',
                     transition: 'color 0.25s ease',
                     textDecoration: 'none'
                   }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = '#D4B28C')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(240, 234, 224, 0.5)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(246, 242, 231, 0.5)')}
                 >
                   {s}
                 </a>
@@ -386,7 +419,7 @@ export default function Footer() {
           }}
           className="footer-bottom-strip"
         >
-          <span style={{ fontFamily: 'var(--font-sans)', fontSize: '11px', color: 'rgba(240, 234, 224, 0.35)' }}>
+          <span style={{ fontFamily: 'var(--font-sans)', fontSize: '11px', color: 'rgba(246, 242, 231, 0.35)' }}>
             &copy; {currentYear} lavision Laminates. 15 Years of Surface Craftsmanship.
           </span>
           <div style={{ display: 'flex', gap: '24px' }}>
@@ -395,12 +428,12 @@ export default function Footer() {
               style={{
                 fontFamily: 'var(--font-sans)',
                 fontSize: '11px',
-                color: 'rgba(240, 234, 224, 0.35)',
+                color: 'rgba(246, 242, 231, 0.35)',
                 transition: 'color 0.25s ease',
                 textDecoration: 'none'
               }}
               onMouseEnter={(e) => (e.currentTarget.style.color = '#FAF7F2')}
-              onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(240, 234, 224, 0.35)')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(246, 242, 231, 0.35)')}
             >
               Privacy Policy
             </Link>
@@ -409,12 +442,12 @@ export default function Footer() {
               style={{
                 fontFamily: 'var(--font-sans)',
                 fontSize: '11px',
-                color: 'rgba(240, 234, 224, 0.35)',
+                color: 'rgba(246, 242, 231, 0.35)',
                 transition: 'color 0.25s ease',
                 textDecoration: 'none'
               }}
               onMouseEnter={(e) => (e.currentTarget.style.color = '#FAF7F2')}
-              onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(240, 234, 224, 0.35)')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(246, 242, 231, 0.35)')}
             >
               Terms &amp; Conditions
             </Link>
@@ -423,6 +456,33 @@ export default function Footer() {
       </div>
 
       <style jsx global>{`
+        @keyframes marquee {
+          0% { transform: translate3d(0, 0, 0); }
+          100% { transform: translate3d(-25%, 0, 0); }
+        }
+        .marquee-content {
+          animation: marquee 32s linear infinite;
+        }
+        .marquee-text {
+          font-family: var(--font-sans);
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 0.2em;
+          color: rgba(246, 242, 231, 0.3);
+          text-transform: uppercase;
+        }
+        .marquee-text-accent {
+          font-family: var(--font-serif);
+          font-size: 13px;
+          font-weight: 400;
+          letter-spacing: 0.1em;
+          color: #D4B28C;
+          text-transform: uppercase;
+        }
+        .marquee-dot {
+          color: rgba(212, 178, 140, 0.4);
+          font-size: 14px;
+        }
         @media (max-width: 900px) {
           .footer-links-grid {
             grid-template-columns: 1fr !important;

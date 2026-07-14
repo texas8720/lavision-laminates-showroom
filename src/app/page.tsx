@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { MapPin } from 'lucide-react';
+import { MapPin, Sun, Sparkles, Moon } from 'lucide-react';
 import TiltCard from '@/components/TiltCard';
 import ProceduralTexture from '@/components/ProceduralTexture';
 import { useTextReveal } from '@/hooks/useTextReveal';
@@ -13,7 +13,7 @@ import { useTextReveal } from '@/hooks/useTextReveal';
 // 3D Scene (client only)
 const HeroScene3D = dynamic(() => import('@/components/3d/HeroScene3D'), {
   ssr: false,
-  loading: () => <div style={{ width: '100%', height: '100%', background: '#050403' }} />,
+  loading: () => <div style={{ width: '100%', height: '100%', background: '#0D0906' }} />,
 });
 
 const STATS = [
@@ -28,36 +28,57 @@ const CATEGORIES = [
     title: 'Laminates',
     desc: 'Hundreds of décors. Every texture, tone, and grain you can imagine.',
     link: '/products/laminates',
+    span: 2,
+    texture: 'wood' as const,
+    isDark: false,
   },
   {
     title: 'Louvers',
     desc: 'Rhythm, shadow, and depth — engineered into every slat.',
     link: '/products/louvers',
+    span: 1,
+    texture: 'louver' as const,
+    isDark: true,
   },
   {
     title: 'Acrylic Sheets',
     desc: 'High-gloss brilliance that turns light into design.',
     link: '/products/acrylic-sheets',
+    span: 1,
+    texture: 'acrylic' as const,
+    isDark: false,
   },
   {
     title: 'Polymer Sheets',
     desc: 'Durable. Versatile. Built for real Indian interiors.',
     link: '/products/polymer-sheets',
+    span: 1,
+    texture: 'polymer' as const,
+    isDark: false,
   },
   {
     title: 'Leather Sheets',
     desc: 'The warmth of leather, the practicality of a wall panel.',
     link: '/products/leather-sheets',
+    span: 1,
+    texture: 'leather' as const,
+    isDark: false,
   },
   {
     title: 'Natural Stone Veneer',
     desc: 'Real stone, reimagined as a surface you can actually install.',
     link: '/products/natural-stone-veneer',
+    span: 2,
+    texture: 'stone' as const,
+    isDark: true,
   },
   {
     title: 'Decorative Panels',
     desc: 'The fine detailing that makes a space unmistakably yours.',
     link: '/products/decorative-panels',
+    span: 1,
+    texture: 'panel' as const,
+    isDark: true,
   },
 ];
 
@@ -98,15 +119,15 @@ function StatCounter({ value, label }: { value: string; label: string }) {
   }, [target]);
 
   return (
-    <div ref={ref} style={{ textAlign: 'center', flex: 1, minWidth: '200px' }}>
+    <div ref={ref} style={{ textAlign: 'center', flex: 1, minWidth: '220px' }}>
       <div
         style={{
           fontFamily: 'var(--font-serif)',
-          fontSize: 'clamp(44px, 5vw, 72px)',
+          fontSize: 'clamp(48px, 6vw, 76px)',
           color: '#D4B28C',
           fontWeight: 300,
           lineHeight: 1,
-          marginBottom: '8px',
+          marginBottom: '10px',
         }}
       >
         {count}
@@ -122,9 +143,10 @@ function StatCounter({ value, label }: { value: string; label: string }) {
 export default function Home() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [heroScroll, setHeroScroll] = useState(0);
+  const [showroomLight, setShowroomLight] = useState<'golden' | 'studio' | 'midnight'>('golden');
   const heroRef = useRef<HTMLDivElement>(null);
 
-  // Text Reveal Refs
+  // Text Reveal Hooks
   const h1Ref = useTextReveal();
   const beliefRef = useTextReveal();
   const collHeadingRef = useTextReveal();
@@ -132,7 +154,6 @@ export default function Home() {
   const physicalHeadingRef = useTextReveal();
   const spacesHeadingRef = useTextReveal();
 
-  // Tracks mouse movement for light interaction in WebGL
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({
@@ -144,7 +165,6 @@ export default function Home() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Sync GSAP ScrollTrigger with hero progression
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -162,10 +182,10 @@ export default function Home() {
   }, []);
 
   return (
-    <main style={{ background: '#050403', overflowX: 'hidden' }}>
+    <main style={{ background: '#0D0906', overflowX: 'hidden' }}>
       
       {/* ─── HERO SECTION (WebGL interactive) ─── */}
-      <section ref={heroRef} style={{ position: 'relative', height: '220vh' }}>
+      <section ref={heroRef} style={{ position: 'relative', height: '160vh' }}>
         <div
           style={{
             position: 'sticky',
@@ -188,7 +208,7 @@ export default function Home() {
               zIndex: 2,
               pointerEvents: 'none',
               background:
-                'radial-gradient(ellipse 70% 65% at 50% 50%, transparent 0%, rgba(5,4,3,0.7) 100%)',
+                'radial-gradient(ellipse 75% 70% at 50% 50%, transparent 0%, rgba(13,9,6,0.75) 100%)',
             }}
           />
 
@@ -217,10 +237,10 @@ export default function Home() {
                 alignItems: 'center',
                 gap: '12px',
                 padding: '8px 20px',
-                border: '1px solid rgba(212, 178, 140, 0.3)',
-                background: 'rgba(212, 178, 140, 0.05)',
-                backdropFilter: 'blur(10px)',
-                marginBottom: '32px',
+                border: '1px solid rgba(212, 178, 140, 0.22)',
+                background: 'rgba(212, 178, 140, 0.04)',
+                backdropFilter: 'blur(12px)',
+                marginBottom: '36px',
               }}
             >
               <span style={{ width: '16px', height: '1px', background: '#D4B28C' }} />
@@ -229,7 +249,7 @@ export default function Home() {
                   fontFamily: 'var(--font-sans)',
                   fontSize: '9px',
                   fontWeight: 700,
-                  letterSpacing: '0.2em',
+                  letterSpacing: '0.22em',
                   color: '#D4B28C',
                   textTransform: 'uppercase',
                 }}
@@ -244,11 +264,11 @@ export default function Home() {
               ref={h1Ref}
               style={{
                 fontFamily: 'var(--font-serif)',
-                fontSize: 'clamp(42px, 7.5vw, 92px)',
+                fontSize: 'clamp(44px, 7.8vw, 96px)',
                 fontWeight: 300,
                 lineHeight: 1.05,
-                color: '#F0EAE0',
-                maxWidth: '960px',
+                color: '#FAF7F2',
+                maxWidth: '1000px',
                 margin: '0 auto 28px',
               }}
             >
@@ -260,9 +280,9 @@ export default function Home() {
                 fontFamily: 'var(--font-sans)',
                 fontSize: 'clamp(14px, 1.4vw, 18px)',
                 fontWeight: 300,
-                lineHeight: 1.7,
-                color: 'rgba(240, 234, 224, 0.55)',
-                maxWidth: '560px',
+                lineHeight: 1.75,
+                color: 'rgba(246, 242, 231, 0.55)',
+                maxWidth: '600px',
                 margin: '0 auto 48px',
               }}
             >
@@ -276,10 +296,10 @@ export default function Home() {
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
-                  height: '54px',
-                  padding: '0 36px',
+                  height: '50px',
+                  padding: '0 32px',
                   background: '#D4B28C',
-                  color: '#050403',
+                  color: '#0D0906',
                   fontFamily: 'var(--font-sans)',
                   fontSize: '11px',
                   fontWeight: 700,
@@ -305,11 +325,11 @@ export default function Home() {
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
-                  height: '54px',
-                  padding: '0 32px',
+                  height: '50px',
+                  padding: '0 28px',
                   background: 'transparent',
-                  color: 'rgba(240, 234, 224, 0.8)',
-                  border: '1px solid rgba(240, 234, 224, 0.16)',
+                  color: 'rgba(246, 242, 231, 0.8)',
+                  border: '1px solid rgba(246, 242, 231, 0.16)',
                   fontFamily: 'var(--font-sans)',
                   fontSize: '11px',
                   fontWeight: 500,
@@ -320,13 +340,13 @@ export default function Home() {
                   textDecoration: 'none'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(212, 178, 140, 0.4)';
+                  e.currentTarget.style.borderColor = 'rgba(212, 178, 140, 0.42)';
                   e.currentTarget.style.color = '#D4B28C';
                   e.currentTarget.style.transform = 'translateY(-2px)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(240, 234, 224, 0.16)';
-                  e.currentTarget.style.color = 'rgba(240, 234, 224, 0.8)';
+                  e.currentTarget.style.borderColor = 'rgba(246, 242, 231, 0.16)';
+                  e.currentTarget.style.color = 'rgba(246, 242, 231, 0.8)';
                   e.currentTarget.style.transform = 'translateY(0)';
                 }}
               >
@@ -337,10 +357,10 @@ export default function Home() {
 
           {/* Scroll indicator */}
           <div style={{
-            position: 'absolute', bottom: '40px', left: '50%',
+            position: 'absolute', bottom: '30px', left: '50%',
             transform: 'translateX(-50%)',
             zIndex: 4, display: 'flex', flexDirection: 'column',
-            alignItems: 'center', gap: '8px',
+            alignItems: 'center', gap: '6px',
             opacity: Math.max(0, 1 - heroScroll * 5),
             transition: 'opacity 0.2s ease',
             pointerEvents: 'none'
@@ -351,7 +371,7 @@ export default function Home() {
               color: 'rgba(212,178,140,0.5)',
             }}>Scroll</span>
             <div style={{
-              width: '1px', height: '48px',
+              width: '1px', height: '36px',
               background: 'linear-gradient(to bottom, rgba(212,178,140,0.5), transparent)',
             }} />
           </div>
@@ -361,14 +381,15 @@ export default function Home() {
       {/* ─── STATS STRIP SECTION ─── */}
       <section
         style={{
-          background: '#080605',
-          borderTop: '1px solid rgba(212, 178, 140, 0.1)',
-          borderBottom: '1px solid rgba(212, 178, 140, 0.1)',
-          padding: '64px clamp(24px, 6vw, 80px)',
+          background: '#090705',
+          borderTop: '1px solid rgba(212, 178, 140, 0.08)',
+          borderBottom: '1px solid rgba(212, 178, 140, 0.08)',
+          padding: '50px clamp(24px, 6vw, 80px)',
           position: 'relative',
           zIndex: 10,
         }}
       >
+
         <div
           style={{
             maxWidth: '1400px',
@@ -377,7 +398,7 @@ export default function Home() {
             justifyContent: 'space-between',
             alignItems: 'center',
             flexWrap: 'wrap',
-            gap: '40px',
+            gap: '48px',
           }}
         >
           {STATS.map((stat, i) => (
@@ -389,18 +410,19 @@ export default function Home() {
       {/* ─── THE LAVISION STANDARD SECTION ─── */}
       <section
         style={{
-          padding: '120px clamp(24px, 6vw, 80px)',
-          background: '#050403',
+          padding: '90px clamp(24px, 6vw, 80px)',
+          background: '#0D0906',
           position: 'relative',
           zIndex: 10,
         }}
       >
+
         <div
           style={{
             maxWidth: '1400px',
             margin: '0 auto',
             display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
+            gridTemplateColumns: '1.2fr 0.8fr',
             gap: '80px',
             alignItems: 'center',
           }}
@@ -418,7 +440,7 @@ export default function Home() {
                 letterSpacing: '0.22em',
                 textTransform: 'uppercase',
                 color: '#D4B28C',
-                marginBottom: '20px',
+                marginBottom: '24px',
               }}
             >
               <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#D4B28C' }} />
@@ -428,21 +450,21 @@ export default function Home() {
               ref={beliefRef}
               style={{
                 fontFamily: 'var(--font-serif)',
-                fontSize: 'clamp(28px, 4.5vw, 56px)',
+                fontSize: 'clamp(32px, 4.8vw, 64px)',
                 fontWeight: 300,
                 lineHeight: 1.1,
-                color: '#F0EAE0',
+                color: '#FAF7F2',
               }}
             >
               Fifteen years ago, we started with a simple belief: a surface is never just a surface.
             </h2>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            <p style={{ fontSize: '15px', color: 'rgba(240, 234, 224, 0.55)', lineHeight: 1.8, margin: 0 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
+            <p style={{ fontSize: '15px', color: 'rgba(246, 242, 231, 0.55)', lineHeight: 1.8, margin: 0 }}>
               It's the first thing a hand touches on a kitchen counter. The backdrop of a living room that hosts a lifetime of memories. The finish that decides whether a space feels ordinary — or extraordinary.
             </p>
-            <p style={{ fontSize: '15px', color: 'rgba(240, 234, 224, 0.55)', lineHeight: 1.8, margin: 0 }}>
+            <p style={{ fontSize: '15px', color: 'rgba(246, 242, 231, 0.55)', lineHeight: 1.8, margin: 0 }}>
               Today, lavision Laminates stands as one of Gujarat's most trusted names in surface solutions, with showrooms in Rajkot and Ahmedabad and a catalogue that spans laminates, louvers, acrylic, polymer, leather-finish sheets, and natural stone veneer.
             </p>
             <Link
@@ -458,6 +480,7 @@ export default function Home() {
                 alignItems: 'center',
                 gap: '8px',
                 textDecoration: 'none',
+                marginTop: '10px'
               }}
             >
               Our Story &rarr;
@@ -466,17 +489,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── PRODUCT CATEGORY GRID SECTION ─── */}
+      {/* ─── BENTO PRODUCT CATEGORY GRID SECTION ─── */}
       <section
         style={{
-          padding: '120px clamp(24px, 6vw, 80px)',
-          background: '#080605',
-          borderTop: '1px solid rgba(212, 178, 140, 0.1)',
+          padding: '90px clamp(24px, 6vw, 80px)',
+          background: '#090705',
+          borderTop: '1px solid rgba(212, 178, 140, 0.08)',
           position: 'relative',
           zIndex: 10,
         }}
       >
-        <div style={{ maxWidth: '1400px', margin: '0 auto', marginBottom: '64px', textAlign: 'center' }}>
+        <div style={{ maxWidth: '1400px', margin: '0 auto', marginBottom: '50px', textAlign: 'center' }}>
+
           <span style={{ 
             display: 'inline-flex',
             alignItems: 'center',
@@ -486,19 +510,20 @@ export default function Home() {
             letterSpacing: '0.2em', 
             color: '#D4B28C', 
             textTransform: 'uppercase', 
-            marginBottom: '16px' 
+            marginBottom: '18px' 
           }}>
             <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#D4B28C' }} />
             The Collection
           </span>
           <h2 
             ref={collHeadingRef}
-            style={{ fontSize: 'clamp(32px, 5vw, 64px)', fontFamily: 'var(--font-serif)', fontWeight: 300, color: '#F0EAE0' }}
+            style={{ fontSize: 'clamp(36px, 5.2vw, 68px)', fontFamily: 'var(--font-serif)', fontWeight: 300, color: '#FAF7F2' }}
           >
             A Material for Every Vision
           </h2>
         </div>
 
+        {/* Bento Asymmetric Grid */}
         <div
           style={{
             maxWidth: '1400px',
@@ -510,158 +535,275 @@ export default function Home() {
           className="home-category-grid"
         >
           {CATEGORIES.map((cat, i) => {
-            let textureType: 'wood' | 'stone' | 'acrylic' | 'leather' | 'polymer' | 'louver' | 'panel' = 'wood';
-            let isDark = false;
-            if (cat.title === 'Laminates') { textureType = 'wood'; isDark = false; }
-            else if (cat.title === 'Louvers') { textureType = 'louver'; isDark = true; }
-            else if (cat.title === 'Acrylic Sheets') { textureType = 'acrylic'; isDark = false; }
-            else if (cat.title === 'Polymer Sheets') { textureType = 'polymer'; isDark = false; }
-            else if (cat.title === 'Leather Sheets') { textureType = 'leather'; isDark = false; }
-            else if (cat.title === 'Natural Stone Veneer') { textureType = 'stone'; isDark = true; }
-            else if (cat.title === 'Decorative Panels') { textureType = 'panel'; isDark = true; }
-
             const numStr = String(i + 1).padStart(2, '0');
 
             return (
-              <TiltCard key={cat.title}>
-                <Link
-                  href={cat.link}
-                  className="fade-up explore-hover"
-                  style={{
-                    background: 'rgba(255, 255, 255, 0.01)',
-                    border: '1px solid rgba(255, 255, 255, 0.04)',
-                    borderRadius: '2px',
-                    padding: '36px 32px',
-                    textDecoration: 'none',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '24px',
-                    transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-                    position: 'relative',
-                    overflow: 'hidden'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(212, 178, 140, 0.3)';
-                    e.currentTarget.style.background = 'rgba(212, 178, 140, 0.015)';
-                    e.currentTarget.style.boxShadow = '0 0 40px rgba(212, 178, 140, 0.08)';
-                    const previewInner = e.currentTarget.querySelector('.texture-preview-inner') as HTMLElement;
-                    if (previewInner) previewInner.style.transform = 'scale(1.05)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.04)';
-                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.01)';
-                    e.currentTarget.style.boxShadow = 'none';
-                    const previewInner = e.currentTarget.querySelector('.texture-preview-inner') as HTMLElement;
-                    if (previewInner) previewInner.style.transform = 'scale(1)';
-                  }}
-                >
-                  <div style={{
-                    fontFamily: 'var(--font-sans)',
-                    fontSize: '10px',
-                    fontWeight: 700,
-                    letterSpacing: '0.2em',
-                    color: '#D4B28C',
-                    textTransform: 'uppercase'
-                  }}>
-                    {numStr}
-                  </div>
-
-                  <div
+              <div
+                key={cat.title}
+                style={{
+                  gridColumn: cat.span === 2 ? 'span 2' : 'span 1',
+                }}
+                className="bento-cell"
+              >
+                <TiltCard>
+                  <Link
+                    href={cat.link}
+                    className="fade-up explore-hover"
                     style={{
-                      width: '100%',
-                      aspectRatio: '4/3',
+                      background: 'rgba(255, 255, 255, 0.01)',
+                      border: '1px solid rgba(212, 178, 140, 0.06)',
                       borderRadius: '2px',
-                      border: '1px solid rgba(255, 255, 255, 0.06)',
-                      boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
+                      padding: '40px 36px',
+                      textDecoration: 'none',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '28px',
+                      transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+                      position: 'relative',
                       overflow: 'hidden',
-                      position: 'relative'
+                      height: '100%',
+                      justifyContent: 'space-between'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = 'rgba(212, 178, 140, 0.3)';
+                      e.currentTarget.style.background = 'rgba(212, 178, 140, 0.025)';
+                      e.currentTarget.style.boxShadow = '0 12px 45px rgba(212, 178, 140, 0.05)';
+                      const previewInner = e.currentTarget.querySelector('.texture-preview-inner') as HTMLElement;
+                      if (previewInner) previewInner.style.transform = 'scale(1.06)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = 'rgba(212, 178, 140, 0.06)';
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.01)';
+                      e.currentTarget.style.boxShadow = 'none';
+                      const previewInner = e.currentTarget.querySelector('.texture-preview-inner') as HTMLElement;
+                      if (previewInner) previewInner.style.transform = 'scale(1)';
                     }}
                   >
-                    <div 
-                      className="texture-preview-inner"
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)'
-                      }}
-                    >
-                      <ProceduralTexture type={textureType} dark={isDark} />
-                    </div>
-                  </div>
+                    <div>
+                      <div style={{
+                        fontFamily: 'var(--font-sans)',
+                        fontSize: '10px',
+                        fontWeight: 700,
+                        letterSpacing: '0.2em',
+                        color: '#D4B28C',
+                        textTransform: 'uppercase',
+                        marginBottom: '16px'
+                      }}>
+                        {numStr}
+                      </div>
 
-                  <div>
-                    <h3
-                      style={{
-                        fontSize: '22px',
-                        fontFamily: 'var(--font-serif)',
-                        color: '#FAF7F2',
-                        marginBottom: '10px',
-                        fontWeight: 400,
-                      }}
-                    >
-                      {cat.title}
-                    </h3>
-                    <p style={{ fontSize: '13px', color: 'rgba(240, 234, 224, 0.45)', lineHeight: 1.6, margin: 0 }}>
-                      {cat.desc}
-                    </p>
-                  </div>
-                </Link>
-              </TiltCard>
+                      <div
+                        style={{
+                          width: '100%',
+                          aspectRatio: cat.span === 2 ? '21/9' : '4/3',
+                          borderRadius: '2px',
+                          border: '1px solid rgba(255, 255, 255, 0.06)',
+                          boxShadow: '0 8px 30px rgba(0,0,0,0.4)',
+                          overflow: 'hidden',
+                          position: 'relative',
+                          marginBottom: '24px'
+                        }}
+                      >
+                        <div 
+                          className="texture-preview-inner"
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
+                          }}
+                        >
+                          <ProceduralTexture type={cat.texture} dark={cat.isDark} />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h3
+                        style={{
+                          fontSize: '24px',
+                          fontFamily: 'var(--font-serif)',
+                          color: '#FAF7F2',
+                          marginBottom: '12px',
+                          fontWeight: 400,
+                        }}
+                      >
+                        {cat.title}
+                      </h3>
+                      <p style={{ fontSize: '13px', color: 'rgba(246, 242, 231, 0.48)', lineHeight: 1.6, margin: 0, maxWidth: '50ch' }}>
+                        {cat.desc}
+                      </p>
+                    </div>
+                  </Link>
+                </TiltCard>
+              </div>
             );
           })}
         </div>
       </section>
 
-      {/* ─── DIGITAL SHOWROOM FEATURE HYPE ─── */}
+      {/* ─── DIGITAL SHOWROOM INTERACTIVE LIGHT SELECTOR ─── */}
       <section
         style={{
-          padding: '120px clamp(24px, 6vw, 80px)',
-          background: 'linear-gradient(180deg, #050403 0%, #0D0906 100%)',
-          borderTop: '1px solid rgba(212, 178, 140, 0.1)',
+          padding: '90px clamp(24px, 6vw, 80px)',
+          background: 'linear-gradient(180deg, #090705 0%, #0D0906 100%)',
+          borderTop: '1px solid rgba(212, 178, 140, 0.08)',
           position: 'relative',
           zIndex: 10,
         }}
       >
+
         <div
           style={{
             maxWidth: '1400px',
             margin: '0 auto',
             display: 'grid',
-            gridTemplateColumns: '1.1fr 0.9fr',
+            gridTemplateColumns: '1.15fr 0.85fr',
             gap: '80px',
             alignItems: 'center',
           }}
           className="home-split-grid"
         >
-          {/* Mock visual preview window */}
+          {/* Interactive lighting canvas/widget */}
           <div
             style={{
               position: 'relative',
               width: '100%',
               aspectRatio: '16/11',
               borderRadius: '4px',
-              border: '1px solid rgba(212, 178, 140, 0.25)',
+              border: '1px solid rgba(212, 178, 140, 0.22)',
               overflow: 'hidden',
-              boxShadow: '0 30px 60px rgba(0,0,0,0.6)',
-              background: 'radial-gradient(circle at center, #1E1A17 0%, #050403 100%)',
+              boxShadow: '0 30px 60px rgba(0,0,0,0.85)',
+              background: 
+                showroomLight === 'golden'
+                  ? 'radial-gradient(circle at center, #2C2018 0%, #0D0906 100%)'
+                  : showroomLight === 'studio'
+                  ? 'radial-gradient(circle at center, #353839 0%, #0D0906 100%)'
+                  : 'radial-gradient(circle at center, #0F121C 0%, #05060A 100%)',
+              transition: 'background 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
             }}
             className="fade-up"
           >
-            {/* Spinning decorative plane */}
+            {/* Interactive floating panel mockup */}
             <div
               style={{
                 position: 'absolute',
-                width: '60%',
-                height: '75%',
-                top: '12.5%',
-                left: '20%',
-                background: 'repeating-linear-gradient(45deg, #8E6743 0px, #2C2018 20px)',
-                border: '1px solid rgba(255,255,255,0.1)',
-                boxShadow: '0 20px 50px rgba(0,0,0,0.6)',
-                transform: 'rotateX(20deg) rotateY(-25deg)',
-                borderRadius: '2px',
+                width: '56%',
+                height: '72%',
+                top: '14%',
+                left: '22%',
+                background: 
+                  showroomLight === 'golden'
+                    ? 'repeating-linear-gradient(45deg, #A47D55 0px, #2A1E14 25px)'
+                    : showroomLight === 'studio'
+                    ? 'repeating-linear-gradient(45deg, #FAF7F2 0px, #D2C8BA 25px)'
+                    : 'repeating-linear-gradient(45deg, #1C1E26 0px, #0A0C10 25px)',
+                border: '1px solid rgba(255,255,255,0.08)',
+                boxShadow: 
+                  showroomLight === 'golden'
+                    ? '0 25px 60px rgba(212,178,140,0.18), -10px 15px 30px rgba(0,0,0,0.6)'
+                    : showroomLight === 'studio'
+                    ? '0 20px 50px rgba(255,255,255,0.06), -10px 15px 30px rgba(0,0,0,0.5)'
+                    : '0 30px 70px rgba(0,168,232,0.12), -10px 15px 35px rgba(0,0,0,0.8)',
+                transform: 'rotateX(22deg) rotateY(-26deg)',
+                borderRadius: '3px',
+                transition: 'background 0.8s ease, boxShadow 0.8s ease',
               }}
             />
+
+            {/* Specluar Lighting flare element */}
+            <div
+              style={{
+                position: 'absolute',
+                inset: 0,
+                pointerEvents: 'none',
+                background: 
+                  showroomLight === 'golden'
+                    ? 'radial-gradient(circle at 35% 30%, rgba(255, 230, 180, 0.15) 0%, transparent 60%)'
+                    : showroomLight === 'studio'
+                    ? 'radial-gradient(circle at 40% 35%, rgba(255, 255, 255, 0.18) 0%, transparent 55%)'
+                    : 'radial-gradient(circle at 30% 25%, rgba(0, 168, 232, 0.22) 0%, transparent 50%)',
+                mixBlendMode: 'screen',
+                transition: 'background 0.8s ease',
+              }}
+            />
+
+            {/* Pill Selector overlay in the corner */}
+            <div
+              style={{
+                position: 'absolute',
+                bottom: '24px',
+                right: '24px',
+                display: 'flex',
+                gap: '8px',
+                background: 'rgba(13, 9, 6, 0.85)',
+                border: '1px solid rgba(212,178,140,0.2)',
+                borderRadius: '30px',
+                padding: '4px 8px',
+                backdropFilter: 'blur(12px)',
+                zIndex: 10
+              }}
+            >
+              <button
+                onClick={() => setShowroomLight('golden')}
+                style={{
+                  background: showroomLight === 'golden' ? '#D4B28C' : 'transparent',
+                  border: 'none',
+                  color: showroomLight === 'golden' ? '#0D0906' : '#FAF7F2',
+                  padding: '6px 12px',
+                  borderRadius: '20px',
+                  fontSize: '9px',
+                  fontWeight: 700,
+                  letterSpacing: '0.08em',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '5px',
+                  transition: 'all 0.3s'
+                }}
+              >
+                <Sun size={10} /> GOLDEN HOUR
+              </button>
+              <button
+                onClick={() => setShowroomLight('studio')}
+                style={{
+                  background: showroomLight === 'studio' ? '#D4B28C' : 'transparent',
+                  border: 'none',
+                  color: showroomLight === 'studio' ? '#0D0906' : '#FAF7F2',
+                  padding: '6px 12px',
+                  borderRadius: '20px',
+                  fontSize: '9px',
+                  fontWeight: 700,
+                  letterSpacing: '0.08em',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '5px',
+                  transition: 'all 0.3s'
+                }}
+              >
+                <Sparkles size={10} /> STUDIO
+              </button>
+              <button
+                onClick={() => setShowroomLight('midnight')}
+                style={{
+                  background: showroomLight === 'midnight' ? '#D4B28C' : 'transparent',
+                  border: 'none',
+                  color: showroomLight === 'midnight' ? '#0D0906' : '#FAF7F2',
+                  padding: '6px 12px',
+                  borderRadius: '20px',
+                  fontSize: '9px',
+                  fontWeight: 700,
+                  letterSpacing: '0.08em',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '5px',
+                  transition: 'all 0.3s'
+                }}
+              >
+                <Moon size={10} /> MIDNIGHT
+              </button>
+            </div>
           </div>
 
           <div>
@@ -674,19 +816,19 @@ export default function Home() {
               letterSpacing: '0.2em', 
               color: '#D4B28C', 
               textTransform: 'uppercase', 
-              marginBottom: '16px' 
+              marginBottom: '18px' 
             }}>
               <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#D4B28C' }} />
               Next-Gen Showroom
             </span>
             <h2 
               ref={showroomHeadingRef}
-              style={{ fontSize: 'clamp(32px, 4.5vw, 56px)', fontFamily: 'var(--font-serif)', fontWeight: 300, color: '#F0EAE0', marginBottom: '24px', lineHeight: 1.1 }}
+              style={{ fontSize: 'clamp(32px, 4.8vw, 60px)', fontFamily: 'var(--font-serif)', fontWeight: 300, color: '#FAF7F2', marginBottom: '24px', lineHeight: 1.1 }}
             >
               Don't imagine the finish. See it.
             </h2>
-            <p style={{ fontSize: '15px', color: 'rgba(240, 234, 224, 0.55)', lineHeight: 1.75, marginBottom: '36px' }}>
-              Rotate. Zoom. Light it from every angle. Our Digital Showroom lets you experience every laminate sheet in real-time 3D — the same texture, grain, and sheen you'd feel on our showroom floor, now on your screen.
+            <p style={{ fontSize: '15px', color: 'rgba(246, 242, 231, 0.55)', lineHeight: 1.8, marginBottom: '36px' }}>
+              Rotate. Zoom. Light it from every angle. Our Digital Showroom lets you experience every laminate sheet in real-time 3D &mdash; the same texture, grain, and sheen you'd feel on our showroom floor, now on your screen.
             </p>
             <Link
               href="/digital-showroom"
@@ -696,7 +838,7 @@ export default function Home() {
                 height: '52px',
                 padding: '0 32px',
                 background: '#D4B28C',
-                color: '#050403',
+                color: '#0D0906',
                 fontFamily: 'var(--font-sans)',
                 fontSize: '11px',
                 fontWeight: 700,
@@ -717,14 +859,15 @@ export default function Home() {
       {/* ─── PHYSICAL SHOWROOMS TEASER SECTION ─── */}
       <section
         style={{
-          padding: '120px clamp(24px, 6vw, 80px)',
-          background: '#080605',
-          borderTop: '1px solid rgba(212, 178, 140, 0.1)',
+          padding: '90px clamp(24px, 6vw, 80px)',
+          background: '#090705',
+          borderTop: '1px solid rgba(212, 178, 140, 0.08)',
           position: 'relative',
           zIndex: 10,
         }}
       >
-        <div style={{ maxWidth: '1400px', margin: '0 auto', marginBottom: '64px', textAlign: 'center' }}>
+        <div style={{ maxWidth: '1400px', margin: '0 auto', marginBottom: '44px', textAlign: 'center' }}>
+
           <span style={{ 
             display: 'inline-flex',
             alignItems: 'center',
@@ -734,18 +877,18 @@ export default function Home() {
             letterSpacing: '0.2em', 
             color: '#D4B28C', 
             textTransform: 'uppercase', 
-            marginBottom: '16px' 
+            marginBottom: '18px' 
           }}>
             <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#D4B28C' }} />
             Locate Us
           </span>
           <h2 
             ref={physicalHeadingRef}
-            style={{ fontSize: 'clamp(32px, 5vw, 64px)', fontFamily: 'var(--font-serif)', fontWeight: 300, color: '#F0EAE0' }}
+            style={{ fontSize: 'clamp(32px, 5vw, 64px)', fontFamily: 'var(--font-serif)', fontWeight: 300, color: '#FAF7F2' }}
           >
             Visit Us in Person
           </h2>
-          <p style={{ fontSize: '15px', color: 'rgba(240, 234, 224, 0.55)', maxWidth: '480px', margin: '16px auto 0' }}>
+          <p style={{ fontSize: '15px', color: 'rgba(246, 242, 231, 0.55)', maxWidth: '500px', margin: '18px auto 0' }}>
             Two showrooms. One standard of excellence. Walk in to feel the grains and textures at physical scale.
           </p>
         </div>
@@ -763,23 +906,23 @@ export default function Home() {
           {/* Rajkot */}
           <div
             style={{
-              background: '#050403',
+              background: '#0D0906',
               border: '1px solid rgba(212, 178, 140, 0.15)',
-              padding: '40px',
+              padding: '44px',
               borderRadius: '2px',
               display: 'flex',
               flexDirection: 'column',
-              gap: '20px',
+              gap: '24px',
             }}
             className="fade-up"
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <MapPin size={20} color="#D4B28C" />
-              <h3 style={{ fontSize: '24px', fontFamily: 'var(--font-serif)', color: '#FAF7F2', fontWeight: 400 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <MapPin size={22} color="#D4B28C" />
+              <h3 style={{ fontSize: '26px', fontFamily: 'var(--font-serif)', color: '#FAF7F2', fontWeight: 400 }}>
                 Rajkot Showroom
               </h3>
             </div>
-            <p style={{ fontSize: '14px', color: 'rgba(240,234,224,0.5)', lineHeight: 1.6, margin: 0 }}>
+            <p style={{ fontSize: '14px', color: 'rgba(246,242,231,0.5)', lineHeight: 1.65, margin: 0 }}>
               2nd Floor, Royal Arcade, Gondal Road, Rajkot, Gujarat 360002. Our original showroom floor &mdash; the place where lavision's story began.
             </p>
             <a
@@ -807,23 +950,23 @@ export default function Home() {
           {/* Ahmedabad */}
           <div
             style={{
-              background: '#050403',
+              background: '#0D0906',
               border: '1px solid rgba(212, 178, 140, 0.15)',
-              padding: '40px',
+              padding: '44px',
               borderRadius: '2px',
               display: 'flex',
               flexDirection: 'column',
-              gap: '20px',
+              gap: '24px',
             }}
             className="fade-up"
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <MapPin size={20} color="#D4B28C" />
-              <h3 style={{ fontSize: '24px', fontFamily: 'var(--font-serif)', color: '#FAF7F2', fontWeight: 400 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <MapPin size={22} color="#D4B28C" />
+              <h3 style={{ fontSize: '26px', fontFamily: 'var(--font-serif)', color: '#FAF7F2', fontWeight: 400 }}>
                 Ahmedabad Showroom
               </h3>
             </div>
-            <p style={{ fontSize: '14px', color: 'rgba(240,234,224,0.5)', lineHeight: 1.6, margin: 0 }}>
+            <p style={{ fontSize: '14px', color: 'rgba(246,242,231,0.5)', lineHeight: 1.65, margin: 0 }}>
               G-14, Ramdevnagar Complex, Satellite Road, Ahmedabad, Gujarat 380015. Our expanded showroom, built to serve Gujarat's growing design community.
             </p>
             <a
@@ -853,9 +996,9 @@ export default function Home() {
       {/* ─── GALLERY TEASER ─── */}
       <section
         style={{
-          padding: '120px clamp(24px, 6vw, 80px)',
-          background: '#050403',
-          borderTop: '1px solid rgba(212, 178, 140, 0.1)',
+          padding: '90px clamp(24px, 6vw, 80px)',
+          background: '#0D0906',
+          borderTop: '1px solid rgba(212, 178, 140, 0.08)',
           textAlign: 'center',
           position: 'relative',
           zIndex: 10,
@@ -871,18 +1014,18 @@ export default function Home() {
             letterSpacing: '0.2em', 
             color: '#D4B28C', 
             textTransform: 'uppercase', 
-            marginBottom: '16px' 
+            marginBottom: '18px' 
           }}>
             <span style={{ display: 'inline-block', width: '24px', height: '1px', background: '#D4B28C' }} />
             Visual Portfolio
           </span>
           <h2 
             ref={spacesHeadingRef}
-            style={{ fontSize: 'clamp(32px, 5vw, 64px)', fontFamily: 'var(--font-serif)', fontWeight: 300, color: '#F0EAE0', marginBottom: '24px' }}
+            style={{ fontSize: 'clamp(36px, 5.2vw, 68px)', fontFamily: 'var(--font-serif)', fontWeight: 300, color: '#FAF7F2', marginBottom: '24px' }}
           >
             Spaces We've Helped Finish
           </h2>
-          <p style={{ fontSize: '15px', color: 'rgba(240, 234, 224, 0.55)', lineHeight: 1.7, marginBottom: '36px', maxWidth: '480px', margin: '0 auto 36px' }}>
+          <p style={{ fontSize: '15px', color: 'rgba(246, 242, 231, 0.55)', lineHeight: 1.75, marginBottom: '32px', maxWidth: '520px', margin: '0 auto 32px' }}>
             See how our premium wood veneers, louvers, stone veneers, and acrylic modular shutters look in completed high-end luxury interiors across India.
           </p>
           <Link
@@ -890,8 +1033,8 @@ export default function Home() {
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              height: '52px',
-              padding: '0 36px',
+              height: '50px',
+              padding: '0 32px',
               background: 'transparent',
               color: '#D4B28C',
               border: '1px solid #D4B28C',
@@ -904,7 +1047,7 @@ export default function Home() {
               transition: 'all 0.3s ease',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(212, 178, 140, 0.1)';
+              e.currentTarget.style.background = 'rgba(212, 178, 140, 0.08)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.background = 'transparent';
@@ -915,11 +1058,20 @@ export default function Home() {
         </div>
       </section>
 
+
       <style jsx global>{`
-        @media (max-width: 900px) {
+        @media (max-width: 1024px) {
+          .home-category-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .bento-cell {
+            grid-column: span 1 !important;
+          }
+        }
+        @media (max-width: 768px) {
           .home-split-grid {
             grid-template-columns: 1fr !important;
-            gap: 40px !important;
+            gap: 48px !important;
           }
           .home-category-grid {
             grid-template-columns: 1fr !important;
